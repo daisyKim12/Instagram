@@ -15,24 +15,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         supportFragmentManager.beginTransaction().replace(R.id.main_frm, HomeFragment())
             .commitAllowingStateLoss()
 
-//        binding.mainBtmNav.run {
-//            setOnItemSelectedListener { item ->
-//                when (item.itemId) {
-//                    R.id.menu_main_btm_nav_home -> {
-//                        supportFragmentManager.beginTransaction()
-//                            .replace(R.id.main_frm, HomeFragment())
-//                            .commitAllowingStateLoss()
-//                    }
-//                    R.id.menu_main_btm_nav_my_page -> {
-//                        supportFragmentManager.beginTransaction()
-//                            .replace(R.id.main_frm, MyPageFragment())
-//                            .commitAllowingStateLoss()
-//                    }
-//                }
-//                true
-//            }
-//            selectedItemId = R.id.menu_main_btm_nav_home
-//        }
+        binding.mainBtmNav.run {
+            setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.menu_main_btm_nav_home -> {
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.main_frm, HomeFragment())
+                            .commitAllowingStateLoss()
+                    }
+                    R.id.menu_main_btm_nav_my_page -> {
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.main_frm, MyPageFragment())
+                            .commitAllowingStateLoss()
+                    }
+                }
+                true
+            }
+            selectedItemId = R.id.menu_main_btm_nav_home
+        }
 
     }
 }

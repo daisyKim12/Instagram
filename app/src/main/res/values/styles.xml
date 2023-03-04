@@ -12,4 +12,19 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="colorControlActivated">@color/blackForText</item>
     </style>
+
+    <style name="MyHintStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/login_unclicked</item>
+        <!-- The color of the label when it is collapsed and the text field is active -->
+        <item name="hintTextColor">@color/login_unclicked</item>
+
+        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+        <item name="android:textColorHint">@color/login_unclicked</item>
+
+
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+<!--        <item name="colorAccent">@color/blackForText</item>-->
+<!--        <item name="colorControlNormal">@color/blackForText</item>-->
+<!--        <item name="colorControlActivated">@color/blackForText</item>-->
+    </style>
 </resources>

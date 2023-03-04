@@ -13,8 +13,8 @@
     <color name="redForText">#d9534f</color>
 
     <color name="text_1">#959595</color>
-    <color name="login_stroke_unclicked">#C3C3C3</color>
-    <color name="login_stroke_clicked">#C3C3C3</color>
+    <color name="login_unclicked">#C3C3C3</color>
+    <color name="login_clicked">#C3C3C3</color>
     <color name="login_btn_1">#4860CD</color>
     <color name="transparent">#00FFFFFF</color>
 </resources>

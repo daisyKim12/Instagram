@@ -1,10 +1,14 @@
 package com.project.Instargram.kotlin.src.login
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityLoginBinding
+import com.project.Instargram.kotlin.src.main.MainActivity
 
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate) {
@@ -12,21 +16,23 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        val layoutParams = LinearLayout.LayoutParams(100, 100)
-//        binding.ivLogo.setLayoutParams(layoutParams)
 
     }
 
     override fun onResume() {
         super.onResume()
 
+        binding.edittextId.setOnClickListener {
+//            Log.d(TAG, "onResume: clicked")
+//            binding.ivLogo.setScaleY(0.4.toFloat())
+//            binding.ivLogo.setScaleX(0.4.toFloat())
+//            val layoutParams = ConstraintLayout.LayoutParams(100, 100)
+//            binding.ivLogo.setLayoutParams(layoutParams)
+        }
 
-//        KeyboardVisibilityEvent.setEventListener(
-//            getActivity(),
-//            object : KeyboardVisibilityEventListener() {
-//                fun onVisibilityChanged(isOpen: Boolean) {
-//                    // Ah... at last. do your thing :)
-//                }
-//            })
+        binding.btnLogin.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 }
