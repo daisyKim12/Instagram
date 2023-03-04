@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fcfcfc</color>
+    <color name="colorPrimaryDark">#889dfe</color>
+    <color name="colorAccent">#889dfe</color>
+
+    <!-- 기본 -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="whiteForBackground">#FFFFFF</color>
+    <color name="blackForText">#474747</color>
+    <color name="redForText">#d9534f</color>
+
+    <color name="text_1">#959595</color>
+    <color name="login_stroke_unclicked">#C3C3C3</color>
+    <color name="login_stroke_clicked">#C3C3C3</color>
+    <color name="login_btn_1">#4860CD</color>
+    <color name="transparent">#00FFFFFF</color>
+</resources>

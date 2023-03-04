@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <TextView
+        android:id="@+id/txt_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="한국어"
+        android:textColor="@color/text_1"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_main_login_logo"
+        android:layout_marginTop="100dp"
+        app:layout_constraintDimensionRatio="H,1:1"/>
+
+<!--    <EditText-->
+<!--        android:id="@+id/edit_id"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:background="@drawable/login_edittext_bg"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/guideline_right"-->
+<!--        app:layout_constraintStart_toStartOf="@id/guideline_left"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/iv_logo"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:paddingStart="16dp"-->
+<!--        android:paddingBottom="8dp"-->
+<!--        android:gravity="left|bottom"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_id"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_edittext_bg"
+                android:hint="사용자 이름, 이메일 주소 또는 휴대폰 번호"
+                android:textColorHint="@color/login_stroke_unclicked"
+                android:textSize="17sp"
+                />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--        <TextView-->
+<!--            android:id="@+id/txt_hint_id"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="사용자 이름, 이메일 주소 또는 휴대폰 번호"-->
+<!--            android:textColor="@color/login_stroke_unclicked"-->
+<!--            android:textSize="17sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline_left"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/edit_id"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="15dp"/>-->
+
+        <EditText
+            android:id="@+id/edit_pw"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:background="@drawable/login_edittext_bg"
+            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/edit_id"
+            android:layout_marginTop="10dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:gravity="left|bottom"/>
+
+        <TextView
+            android:id="@+id/txt_hint_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호"
+            android:textColor="@color/login_stroke_unclicked"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toTopOf="@+id/edit_pw"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:background="@drawable/login_btn1"
+            android:text="로그인"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/edit_pw"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/txt_lost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호를 잊으셨나요?"
+            android:textColor="@color/blackForText"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+            android:layout_marginTop="15dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_new_account"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/login_btn2"
+            android:gravity="center"
+            android:text="새 계정 만들기"
+            android:textColor="@color/blackForText"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintBottom_toTopOf="@id/iv_bottom_logo" />
+
+        <ImageView
+            android:id="@+id/iv_bottom_logo"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/login_bottom_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            android:layout_marginBottom="15dp"/>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
