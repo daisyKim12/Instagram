@@ -1,4 +1,4 @@
-# Instargram
+# Instagram
 
 <day1>
 - git 등록
