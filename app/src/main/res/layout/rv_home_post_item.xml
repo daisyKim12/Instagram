@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="12dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="12dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_thumbnail"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        android:layout_marginTop="10dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/white"/>
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="chaekso_"
+        android:textColor="@color/blackForText"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_thumbnail"
+        app:layout_constraintStart_toEndOf="@+id/img_thumbnail"
+        app:layout_constraintTop_toTopOf="@+id/img_thumbnail"
+        android:layout_marginStart="12dp"
+        android:lines="1"
+        android:scrollHorizontally="false"
+        android:ellipsize="end"/>
+
+    <ImageView
+        android:id="@+id/btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="2dp"
+        android:src="@drawable/ic_main_reels_settings"
+        app:tint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/img_thumbnail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_thumbnail"
+        app:layout_constraintDimensionRatio="H,1:1"/>
+
+    <ImageView
+        android:id="@+id/youtube_player_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_thumbnail"
+        app:layout_constraintDimensionRatio="H,10:10"/>
+
+
+
+
+    <!--    <ImageView-->
+<!--        android:id="@+id/img_bottom"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:src="@drawable/movie_talk_bottom"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/txt_detail"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintDimensionRatio="H,110:12"/>-->
+
+
+
+<!--    <TextView-->
+<!--        android:id="@id/txt_detail"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="건강하고 희망적이면서 다격감 있다!\n강기영부터 이수지, 김세정까지!\nHOT한 셀럽들 모두 뜰겁게 카운트앓이 중..."-->
+<!--        android:textColor="@color/text_color_1"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/guideline_right"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/guideline_left"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/youtube_player_card"-->
+<!--        android:layout_marginTop="5dp"/>-->
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
