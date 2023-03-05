@@ -18,4 +18,6 @@
     <color name="login_clicked">#C3C3C3</color>
     <color name="login_btn_1">#4860CD</color>
     <color name="transparent">#00FFFFFF</color>
+
+    <color name="divider">#CDCDCD</color>
 </resources>

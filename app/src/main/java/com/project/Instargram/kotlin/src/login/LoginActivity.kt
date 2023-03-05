@@ -1,12 +1,7 @@
 package com.project.Instargram.kotlin.src.login
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityLoginBinding
 import com.project.Instargram.kotlin.src.main.MainActivity

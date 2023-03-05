@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.project.Instargram.kotlin.util.LoadingDialog
 
@@ -49,4 +51,15 @@ abstract class BaseFragment<B : ViewBinding>(
             mLoadingDialog.dismiss()
         }
     }
+
+
+//    fun setUpRecyclerView(recyclerView: RecyclerView, layoutStyle: Int) {
+//        recyclerView.setHasFixedSize(true)
+//        val linearLayoutManager = LinearLayoutManager(activity, layoutStyle, false)
+//        recyclerView.layoutManager = linearLayoutManager
+//        val adapter = MovieTalkAdapter(requireContext(), PageLists.movieTalkSlide)
+//        adapter.notifyDataSetChanged()
+//        binding.rvMovieTalk.adapter = adapter
+//
+//    }
 }

@@ -13,9 +13,9 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup" >
+        tools:ignore="AllowBackup">
 
-        <activity
+    <activity
             android:name="com.project.Instargram.kotlin.src.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -37,7 +37,9 @@
             android:name="com.project.Instargram.kotlin.src.main.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"/>
+            android:theme="@style/AppTheme.Main"
+            android:usesCleartextTraffic="true"/>
+
     </application>
 
 </manifest>

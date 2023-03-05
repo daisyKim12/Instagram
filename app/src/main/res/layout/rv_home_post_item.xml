@@ -62,17 +62,21 @@
         android:id="@+id/rv_post"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_launcher_background"
-        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="H,10:10"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_thumbnail"
-        app:layout_constraintDimensionRatio="H,10:10"/>
+        app:layout_constraintTop_toBottomOf="@+id/img_thumbnail" />
+    <!--       centercrop 이거 나중에 없에야함-->
+
 
     <ImageView
         android:id="@+id/btn_like"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="46dp"
         android:src="@drawable/home_post_like"
         app:layout_constraintDimensionRatio="H,10:10"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +85,7 @@
     <ImageView
         android:id="@+id/btn_comment"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="46dp"
         android:src="@drawable/home_post_comment"
         app:layout_constraintDimensionRatio="H,10:10"
         app:layout_constraintTop_toTopOf="@id/btn_like"
@@ -89,7 +93,7 @@
     <ImageView
         android:id="@+id/btn_message"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="46dp"
         android:src="@drawable/home_post_dm"
         app:layout_constraintDimensionRatio="H,10:10"
         app:layout_constraintTop_toTopOf="@id/btn_like"
@@ -98,7 +102,7 @@
     <ImageView
         android:id="@+id/btn_bookmark"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="46dp"
         android:src="@drawable/home_post_bookmark"
         app:layout_constraintDimensionRatio="H,10:10"
         app:layout_constraintTop_toTopOf="@id/btn_like"
@@ -110,39 +114,39 @@
         android:layout_height="wrap_content"
         android:text="좋아요 0개"
         android:textColor="@color/blackForText"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/btn_like" />
 
-<!--    <TextView-->
+    <TextView
+        android:id="@+id/txt_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="chaekso_ 백엔드 부트캠프 시작 전 체크리스트 누가 무엇을 알려준느지 꼭 확인하세요! 여러분의 취업을 결정할 코드 한줄 "
+        android:textColor="@color/blackForText"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/txt_like"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+
+<!--    <net.expandable.ExpandableTextView-->
 <!--        android:id="@+id/txt_detail"-->
 <!--        android:layout_width="0dp"-->
 <!--        android:layout_height="wrap_content"-->
+<!--        app:expanded="false"-->
+<!--        app:expand_enabled="true"-->
+<!--        app:collapse_lines="2"-->
 <!--        android:text="chaekso_ 백엔드 부트캠프 시작 전 체크리스트 누가 무엇을 알려준느지 꼭 확인하세요! 여러분의 취업을 결정할 코드 한줄 "-->
 <!--        android:textColor="@color/blackForText"-->
 <!--        android:textSize="16sp"-->
 <!--        android:textStyle="bold"-->
 <!--        app:layout_constraintEnd_toStartOf="@+id/guideline_right"-->
 <!--        app:layout_constraintStart_toStartOf="@+id/guideline_left"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/txt_like"-->
-<!--        android:maxLines="2"-->
-<!--        android:ellipsize="end"/>-->
-
-    <net.expandable.ExpandableTextView
-        android:id="@+id/txt_detail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:expanded="false"
-        app:expand_enabled="true"
-        app:collapse_lines="2"
-        android:text="chaekso_ 백엔드 부트캠프 시작 전 체크리스트 누가 무엇을 알려준느지 꼭 확인하세요! 여러분의 취업을 결정할 코드 한줄 "
-        android:textColor="@color/blackForText"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/txt_like"/>
+<!--        app:layout_constraintTop_toBottomOf="@+id/txt_like"/>-->
 
     <TextView
         android:id="@+id/txt_comment"
@@ -150,10 +154,23 @@
         android:layout_height="wrap_content"
         android:text="댓글 1개 보기"
         android:textColor="@color/grayForText"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/txt_detail"
+        app:layout_constraintTop_toBottomOf="@+id/txt_detail" />
+
+    <TextView
+        android:id="@+id/txt_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4시간전"
+        android:textColor="@color/grayForText"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/txt_comment"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 <!--    <TextView-->

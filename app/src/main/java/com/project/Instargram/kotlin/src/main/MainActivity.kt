@@ -27,7 +27,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             when (item.itemId) {
                 R.id.menu_main_home -> {
                     binding.mainBtmNav.setBackgroundColor(Color.WHITE)
-
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, HomeFragment())
                         .commitAllowingStateLoss()

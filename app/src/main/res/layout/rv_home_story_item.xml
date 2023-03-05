@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_thumbnail"
+        android:layout_width="65dp"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_nav_profile"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    add a button for my story-->
+<!--    <ImageView-->
+<!--        android:layout_width="10dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:src="@drawable/home_post_like"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/circleImageView"-->
+<!--        app:layout_constraintDimensionRatio="H,1:1"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/circleImageView" />-->
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="seo.eun5330"
+        android:textSize="12sp"
+        android:textColor="@color/blackForText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_thumbnail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
