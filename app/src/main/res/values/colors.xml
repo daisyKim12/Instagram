@@ -20,4 +20,6 @@
     <color name="transparent">#00FFFFFF</color>
 
     <color name="divider">#CDCDCD</color>
+
+    <color name="search_bg">#EBEBEB</color>
 </resources>
