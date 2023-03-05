@@ -1,10 +1,23 @@
 # Instagram
 
-- git 등록 - login 화면 구성 - edittext의 hint부분을 위 아래로 움직이게 하기 위해 text input layout 사용 hint 색상과 다양한 custom은 style에서 조정
+<day 1> 3/4
+- git 등록 - login 화면 구성 
+- edittext의 hint부분을 위 아래로 움직이게 하기 위해 text input layout 사용 hint 색상과 다양한 custom은 style에서 조정
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="이메일..."
         />
-<com.google.android.material.textfield.TextInputLayout/>
-main activity와 home fragment layout 구성 그리고 recyclerview item layout 구성
+    <com.google.android.material.textfield.TextInputLayout/>
+- main activity toolbar, bottom nav 구성
+- home fragment layout 구성
+- recyclerview item layout 구성
+
+<day 2> 3/4
+- home fragment 스토리RV, 게시물RV 완성
+- search fragment toolbar 크기 변하는 edittext 구현
+- reels fragment layout 구현
+- reels fragment 릴스RV 
+
+
+
