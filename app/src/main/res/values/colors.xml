@@ -22,4 +22,11 @@
     <color name="divider">#CDCDCD</color>
 
     <color name="search_bg">#EBEBEB</color>
+
+    <color name="whiteTopForReels">#1EBCBCBC</color>
+    <color name="whiteBottomForReels">#1ED5D5D5</color>
+    <color name="reelsBtnStroke">#CFCFCF</color>
+    <color name="reelsVideoBg">#939393</color>
+
+
 </resources>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/reelsVideoBg">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="12dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="12dp" />
+
+    <ImageView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:ems="20"
+        android:maxLines="1"
+        android:text="헬창한테 걸리면 안되는 이유 #헬창 #운동 #헬스 그리고 쏘랄라쏘랄라쏘라라랄라라라라"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_thumbnail"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toTopOf="@id/txt_detail"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        android:layout_marginBottom="10dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/white"/>
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chaekso_"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/img_thumbnail"
+        app:layout_constraintStart_toEndOf="@+id/img_thumbnail"
+        app:layout_constraintTop_toTopOf="@+id/img_thumbnail"
+        android:layout_marginStart="8dp"
+        android:maxLines="1"
+        android:ems="5"
+        android:scrollHorizontally="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="62dp"
+        android:layout_height="0dp"
+        android:text="팔로우"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:background="@drawable/reels_btn_follow_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/img_thumbnail"
+        app:layout_constraintDimensionRatio="H,6:3"
+        app:layout_constraintStart_toEndOf="@+id/txt_name"
+        app:layout_constraintTop_toTopOf="@+id/img_thumbnail"
+        android:layout_marginStart="8dp"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="7dp"
+        app:contentPadding="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_detail"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:cardCornerRadius="7dp">
+            <ImageView
+                android:id="@+id/btn_audio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_background" />
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/btn_more"
+        android:layout_width="33dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_main_reels_settings"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        android:layout_marginBottom="17dp"/>
+    <ImageView
+        android:id="@+id/btn_dm"
+        android:layout_width="33dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_main_reels_dm"
+        app:layout_constraintBottom_toTopOf="@+id/btn_more"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        android:layout_marginBottom="17dp"/>
+
+    <TextView
+        android:id="@+id/txt_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1,002"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_dm"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        android:layout_marginBottom="15dp"/>
+
+    <ImageView
+        android:id="@+id/btn_comment"
+        android:layout_width="33dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_main_reels_comment"
+        app:layout_constraintBottom_toTopOf="@+id/txt_comment"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/txt_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6.1만"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_comment"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        android:layout_marginBottom="15dp"/>
+
+    <ImageView
+        android:id="@+id/btn_like"
+        android:layout_width="33dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_main_reels_like"
+        app:layout_constraintBottom_toTopOf="@+id/txt_like"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        android:layout_marginBottom="8dp"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
