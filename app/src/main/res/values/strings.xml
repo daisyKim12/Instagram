@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SoftSquared Android Kotlin Template</string>
+    <string name="app_name">Instagram</string>
 
     <!-- Naming Rules -->
     <!-- 도메인명_컴포넌트함축어_용도(=목적) -->
@@ -8,8 +8,10 @@
 
     <!-- Main -->
     <string name="main_btm_nav_home_title">홈</string>
-    <string name="main_btm_nav_my_page_title">마이페이지</string>
-
+    <string name="main_btm_nav_search_title">검색</string>
+    <string name="main_btm_nav_post_title">게시물</string>
+    <string name="main_btm_nav_reels_title">릴스</string>
+    <string name="main_btm_nav_mypage_title">마이페이지</string>
     <!-- Home -->
     <string name="home_btn_try_get_http_method">GET API 보내기</string>
     <string name="home_btn_try_post_http_method">POST API 보내기</string>

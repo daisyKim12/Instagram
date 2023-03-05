@@ -19,7 +19,7 @@
             android:name="com.project.Instargram.kotlin.src.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,13 +31,13 @@
             android:name="com.project.Instargram.kotlin.src.login.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.Login"/>
 
         <activity
             android:name="com.project.Instargram.kotlin.src.main.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.Main"/>
     </application>
 
 </manifest>

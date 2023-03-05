@@ -2,6 +2,7 @@ package com.project.Instargram.kotlin.src.login
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
@@ -21,6 +22,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     override fun onResume() {
         super.onResume()
+
+
 
         binding.edittextId.setOnClickListener {
 //            Log.d(TAG, "onResume: clicked")
