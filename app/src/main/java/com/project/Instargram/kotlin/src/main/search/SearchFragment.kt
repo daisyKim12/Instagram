@@ -50,6 +50,7 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
     private fun setUpStaggeredRecyclerView() {
 
         //4칸짜리 광고를 포기하면 이정도로 가능
+        // (view.layoutParams as ConstraintLayout.LayoutParams).dimensionRatio = "16:9" ratio 변화
         binding.rvSearch.setHasFixedSize(true)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.rvSearch.layoutManager = staggeredGridLayoutManager

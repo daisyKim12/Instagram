@@ -28,5 +28,6 @@
     <color name="reelsBtnStroke">#CFCFCF</color>
     <color name="reelsVideoBg">#939393</color>
 
+    <color name="profileThumbnailStroke">#C8C8C8</color>
 
 </resources>
