@@ -8,67 +8,343 @@
     tools:context=".src.main.myPage.MyPageFragment"
     android:background="@color/white">
 
-<androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_tb"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:contentInsetStart="0dp"
-        android:contentInsetLeft="0dp"
-        android:contentInsetEnd="0dp"
-        android:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/toolbar_cl"
+        <TextView
+            android:id="@+id/tb_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="unnn.comfy"
+            android:textSize="23sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="10dp"/>
+
+        <ImageView
+            android:id="@+id/tb_post"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_menu_create"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/tb_nav"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/tb_nav"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_menu_settings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_tb"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentScrim="@color/transparent"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline_left"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="12dp" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline_right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_end="12dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_thumbnail"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/ic_launcher_background"
+                            app:civ_border_color="@color/profileThumbnailStroke"
+                            app:civ_border_width="1dp"
+                            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txt_post1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:text="게시물"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            app:layout_constraintBottom_toBottomOf="@id/img_thumbnail"
+                            app:layout_constraintEnd_toStartOf="@+id/txt_follower"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@id/img_thumbnail" />
+
+                        <TextView
+                            android:id="@+id/txt_posterNm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="21"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/txt_post1"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_post1"
+                            app:layout_constraintStart_toStartOf="@+id/txt_post1" />
+
+                        <TextView
+                            android:id="@+id/txt_follower"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="팔로워"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_post1"
+                            app:layout_constraintEnd_toStartOf="@+id/txt_following"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/txt_post1" />
+
+                        <TextView
+                            android:id="@+id/txt_followerNm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="122"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/txt_follower"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_follower"
+                            app:layout_constraintStart_toStartOf="@+id/txt_follower" />
+
+
+                        <TextView
+                            android:id="@+id/txt_following"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="팔로잉"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_post1"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/txt_follower" />
+
+                        <TextView
+                            android:id="@+id/txt_followingNm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="74"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/txt_following"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_following"
+                            app:layout_constraintStart_toStartOf="@+id/txt_following" />
+
+                        <TextView
+                            android:id="@+id/txt_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:maxLines="2"
+                            android:text="불편한 독서모임\n#책#독서모임#책리뷰"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                            app:layout_constraintTop_toBottomOf="@+id/img_thumbnail" />
+
+                        <TextView
+                            android:id="@+id/txt_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:layout_marginTop="0dp"
+                            android:maxLines="3"
+                            android:text="다양한택을, 다양한 사람들과\n 매주 월요일에 올라오는 독서콘텐츠\n모임에서 오갔던 재미있는\nㅇㅇㅇㅇㅇ"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn1"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="15dp"
+
+                            android:background="@drawable/mypage_profile_btn_bg"
+                            android:text="프로필 편집"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/btn2"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@id/guideline_left"
+                            app:layout_constraintTop_toBottomOf="@id/txt_detail" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn2"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:text="프로필 공유"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/mypage_profile_btn_bg"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/btn1"
+                            app:layout_constraintTop_toTopOf="@id/btn1"
+                            android:layout_marginStart="5dp"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:tabIndicatorColor="@color/black"
+                app:tabTextColor="@color/black"
+                android:background="@color/white"
+                app:tabIconTint="@drawable/mypage_tab_color_selector">
+
+
+                <com.google.android.material.tabs.TabItem
+                    android:icon="@drawable/ic_tab_profile_mypost_fill"
+                    android:layout_height="20dp"
+                    android:layout_width="20dp" />
+                <com.google.android.material.tabs.TabItem
+                    android:icon="@drawable/ic_nav_reels"
+                    android:layout_height="20dp"
+                    android:layout_width="20dp" />
+                <com.google.android.material.tabs.TabItem
+                    android:icon="@drawable/ic_tab_mytag"
+                    android:layout_height="20dp"
+                    android:layout_width="20dp" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 
-            <TextView
-                android:id="@+id/tb_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="unnn.comfy"
-                android:textSize="23sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="10dp"/>
 
-            <ImageView
-                android:id="@+id/tb_post"
-                android:layout_width="24dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_menu_create"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@+id/tb_nav"
-                app:layout_constraintTop_toTopOf="parent" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-            <ImageView
-                android:id="@+id/tb_nav"
-                android:layout_width="24dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_menu_settings"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--<androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:contentInsetStart="0dp"-->
+<!--        android:contentInsetLeft="0dp"-->
+<!--        android:contentInsetEnd="0dp"-->
+<!--        android:contentInsetRight="0dp"-->
+<!--        app:contentInsetEnd="0dp"-->
+<!--        app:contentInsetLeft="0dp"-->
+<!--        app:contentInsetRight="0dp"-->
+<!--        app:contentInsetStart="0dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.appcompat.widget.Toolbar>
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/toolbar_cl"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@color/white"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:paddingRight="10dp">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tb_profile"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="unnn.comfy"-->
+<!--                android:textSize="23sp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:layout_marginStart="10dp"/>-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/tb_post"-->
+<!--                android:layout_width="24dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:src="@drawable/ic_menu_create"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintDimensionRatio="H,1:1"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/tb_nav"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/tb_nav"-->
+<!--                android:layout_width="24dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:src="@drawable/ic_menu_settings"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintDimensionRatio="H,1:1"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </androidx.appcompat.widget.Toolbar>-->
 
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/rv_profile"-->
@@ -79,220 +355,219 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/toolbar" />-->
 
-    <com.amar.library.ui.StickyScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/scroll_view"
-        app:stickyHeader="@+id/tab_layout"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" >
+<!--    <com.amar.library.ui.StickyScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:id="@+id/scroll_view"-->
+<!--        app:stickyHeader="@+id/tab_layout"-->
+<!--        android:fillViewport="true"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/toolbar" >-->
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+<!--        <LinearLayout-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="12dp" />
+<!--                <androidx.constraintlayout.widget.Guideline-->
+<!--                    android:id="@+id/guideline_left"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    app:layout_constraintGuide_begin="12dp" />-->
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_end="12dp" />
+<!--                <androidx.constraintlayout.widget.Guideline-->
+<!--                    android:id="@+id/guideline_right"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    app:layout_constraintGuide_end="12dp" />-->
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_thumbnail"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_launcher_background"
-                    app:civ_border_color="@color/profileThumbnailStroke"
-                    app:civ_border_width="1dp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                    android:id="@+id/img_thumbnail"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:src="@drawable/ic_launcher_background"-->
+<!--                    app:civ_border_color="@color/profileThumbnailStroke"-->
+<!--                    app:civ_border_width="1dp"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/guideline_left"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <TextView
-                    android:id="@+id/txt_post1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="게시물"
-                    android:textColor="@color/black"
-                    android:textSize="11sp"
-                    app:layout_constraintBottom_toBottomOf="@id/img_thumbnail"
-                    app:layout_constraintEnd_toStartOf="@+id/txt_follower"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@id/img_thumbnail" />
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_post1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="12dp"-->
+<!--                    android:text="게시물"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="11sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@id/img_thumbnail"-->
+<!--                    app:layout_constraintEnd_toStartOf="@+id/txt_follower"-->
+<!--                    app:layout_constraintHorizontal_bias="0.5"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/img_thumbnail" />-->
 
-                <TextView
-                    android:id="@+id/txt_posterNm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="21"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/txt_post1"
-                    app:layout_constraintEnd_toEndOf="@+id/txt_post1"
-                    app:layout_constraintStart_toStartOf="@+id/txt_post1" />
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_posterNm"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="21"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/txt_post1"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/txt_post1"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/txt_post1" />-->
 
-                <TextView
-                    android:id="@+id/txt_follower"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="팔로워"
-                    android:textColor="@color/black"
-                    android:textSize="11sp"
-                    app:layout_constraintBottom_toBottomOf="@id/txt_post1"
-                    app:layout_constraintEnd_toStartOf="@+id/txt_following"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/txt_post1" />
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_follower"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="팔로워"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="11sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@id/txt_post1"-->
+<!--                    app:layout_constraintEnd_toStartOf="@+id/txt_following"-->
+<!--                    app:layout_constraintHorizontal_bias="0.5"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/txt_post1" />-->
 
-                <TextView
-                    android:id="@+id/txt_followerNm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="122"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/txt_follower"
-                    app:layout_constraintEnd_toEndOf="@+id/txt_follower"
-                    app:layout_constraintStart_toStartOf="@+id/txt_follower" />
-
-
-                <TextView
-                    android:id="@+id/txt_following"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="팔로잉"
-                    android:textColor="@color/black"
-                    android:textSize="11sp"
-                    app:layout_constraintBottom_toBottomOf="@id/txt_post1"
-                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/txt_follower" />
-
-                <TextView
-                    android:id="@+id/txt_followingNm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="74"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/txt_following"
-                    app:layout_constraintEnd_toEndOf="@+id/txt_following"
-                    app:layout_constraintStart_toStartOf="@+id/txt_following" />
-
-                <TextView
-                    android:id="@+id/txt_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:maxLines="2"
-                    android:text="불편한 독서모임\n#책#독서모임#책리뷰"
-                    android:textColor="@color/black"
-                    android:textSize="11sp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                    app:layout_constraintTop_toBottomOf="@+id/img_thumbnail" />
-
-                <TextView
-                    android:id="@+id/txt_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:layout_marginTop="0dp"
-                    android:maxLines="3"
-                    android:text="다양한택을, 다양한 사람들과\n 매주 월요일에 올라오는 독서콘텐츠\n모임에서 오갔던 재미있는\nㅇㅇㅇㅇㅇ"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_name" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn1"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="15dp"
-
-                    android:background="@drawable/mypage_profile_btn_bg"
-                    android:text="프로필 편집"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btn2"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@id/guideline_left"
-                    app:layout_constraintTop_toBottomOf="@id/txt_detail" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn2"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:text="프로필 공유"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/mypage_profile_btn_bg"
-                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/btn1"
-                    app:layout_constraintTop_toTopOf="@id/btn1"
-                    android:layout_marginStart="5dp"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_followerNm"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="122"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/txt_follower"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/txt_follower"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/txt_follower" />-->
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_following"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="팔로잉"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="11sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@id/txt_post1"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/guideline_right"-->
+<!--                    app:layout_constraintHorizontal_bias="0.5"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/txt_follower" />-->
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                app:tabIndicatorColor="@color/black"
-                app:tabTextColor="@color/black"
-                android:background="@color/white"
-                >
-<!--                app:tabIconTint="@color/tab"-->
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_followingNm"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="74"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/txt_following"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/txt_following"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/txt_following" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_name"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:maxLines="2"-->
+<!--                    android:text="불편한 독서모임\n#책#독서모임#책리뷰"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="11sp"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/guideline_left"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/img_thumbnail" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_detail"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:maxLines="3"-->
+<!--                    android:text="다양한택을, 다양한 사람들과\n 매주 월요일에 올라오는 독서콘텐츠\n모임에서 오갔던 재미있는\nㅇㅇㅇㅇㅇ"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="10sp"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/guideline_left"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/txt_name" />-->
+
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/btn1"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginEnd="5dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+
+<!--                    android:background="@drawable/mypage_profile_btn_bg"-->
+<!--                    android:text="프로필 편집"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toStartOf="@+id/btn2"-->
+<!--                    app:layout_constraintHorizontal_bias="0.5"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/guideline_left"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/txt_detail" />-->
+
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/btn2"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:text="프로필 공유"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:background="@drawable/mypage_profile_btn_bg"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/guideline_right"-->
+<!--                    app:layout_constraintHorizontal_bias="0.5"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/btn1"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/btn1"-->
+<!--                    android:layout_marginStart="5dp"/>-->
 
 
-                <com.google.android.material.tabs.TabItem
-                    android:icon="@drawable/ic_tab_profile_mypost_fill"
-                    android:layout_height="20dp"
-                    android:layout_width="20dp" />
-                <com.google.android.material.tabs.TabItem
-                    android:icon="@drawable/ic_tab_mytag"
-                    android:layout_height="20dp"
-                    android:layout_width="20dp" />
-                <com.google.android.material.tabs.TabItem
-                    android:icon="@drawable/ic_tab_mytag"
-                    android:layout_height="20dp"
-                    android:layout_width="20dp" />
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-            </com.google.android.material.tabs.TabLayout>
+<!--            <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/tab_layout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="45dp"-->
+<!--                app:tabIndicatorColor="@color/black"-->
+<!--                app:tabTextColor="@color/black"-->
+<!--                android:background="@color/white"-->
+<!--                app:tabIconTint="@drawable/mypage_tab_color_selector">-->
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
-        </LinearLayout>
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:icon="@drawable/ic_tab_profile_mypost_fill"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_width="20dp" />-->
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:icon="@drawable/ic_nav_reels"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_width="20dp" />-->
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:icon="@drawable/ic_tab_mytag"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_width="20dp" />-->
 
-    </com.amar.library.ui.StickyScrollView>
+<!--            </com.google.android.material.tabs.TabLayout>-->
+
+<!--            <androidx.viewpager2.widget.ViewPager2-->
+<!--                android:id="@+id/container"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
+
+<!--        </LinearLayout>-->
+
+<!--    </com.amar.library.ui.StickyScrollView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,5 +36,8 @@
     <!--profile-->
     <color name="profileThumbnailStroke">#C8C8C8</color>
     <color name="profileBtnBg">#DDDDDD</color>
+    <color name="profile_tab_clicked">#3C3C3C</color>
+    <color name="profile_tab_unclicked">#A8A8A8</color>
+
 
 </resources>
