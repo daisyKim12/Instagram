@@ -81,6 +81,9 @@ dependencies {
     //sticky header
     implementation 'com.github.amarjain07:StickyScrollView:1.0.3'
 
+    //dot indicator
+    implementation "com.tbuonomo:dotsindicator:4.2"
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

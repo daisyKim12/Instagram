@@ -15,14 +15,15 @@ class PostAdapter(private val context: Context, private val post: List<Post>)
         : RecyclerView.ViewHolder(binding.root) {
 
         fun bindItem(post: Post) {
-            Glide.with(context).load(post.tumbnailUrl).into(binding.imgThumbnail)
-            binding.txtName.text = post.name
-            Glide.with(context).load(post.postUrl).into(binding.rvPost)
-            binding.txtLike.text = "좋아요 " + post.like.toString() + "개"
-            binding.txtDetail.text = post.name + " " + post.detailUrl
-            binding.txtComment.text = "댓글" + post.commentNum.toString() + "개 보기"
-//            binding.txtTime.text = ??
+//            Glide.with(context).load(post.tumbnailUrl).into(binding.imgThumbnail)
+//            binding.txtName.text = post.name
+//            Glide.with(context).load(post.postUrl).into(binding.rvPost)
+//            binding.txtLike.text = "좋아요 " + post.like.toString() + "개"
+//            binding.txtDetail.text = post.name + " " + post.detailUrl
+//            binding.txtComment.text = "댓글" + post.commentNum.toString() + "개 보기"
 
+
+            //binding.txtTime.text = ??
             //TODO("add click listener")
         }
     }

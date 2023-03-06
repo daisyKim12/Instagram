@@ -11,7 +11,7 @@ data class Post(
 
     val tumbnailUrl: String,
     val name: String,
-    val postUrl: String,
+    val postUrlList: List<String>,
     val like: Int,
     val detailUrl: String,
     val commentNum: Int,

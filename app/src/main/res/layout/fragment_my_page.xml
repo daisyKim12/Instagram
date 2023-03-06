@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/scroll_view"
-        app:stickyHeader="@+id/tabs"
+        app:stickyHeader="@+id/tab_layout"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -203,7 +203,7 @@
                     android:id="@+id/txt_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:marginTop="5dp"
+                    android:layout_marginTop="5dp"
                     android:maxLines="2"
                     android:text="불편한 독서모임\n#책#독서모임#책리뷰"
                     android:textColor="@color/black"
@@ -216,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:marginTop="0dp"
+                    android:layout_marginTop="0dp"
                     android:maxLines="3"
                     android:text="다양한택을, 다양한 사람들과\n 매주 월요일에 올라오는 독서콘텐츠\n모임에서 오갔던 재미있는\nㅇㅇㅇㅇㅇ"
                     android:textColor="@color/black"
@@ -269,6 +269,8 @@
                 app:tabTextColor="@color/black"
                 android:background="@color/white"
                 >
+<!--                app:tabIconTint="@color/tab"-->
+
 
                 <com.google.android.material.tabs.TabItem
                     android:icon="@drawable/ic_tab_profile_mypost_fill"
