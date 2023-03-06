@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.FragmentSearchBinding
+import com.project.Instargram.kotlin.src.main.TempPageLists
+import com.project.Instargram.kotlin.src.main.search.adapter.SearchStaggeredAdapter
 
 
 class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search) {
@@ -21,6 +23,7 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
             changeEditText(false)
         }
 
+        setUpStaggeredRecyclerView()
     }
 
     private fun changeEditText(b: Boolean) {
@@ -51,11 +54,12 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
 
         //4칸짜리 광고를 포기하면 이정도로 가능
         // (view.layoutParams as ConstraintLayout.LayoutParams).dimensionRatio = "16:9" ratio 변화
+
         binding.rvSearch.setHasFixedSize(true)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.rvSearch.layoutManager = staggeredGridLayoutManager
-        //val adapter = StaggeredAdapter(requireContext(), ??)
-        //adapter.notifyDataSetChanged()
-        //inding.rvSearch.adapter = adapter
+        val adapter = SearchStaggeredAdapter(requireContext(), TempPageLists.squareAdpSlides, TempPageLists.rectangleAdpSlides)
+        adapter.notifyDataSetChanged()
+        binding.rvSearch.adapter = adapter
     }
 }
