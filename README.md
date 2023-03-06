@@ -19,5 +19,12 @@
 - reels fragment layout 구현
 - reels fragment 릴스RV 
 
+<day 3> 3/5
+- profile fragment layout 구성
+- home fragment에 multiviewtype으로 story rv, 게시물 rv 한 곳에 담음
+- home 게시물 item 안에 viewpager와 dot indicator 추가 및 중첩 rv사용
+- profile fragment에 tablayout과 fragment viewpager 연동
+- profile fragment collapsible toolbar로 layout 수정
+- search fragment에 staggered grid recycler view 추가
 
 
