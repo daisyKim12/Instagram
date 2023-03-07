@@ -99,9 +99,10 @@
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/img_thumbnail"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="5dp"
+                            android:layout_width="70dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            android:layout_marginStart="8dp"
                             android:layout_marginTop="15dp"
                             android:src="@drawable/ic_launcher_background"
                             app:civ_border_color="@color/profileThumbnailStroke"
@@ -116,7 +117,7 @@
                             android:layout_marginBottom="12dp"
                             android:text="게시물"
                             android:textColor="@color/black"
-                            android:textSize="11sp"
+                            android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@id/img_thumbnail"
                             app:layout_constraintEnd_toStartOf="@+id/txt_follower"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -128,7 +129,7 @@
                             android:layout_height="wrap_content"
                             android:text="21"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@+id/txt_post1"
                             app:layout_constraintEnd_toEndOf="@+id/txt_post1"
@@ -140,7 +141,7 @@
                             android:layout_height="wrap_content"
                             android:text="팔로워"
                             android:textColor="@color/black"
-                            android:textSize="11sp"
+                            android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@id/txt_post1"
                             app:layout_constraintEnd_toStartOf="@+id/txt_following"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -152,7 +153,7 @@
                             android:layout_height="wrap_content"
                             android:text="122"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@+id/txt_follower"
                             app:layout_constraintEnd_toEndOf="@+id/txt_follower"
@@ -165,7 +166,7 @@
                             android:layout_height="wrap_content"
                             android:text="팔로잉"
                             android:textColor="@color/black"
-                            android:textSize="11sp"
+                            android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@id/txt_post1"
                             app:layout_constraintEnd_toEndOf="@id/guideline_right"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -177,7 +178,7 @@
                             android:layout_height="wrap_content"
                             android:text="74"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@+id/txt_following"
                             app:layout_constraintEnd_toEndOf="@+id/txt_following"
@@ -189,43 +190,85 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:maxLines="2"
-                            android:text="불편한 독서모임\n#책#독서모임#책리뷰"
+                            android:text="불편한 독서모임"
                             android:textColor="@color/black"
-                            android:textSize="11sp"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@+id/guideline_left"
                             app:layout_constraintTop_toBottomOf="@+id/img_thumbnail" />
 
                         <TextView
-                            android:id="@+id/txt_detail"
+                            android:id="@+id/txt_hashtag"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:layout_marginTop="0dp"
-                            android:maxLines="3"
-                            android:text="다양한택을, 다양한 사람들과\n 매주 월요일에 올라오는 독서콘텐츠\n모임에서 오갔던 재미있는\nㅇㅇㅇㅇㅇ"
+                            android:maxLines="2"
+                            android:text="#책#독서모임#책리뷰"
                             android:textColor="@color/black"
-                            android:textSize="10sp"
+                            android:textSize="14sp"
+                            android:textStyle="italic"
                             app:layout_constraintStart_toStartOf="@+id/guideline_left"
                             app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+                        <io.github.glailton.expandabletextview.ExpandableTextView
+                            android:id="@+id/txt_detail"
+                            android:layout_width="260dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/long_text"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:collapsedLines="3"
+                            app:readMoreText="더보기"
+                            app:readLessText=""
+                            app:ellipsizeTextColor="@color/ellipsizeTextColor"
+                            app:isExpanded="false"
+                            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_hashtag" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_prof"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/mypage_profile_btn_bg"
+                            android:gravity="top"
+                            android:padding="7dp"
+                            android:text="프로페셔널 대시보드"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                            app:layout_constraintTop_toBottomOf="@id/txt_detail" />
+
+                        <TextView
+                            android:id="@+id/btn_prof_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이제 새로운 도구를 사용할 수 있습니다"
+                            android:textColor="@color/grayForTextPofile"
+                            android:textSize="12sp"
+                            android:padding="7dp"
+                            android:elevation="2dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/btn_prof"
+                            app:layout_constraintStart_toStartOf="@+id/btn_prof" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn1"
                             android:layout_width="0dp"
                             android:layout_height="30dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="15dp"
-
+                            android:layout_marginBottom="12dp"
                             android:background="@drawable/mypage_profile_btn_bg"
+                            android:backgroundTint="@color/profileBtnBg"
                             android:text="프로필 편집"
                             android:textColor="@color/black"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/btn2"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="@id/guideline_left"
-                            app:layout_constraintTop_toBottomOf="@id/txt_detail" />
+                            app:layout_constraintTop_toBottomOf="@id/btn_prof" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn2"
@@ -242,6 +285,59 @@
                             app:layout_constraintTop_toTopOf="@id/btn1"
                             android:layout_marginStart="5dp"/>
 
+                        <TextView
+                            android:id="@+id/txt_story"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:maxLines="2"
+                            android:text="스토리 하이라이트"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+                            app:layout_constraintStart_toStartOf="@id/guideline_left"
+                            app:layout_constraintTop_toBottomOf="@id/btn1" />
+
+                        <net.cachapa.expandablelayout.ExpandableLayout
+                            android:id="@+id/expandable_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:el_expanded="false"
+                            app:layout_constraintStart_toStartOf="@id/guideline_left"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                            app:layout_constraintTop_toBottomOf="@id/txt_story"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txt_story_detail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="2"
+                                    android:text="좋아하는 스토리를 프로필에 보관해보세요"
+                                    android:textColor="@color/black"
+                                    android:textSize="13sp"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rv_story_hightlight"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintTop_toBottomOf="@id/txt_story_detail"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </net.cachapa.expandablelayout.ExpandableLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -75,8 +75,11 @@ dependencies {
     //circle imageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-//    //exapandable text
-//    implementation 'com.github.yuzumone:ExpandableTextView:0.3.2'
+    //expandable text
+    implementation 'io.github.glailton.expandabletextview:expandabletextview:1.0.3'
+
+    //expandable layout
+    implementation 'com.github.cachapa:ExpandableLayout:2.9.2'
 
     //sticky header
     implementation 'com.github.amarjain07:StickyScrollView:1.0.3'

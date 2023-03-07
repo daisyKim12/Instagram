@@ -8,8 +8,6 @@ import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.BottomSheetHomeBinding
 import com.project.Instargram.kotlin.databinding.FragmentHomeBinding
-import com.project.Instargram.kotlin.src.main.home.adpater.PostAdapter
-import com.project.Instargram.kotlin.src.main.home.adpater.StoryAdapter
 import com.project.Instargram.kotlin.src.main.TempPageLists
 import com.project.Instargram.kotlin.src.main.home.adpater.StoryPostAdapter
 

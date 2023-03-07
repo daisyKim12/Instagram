@@ -18,8 +18,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     override fun onResume() {
         super.onResume()
 
-
-
         binding.edittextId.setOnClickListener {
 //            Log.d(TAG, "onResume: clicked")
 //            binding.ivLogo.setScaleY(0.4.toFloat())
@@ -30,6 +28,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
         binding.btnLogin.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
+        binding.btnNewAccount.setOnClickListener {
+            startActivity(Intent(this, EnterPhoneActivity::class.java))
             finish()
         }
     }

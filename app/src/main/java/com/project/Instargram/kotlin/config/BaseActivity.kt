@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.project.Instargram.kotlin.util.LoadingDialog
 
+
 // 액티비티의 기본을 작성, 뷰 바인딩 활용
 abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflater) -> B) :
     AppCompatActivity() {
@@ -39,5 +40,16 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
     // 토스트를 쉽게 띄울 수 있게 해줌.
     fun showCustomToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun saveFromEditText(key: String, text: String) {
+        val editor = ApplicationClass.sSharedPreferences.edit()
+        editor.putString(key, text)
+        editor.apply()
+    }
+
+    fun getValue(KEY: String): String? {
+        val sharedPref = getPreferences(MODE_PRIVATE)
+        return sharedPref.getString(KEY, "error")
     }
 }

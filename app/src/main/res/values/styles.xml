@@ -23,17 +23,67 @@
 
 
     <style name="MyHintStyle" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/login_unclicked</item>
-        <!-- The color of the label when it is collapsed and the text field is active -->
+        <item name="android:textColor">@color/login_clicked</item>
+        <!--상단에 있을때의 Hint-->
         <item name="hintTextColor">@color/login_unclicked</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+    </style>
 
-        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+
+    <style name="MaterialDarkNoActionBarTheme" parent="ThemeOverlay.MaterialComponents.Dark">
+        <item name="android:textColor">@color/login_clicked</item>
+
+    </style>
+
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <!--FilledBox일 경우 밑줄 색상, OutlinedBox일 경우 테두리 색상-->
+<!--        <item name="boxStrokeColor">@color/selector_text_input_outlined_color</item>-->
+        <!--Counter-->
+        <item name="counterTextAppearance">@style/CounterTextAppearance</item>
+        <!--EditText에 있을때의 Hint-->
         <item name="android:textColorHint">@color/login_unclicked</item>
+        <!--상단에 있을때의 Hint-->
+        <item name="hintTextColor">@color/login_unclicked</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <!--Helper-->
+        <item name="helperTextTextAppearance">@style/HelperTextAppearance</item>
+        <!--Error-->
+        <item name="errorEnabled">true</item>
+        <item name="colorError">@color/redForText</item>
+        <item name="errorIconDrawable">@android:color/transparent</item>
+        <item name="errorTextAppearance">@style/ErrorTextAppearance</item>
+    </style>
 
+    <style name="ErrorTextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 
-        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-<!--        <item name="colorAccent">@color/blackForText</item>-->
-<!--        <item name="colorControlNormal">@color/blackForText</item>-->
-<!--        <item name="colorControlActivated">@color/blackForText</item>-->
+    <style name="HintTextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="HelperTextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="CounterTextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextInputEditTextStyle">
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

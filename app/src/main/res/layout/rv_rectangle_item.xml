@@ -9,12 +9,31 @@
         android:id="@+id/img_post"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/ic_launcher_background"
         app:layout_constraintDimensionRatio="H,1:2"
+        android:src="@drawable/ic_launcher_background"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/img_reels"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_main_search_reels"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/stroke_post_reels"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

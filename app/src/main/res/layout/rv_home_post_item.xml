@@ -58,20 +58,6 @@
         app:layout_constraintTop_toTopOf="@+id/img_thumbnail"
         app:layout_constraintDimensionRatio="H,1:1"/>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/rv_post"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:src="@drawable/ic_launcher_background"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        app:layout_constraintDimensionRatio="H,10:10"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/img_thumbnail" />-->
-    <!--       centercrop 이거 나중에 없에야함-->
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_post"
         android:layout_width="0dp"
@@ -148,34 +134,36 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/btn_like" />
 
-    <TextView
+    <io.github.glailton.expandabletextview.ExpandableTextView
         android:id="@+id/txt_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="chaekso_ 백엔드 부트캠프 시작 전 체크리스트 누가 무엇을 알려준느지 꼭 확인하세요! 여러분의 취업을 결정할 코드 한줄 "
         android:textColor="@color/blackForText"
-        android:textSize="13sp"
-        android:textStyle="bold"
+        android:textSize="14sp"
+        app:readMoreText="더보기"
+        app:readLessText="간단히"
+        app:collapsedLines="2"
+        app:ellipsizeTextColor="@color/ellipsizeTextColor"
+        app:isExpanded="false"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/txt_like"
-        android:maxLines="2"
-        android:ellipsize="end"/>
+        app:layout_constraintTop_toBottomOf="@+id/txt_like"/>
 
-<!--    <net.expandable.ExpandableTextView-->
-<!--        android:id="@+id/txt_detail"-->
+<!--    android:textStyle="bold"-->
+
+    <!--    <TextView-->
 <!--        android:layout_width="0dp"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        app:expanded="false"-->
-<!--        app:expand_enabled="true"-->
-<!--        app:collapse_lines="2"-->
 <!--        android:text="chaekso_ 백엔드 부트캠프 시작 전 체크리스트 누가 무엇을 알려준느지 꼭 확인하세요! 여러분의 취업을 결정할 코드 한줄 "-->
 <!--        android:textColor="@color/blackForText"-->
-<!--        android:textSize="16sp"-->
+<!--        android:textSize="13sp"-->
 <!--        android:textStyle="bold"-->
 <!--        app:layout_constraintEnd_toStartOf="@+id/guideline_right"-->
 <!--        app:layout_constraintStart_toStartOf="@+id/guideline_left"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/txt_like"/>-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txt_like"-->
+<!--        android:maxLines="2"-->
+<!--        android:ellipsize="end"/>-->
 
     <TextView
         android:id="@+id/txt_comment"
@@ -185,7 +173,7 @@
         android:textColor="@color/grayForText"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="2dp"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/txt_detail" />
 
@@ -201,22 +189,5 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/txt_comment"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
-<!--    <TextView-->
-<!--        android:id="@id/txt_detail"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="건강하고 희망적이면서 다격감 있다!\n강기영부터 이수지, 김세정까지!\nHOT한 셀럽들 모두 뜰겁게 카운트앓이 중..."-->
-<!--        android:textColor="@color/text_color_1"-->
-<!--        android:textSize="12sp"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline_right"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline_left"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/youtube_player_card"-->
-<!--        android:layout_marginTop="5dp"/>-->
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
