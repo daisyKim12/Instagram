@@ -379,7 +379,7 @@
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+</androidx.constraintlayout.widget.ConstraintLayout>
 <!--<androidx.appcompat.widget.Toolbar-->
 <!--        android:id="@+id/toolbar"-->
 <!--        android:layout_width="match_parent"-->
@@ -666,4 +666,3 @@
 <!--        </LinearLayout>-->
 
 <!--    </com.amar.library.ui.StickyScrollView>-->
-</androidx.constraintlayout.widget.ConstraintLayout>

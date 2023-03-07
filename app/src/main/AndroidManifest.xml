@@ -41,6 +41,14 @@
             android:theme="@style/AppTheme.Main"
             android:usesCleartextTraffic="true"/>
 
+        <activity
+            android:name="com.project.Instargram.kotlin.src.main.post.PostImageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            android:usesCleartextTraffic="true"/>
+
+
         <!--creating new account -->
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterPhoneActivity"
@@ -69,7 +77,7 @@
             android:theme="@style/AppTheme.Login"/>
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterBirthDateActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
 
