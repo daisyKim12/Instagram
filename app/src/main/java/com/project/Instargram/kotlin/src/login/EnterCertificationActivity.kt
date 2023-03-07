@@ -29,17 +29,20 @@ class EnterCertificationActivity : BaseActivity<ActivityEnterCertificationBindin
         }
 
         binding.btnNext.setOnClickListener {
-//            val data = binding.edittextPhonenum.text.toString()
-//            Log.d(ContentValues.TAG, "onResume: next clicked" + data)
-//            if(validCellPhone(data)){
-//                saveFromEditText(KEY_SEND, data)
-//                startActivity(Intent(this, EnterCertificationActivity::class.java))
-//            } else {
-//                binding.txtDetail2.text = "휴대폰 번호가 정확하지 않습니다. " +
-//                        "국가번호를 포함한 전체 휴대폰 번호를 입력해주세요."
-//                binding.txtDetail2.setTextColor(ContextCompat.getColor(this, R.color.redForText))
-//            }
+            val data = binding.edittextPhonenum.text.toString()
+            if(validCertificate(data)){
+                binding.expandableLayout.collapse()
+                saveFromEditText(KEY_SEND, data)
+                startActivity(Intent(this, EnterNameActivity::class.java))
+            } else {
+                binding.expandableLayout.expand()
+            }
         }
 
     }
+    fun validCertificate(number: String): Boolean {
+
+        return true
+    }
+
 }

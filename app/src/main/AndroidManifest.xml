@@ -52,6 +52,26 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.EnterNameActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.EnterPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.EnterAutoLoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.EnterBirthDateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
 
     </application>
 

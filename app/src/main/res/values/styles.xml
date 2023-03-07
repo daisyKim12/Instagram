@@ -35,6 +35,11 @@
 
     </style>
 
+    <style name="date_picker_theme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:datePickerStyle">@android:style/Widget.DatePicker</item>
+<!--        <item name="android:divider">@drawable/date_picker_divider</item>-->
+
+    </style>
 
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 

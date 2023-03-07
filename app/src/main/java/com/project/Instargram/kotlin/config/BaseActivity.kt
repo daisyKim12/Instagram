@@ -48,8 +48,13 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         editor.apply()
     }
 
+    fun saveAutoLogin(key: String, save: Boolean) {
+        val editor = ApplicationClass.sSharedPreferences.edit()
+        editor.putBoolean(key, save)
+        editor.apply()
+    }
+
     fun getValue(KEY: String): String? {
-        val sharedPref = getPreferences(MODE_PRIVATE)
-        return sharedPref.getString(KEY, "error")
+        return ApplicationClass.sSharedPreferences.getString(KEY, "error")
     }
 }
