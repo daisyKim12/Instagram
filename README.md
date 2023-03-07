@@ -27,4 +27,8 @@
 - profile fragment collapsible toolbar로 layout 수정
 - search fragment에 staggered grid recycler view 추가
 
+<day 4> 3/6
+- main activity 종속 fragement layout 수정
+- 회원가입 activity 완성, sharedPref 사용
+- Post activity, gallery recyclerview 중간 완성
 
