@@ -61,15 +61,12 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
                 intent.putExtra(KEY_SINGLE, clickedsingleImage)
                 startActivity(intent)
             }
-            //else {
-                //intent= Intent(this, PostStyleRVActivity::class.java)
-                //intent.putExtra(BOOLEAN_MULTI, btnMultiClicked)
-            //val bundle = Bundle()
-                //bundle.putParcelableArrayList(KEY_MULTI, clickedImages)
-                //intent.putExtras(bundle)
-                //startActivity(intent)
-
-            //}
+            else {
+                intent= Intent(this, PostStyleRvActivity::class.java)
+                intent.putExtra(BOOLEAN_MULTI, btnMultiClicked)
+                intent.putStringArrayListExtra(KEY_MULTI, clickedImages)
+                startActivity(intent)
+            }
         }
         binding.galleryMulti.setOnClickListener {
             binding.galleryMulti.isClickable = false

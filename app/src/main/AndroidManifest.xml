@@ -17,16 +17,18 @@
         tools:ignore="AllowBackup"
         android:requestLegacyExternalStorage="true">
 
-    <activity
+        <activity
             android:name="com.project.Instargram.kotlin.src.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity
@@ -57,6 +59,20 @@
             android:theme="@style/AppTheme.Main"
             android:usesCleartextTraffic="true" />
 
+        <activity
+            android:name="com.project.Instargram.kotlin.src.main.post.PostStyleRvActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            android:usesCleartextTraffic="true" />
+
+        <activity
+            android:name="com.project.Instargram.kotlin.src.main.post.PostFinalActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            android:usesCleartextTraffic="true" >
+        </activity>
 
         <!--creating new account -->
         <activity
