@@ -77,15 +77,15 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white">
 
-<!--                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView-->
-<!--                        android:id="@+id/img_resize"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        app:layout_constraintDimensionRatio="H,1:1"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"/>-->
+                    <!--                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView-->
+                    <!--                        android:id="@+id/img_resize"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="0dp"-->
+                    <!--                        app:layout_constraintDimensionRatio="H,1:1"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="parent"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
                     <ImageView
                         android:id="@+id/img_resize"
@@ -163,22 +163,8 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:src="@drawable/post_multi"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="H,10:33"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/gallery_camera"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginEnd="18dp"
-                        android:layout_marginVertical="5dp"/>
-
-                    <ImageView
-                        android:id="@+id/gallery_multi_clicked"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:visibility="invisible"
-                        android:clickable="false"
-                        android:src="@drawable/post_multi_clicked"
-                        app:layout_constraintDimensionRatio="H,10:10"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/gallery_camera"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginEnd="18dp"
@@ -189,16 +175,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_gallery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/tb_gallery"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
 
 
         </com.google.android.material.appbar.AppBarLayout>

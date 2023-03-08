@@ -1,6 +1,6 @@
 package com.project.Instargram.kotlin.src.main.post.adapter
 
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.RvSquareGalleryItemBinding
 
-class PostGalleryAdapter(private val context: Context, private val gallery: List<String>, private val photoListener: PhotoListener)
-    : RecyclerView.Adapter<PostGalleryAdapter.GalleryViewHolder>()  {
+class PostGalleryMultiAdapter (private val context: Context, private val gallery: List<String>, private val photoListener: PhotoListener)
+    : RecyclerView.Adapter<PostGalleryMultiAdapter.GalleryViewHolder>()  {
 
     inner class GalleryViewHolder(private val binding : RvSquareGalleryItemBinding)
         : RecyclerView.ViewHolder(binding.root){
 
         fun bindItem(url: String) {
             Glide.with(context).load(url).into(binding.imgPost)
-            binding.imgMoreThanOne.visibility = View.INVISIBLE
+            binding.imgMoreThanOne.visibility = View.VISIBLE
             binding.blurred.visibility = View.INVISIBLE
             //binding.imgMoreThanOne.visibility = View.INVISIBLE
         }
@@ -45,7 +45,7 @@ class PostGalleryAdapter(private val context: Context, private val gallery: List
     }
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
-        Log.d(TAG, "onBindViewHolder: " + gallery[position])
+        Log.d(ContentValues.TAG, "onBindViewHolder: " + gallery[position])
         holder.bindItem(gallery[position])
         holder.bindClickable(gallery[position])
 

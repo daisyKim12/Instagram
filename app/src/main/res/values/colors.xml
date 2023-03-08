@@ -16,8 +16,6 @@
     <color name="divider">#CDCDCD</color>
     <color name="ellipsizeTextColor">#BDBDBD</color>
 
-
-
     <!--login-->
     <color name="text_1">#959595</color>
     <color name="login_unclicked">#C3C3C3</color>
@@ -42,6 +40,9 @@
     <color name="profileBtnBg">#F3F3F3</color>
     <color name="grayForTextPofile">#7A7A7A</color>
 
+<!--    gallery-->
+    <color name="grayForGallery">#94BCBCBC</color>
+    <color name="blurred">#B4F4F4F4</color>
 
 
 
