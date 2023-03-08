@@ -27,18 +27,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <ImageView
             android:id="@+id/txt_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="새 게시물"
-            android:textColor="@color/blackForText"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginStart="32dp"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:src="@drawable/post_style_ic"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tb_back"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
 
         <ImageView
             android:id="@+id/tb_next"
@@ -76,6 +75,7 @@
         app:tint="@color/black" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_style"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         app:layout_constraintBottom_toTopOf="@+id/tab_layout"

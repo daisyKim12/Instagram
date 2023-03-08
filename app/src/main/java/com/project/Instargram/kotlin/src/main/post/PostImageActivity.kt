@@ -26,7 +26,7 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
 
     private val KEY_SINGLE = "sigle_image"
     private val KEY_MULTI = "multi_image"
-    private val BOOLEAN_SINGLE_OR_MULTI = "is_it_a_multi_image"
+    private val BOOLEAN_MULTI = "is_it_a_multi_image"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,13 +57,13 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
             var intent: Intent
             if(btnMultiClicked == false) {
                 intent= Intent(this, PostStyleActivity::class.java)
-                intent.putExtra(BOOLEAN_SINGLE_OR_MULTI, btnMultiClicked)
+                intent.putExtra(BOOLEAN_MULTI, btnMultiClicked)
                 intent.putExtra(KEY_SINGLE, clickedsingleImage)
                 startActivity(intent)
             }
             //else {
                 //intent= Intent(this, PostStyleRVActivity::class.java)
-                //intent.putExtra(BOOLEAN_SINGLE_OR_MULTI, btnMultiClicked)
+                //intent.putExtra(BOOLEAN_MULTI, btnMultiClicked)
             //val bundle = Bundle()
                 //bundle.putParcelableArrayList(KEY_MULTI, clickedImages)
                 //intent.putExtras(bundle)
