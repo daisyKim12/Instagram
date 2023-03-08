@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/login_bg"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <ImageView
+        android:id="@+id/tb_back"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_menu_back"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="프로필 사진 추가"
+        android:textColor="@color/blackForText"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/tb_back"
+        android:layout_marginTop="18dp"/>
+
+    <TextView
+        android:id="@+id/txt_detail1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="친구들이 회원님을 알아볼 수 있도록 프로필 사진을 추가하세요. 프로필 사진은 모든 사람에게 공개됩니다."
+        android:textColor="@color/blackForText"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/empty_profile"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_detail1" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:src="@drawable/post_add_image"
+        android:visibility="invisible"
+        app:layout_constraintDimensionRatio="H,1:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:elevation="1dp"
+        app:cardCornerRadius="6dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/txt_detail2"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        android:layout_marginBottom="15dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_term1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이 사진을 게시물로 공유"
+                android:textColor="@color/blackForText"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginVertical="15dp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="12dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/txt_detail2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="이 사진으로 첫 게시물을 만들어보세요. 사람들이 좋아요와 댁글을 남길 수 있습니다."
+        android:textColor="@color/blackForText"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_picture"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        android:layout_marginBottom="15dp"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_picture"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/login_btn1"
+        android:gravity="center"
+        android:text="사진 추가"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_skip"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_skip"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_btn2"
+        android:gravity="center"
+        android:text="건너뛰기"
+        android:textColor="@color/blackForText"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        android:layout_marginBottom="15dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

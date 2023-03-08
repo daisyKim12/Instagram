@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.project.Instargram.kotlin.databinding.BottomSheetHomeBinding
 import com.project.Instargram.kotlin.util.LoadingDialog
 
 
@@ -54,7 +56,14 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         editor.apply()
     }
 
+    fun saveTerms(key: String, save: Boolean) {
+        val editor = ApplicationClass.sSharedPreferences.edit()
+        editor.putBoolean(key, save)
+        editor.apply()
+    }
+
     fun getValue(KEY: String): String? {
         return ApplicationClass.sSharedPreferences.getString(KEY, "error")
     }
+
 }

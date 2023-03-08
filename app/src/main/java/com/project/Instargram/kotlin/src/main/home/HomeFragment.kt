@@ -45,13 +45,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 //        binding.rvPost.adapter = adapter
 //    }
 
-
     private fun showBottomSheetAdv() {
         val bottomSheetDialog = BottomSheetDialog(requireContext())
         val binding: BottomSheetHomeBinding = BottomSheetHomeBinding.inflate(layoutInflater)
         bottomSheetDialog.setContentView(binding.root)
     }
-
-
 
 }

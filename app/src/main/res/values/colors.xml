@@ -21,6 +21,7 @@
     <color name="login_unclicked">#C3C3C3</color>
     <color name="login_clicked">#989898</color>
     <color name="login_btn_1">#2340DF</color>
+    <color name="login_btn_2">#8B9AED</color>
     <color name="transparent">#00FFFFFF</color>
     <!--home-->
     <color name="homeGrayDot">#CDCDCD</color>

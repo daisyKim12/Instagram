@@ -57,7 +57,7 @@ class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(Activi
         binding.btnNext.setOnClickListener {
             val data = binding.txtBithDate.text.toString()
             saveFromEditText(KEY_SEND, data)
-            //startActivity(Intent(this, NextActivity::class.java))
+            startActivity(Intent(this, EnterNicknameActivity::class.java))
         }
     }
 
