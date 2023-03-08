@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.main.post.adapter
+package com.project.Instargram.kotlin.src.main.post.model
 
 import android.content.ContentValues.TAG
 import android.content.Context

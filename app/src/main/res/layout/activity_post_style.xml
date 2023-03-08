@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_tb"
@@ -19,7 +21,7 @@
             android:id="@+id/tb_back"
             android:layout_width="24dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_menu_close"
+            android:src="@drawable/ic_menu_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,132 +53,56 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinator_layout"
+    <ImageView
+        android:id="@+id/img_resize"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_tb"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/cl_tb" />
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/btn_resize"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_margin="15dp"
+        android:src="@drawable/post_resize"
+        app:layout_constraintBottom_toBottomOf="@+id/img_resize"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/black" />
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:contentScrim="@color/transparent"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/tab_layout"
+        app:layout_constraintTop_toBottomOf="@+id/img_resize"
+        tools:layout_editor_absoluteX="0dp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white">
-
-                    <!--                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView-->
-                    <!--                        android:id="@+id/img_resize"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="0dp"-->
-                    <!--                        app:layout_constraintDimensionRatio="H,1:1"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-                    <ImageView
-                        android:id="@+id/img_resize"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:src="@drawable/ic_launcher_background"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-
-                    <ImageView
-                        android:id="@+id/btn_resize"
-                        android:layout_width="0dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/post_resize"
-                        android:layout_margin="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_gallery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/tb_gallery"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="@color/white"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp">
-
-                    <!--                <ImageView-->
-                    <!--                    android:id="@+id/gallery_back"-->
-                    <!--                    android:layout_width="24dp"-->
-                    <!--                    android:layout_height="0dp"-->
-                    <!--                    android:src="@drawable/ic_menu_close"-->
-                    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                    app:layout_constraintDimensionRatio="H,1:1"-->
-                    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-                    <TextView
-                        android:id="@+id/gallery_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="갤러리"
-                        android:textColor="@color/blackForText"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/gallery_camera"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:src="@drawable/post_camera"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginVertical="5dp"/>
-
-                    <ImageView
-                        android:id="@+id/gallery_multi"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:src="@drawable/post_multi"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,10:33"
-                        app:layout_constraintEnd_toStartOf="@id/gallery_camera"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginEnd="18dp"
-                        android:layout_marginVertical="5dp"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tabIndicatorColor="@drawable/mypage_tab_color_selector"
+        app:tabTextColor="@drawable/mypage_tab_color_selector">
 
 
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:text="필터"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:text="수정"/>
 
 
+    </com.google.android.material.tabs.TabLayout>
 
-        </com.google.android.material.appbar.AppBarLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

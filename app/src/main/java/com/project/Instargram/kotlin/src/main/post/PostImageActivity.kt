@@ -10,10 +10,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityPostImageBinding
-import com.project.Instargram.kotlin.src.main.post.adapter.ImagesGallery
+import com.project.Instargram.kotlin.src.main.post.model.ImagesGallery
 import com.project.Instargram.kotlin.src.main.post.adapter.PostGalleryAdapter
 import com.project.Instargram.kotlin.src.main.post.adapter.PostGalleryMultiAdapter
 
@@ -55,16 +54,22 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
             finish()
         }
         binding.tbNext.setOnClickListener {
-            var intent = Intent(this, PostStyleActivity::class.java)
+            var intent: Intent
             if(btnMultiClicked == false) {
+                intent= Intent(this, PostStyleActivity::class.java)
+                intent.putExtra(BOOLEAN_SINGLE_OR_MULTI, btnMultiClicked)
                 intent.putExtra(KEY_SINGLE, clickedsingleImage)
-            } else {
-                val bundle = Bundle()
+                startActivity(intent)
+            }
+            //else {
+                //intent= Intent(this, PostStyleRVActivity::class.java)
+                //intent.putExtra(BOOLEAN_SINGLE_OR_MULTI, btnMultiClicked)
+            //val bundle = Bundle()
                 //bundle.putParcelableArrayList(KEY_MULTI, clickedImages)
                 //intent.putExtras(bundle)
-            }
-            intent.putExtra(BOOLEAN_SINGLE_OR_MULTI, btnMultiClicked)
-            startActivity(intent)
+                //startActivity(intent)
+
+            //}
         }
         binding.galleryMulti.setOnClickListener {
             binding.galleryMulti.isClickable = false
