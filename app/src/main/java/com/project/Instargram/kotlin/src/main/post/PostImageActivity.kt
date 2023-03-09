@@ -3,6 +3,7 @@ package com.project.Instargram.kotlin.src.main.post
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,7 +19,8 @@ import com.project.Instargram.kotlin.src.main.post.adapter.PostGalleryMultiAdapt
 
 class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostImageBinding::inflate){
 
-    private val MY_READ_PERMISSION_CODE = 101
+    private val MY_GALLERY_PERMISSION_CODE = 101
+    private val MY_CAMERA_PERMISSION_CODE = 102
     private lateinit var images: List<String>
     private var clickedImages: ArrayList<String> = arrayListOf()
     private var clickedsingleImage: String = ""
@@ -35,14 +37,15 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
 
         //        binding.imgResize.setImage(ImageSource.uri("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/White_and_yellow_flower.JPG/330px-White_and_yellow_flower.JPG"))
         // setUpMyPostRecyclerView()
-        val permission_read: Int? = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        val permission_gallery: Int? = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
         val permission_write: Int? = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
         //check for permission
-        if(permission_read != PackageManager.PERMISSION_GRANTED ){
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), MY_READ_PERMISSION_CODE)
+        if(permission_gallery != PackageManager.PERMISSION_GRANTED ){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), MY_GALLERY_PERMISSION_CODE)
         } else {
             loadGallery(false)
+
         }
     }
 
@@ -134,7 +137,7 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         
-        if(requestCode == MY_READ_PERMISSION_CODE){
+        if(requestCode == MY_GALLERY_PERMISSION_CODE){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 Log.d(TAG, "onRequestPermissionsResult: granted")
                 loadGallery(false)

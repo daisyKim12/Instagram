@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name="com.project.Instargram.kotlin.config.ApplicationClass"
@@ -23,11 +24,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -102,24 +98,32 @@
             android:theme="@style/AppTheme.Login"/>
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterBirthDateActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterNicknameActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterTermsActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterPictureActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Login"/>
+            android:theme="@style/AppTheme.Login">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 
