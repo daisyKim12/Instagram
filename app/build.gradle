@@ -91,6 +91,9 @@ dependencies {
 //    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
 
+    //progress button
+    implementation 'com.github.razir.progressbutton:progressbutton:2.1.0'
+
     //filter image
     //https://github.com/ragnraok/android-image-filter
 

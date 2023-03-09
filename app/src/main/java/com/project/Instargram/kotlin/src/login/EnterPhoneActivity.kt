@@ -38,6 +38,9 @@ class EnterPhoneActivity: BaseActivity<ActivityEnterPhoneNumberBinding>(Activity
                 binding.txtDetail2.setTextColor(ContextCompat.getColor(this, R.color.redForText))
             }
         }
+        binding.btnEmail.setOnClickListener {
+            startActivity(Intent(this, EnterEmailActivity::class.java))
+        }
     }
 
     fun validCellPhone(number: String): Boolean {

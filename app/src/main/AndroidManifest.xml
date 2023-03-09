@@ -24,6 +24,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login" >
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
 
@@ -87,6 +92,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
         <activity
+            android:name="com.project.Instargram.kotlin.src.login.EnterEmailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -113,17 +123,9 @@
             android:theme="@style/AppTheme.Login"/>
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterPictureActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Login">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:theme="@style/AppTheme.Login"/>
 
     </application>
 

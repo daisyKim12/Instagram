@@ -27,6 +27,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         binding.rvStorypost.adapter = adapter
     }
 
+    private fun showBottomSheetAdv() {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val binding: BottomSheetHomeBinding = BottomSheetHomeBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(binding.root)
+    }
+
+}
+
+
+
+
+
 //    private fun setUpStoryRecyclerView() {
 //        binding.rvStory.setHasFixedSize(true)
 //        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -44,11 +56,3 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 //        adapter.notifyDataSetChanged()
 //        binding.rvPost.adapter = adapter
 //    }
-
-    private fun showBottomSheetAdv() {
-        val bottomSheetDialog = BottomSheetDialog(requireContext())
-        val binding: BottomSheetHomeBinding = BottomSheetHomeBinding.inflate(layoutInflater)
-        bottomSheetDialog.setContentView(binding.root)
-    }
-
-}
