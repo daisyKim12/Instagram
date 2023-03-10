@@ -109,6 +109,11 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         return result
     }
 
-
-
+    fun changePhoneFormat(phone: String): String? {
+        if(phone.length == 11) {
+            return phone.slice(0..2) + "-" + phone.slice(3..6) + "-" + phone.slice(7..10)
+        } else {
+            return null
+        }
+    }
 }

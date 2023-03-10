@@ -1,6 +1,6 @@
 package com.project.Instargram.kotlin.src.login.model.login
 
-data class EmailLoginResponse(
+data class LoginResponse(
     val code: Int,
     val isSuccess: Boolean,
     val message: String,

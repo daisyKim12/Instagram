@@ -46,10 +46,10 @@ class EnterPhoneActivity: BaseActivity<ActivityEnterPhoneNumberBinding>(Activity
                 binding.txtDetail2.setTextColor(ContextCompat.getColor(this, R.color.blackForText))
 
                 val fdata = changePhoneFormat(data)
-                saveString(KEY_SEND, fdata)
+                saveString(KEY_SEND, fdata!!)
                 Log.d(TAG, "onResume: "+fdata)
                 saveBoolean(KEY_ISIT_EMAIL, false)
-                val phoneDuplicateRequest = PhoneDuplicateRequest(fdata)
+                val phoneDuplicateRequest = PhoneDuplicateRequest(fdata!!)
                 PhoneService(this).tryPostPhoneDuplication(phoneDuplicateRequest)
 
             } else {
@@ -63,9 +63,6 @@ class EnterPhoneActivity: BaseActivity<ActivityEnterPhoneNumberBinding>(Activity
         }
     }
 
-    private fun changePhoneFormat(phone: String): String {
-        return phone.slice(0..2) + "-" + phone.slice(3..6) + "-" + phone.slice(7..10)
-    }
     fun validCellPhone(number: String): Boolean {
         if(number.length != 11) {
             return false

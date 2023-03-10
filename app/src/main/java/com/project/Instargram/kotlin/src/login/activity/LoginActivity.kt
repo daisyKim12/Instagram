@@ -14,10 +14,7 @@ import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityLoginBinding
 import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailDuplicateRequest
 import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailService
-import com.project.Instargram.kotlin.src.login.model.login.EmailLoginRequest
-import com.project.Instargram.kotlin.src.login.model.login.EmailLoginResponse
-import com.project.Instargram.kotlin.src.login.model.login.LoginActivityInterface
-import com.project.Instargram.kotlin.src.login.model.login.LoginService
+import com.project.Instargram.kotlin.src.login.model.login.*
 import com.project.Instargram.kotlin.src.main.MainActivity
 import com.project.Instargram.kotlin.util.LoadingDialog
 import okhttp3.internal.wait
@@ -56,6 +53,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             if(idISEmail == true) {
                 val emailLoginRequest = EmailLoginRequest(id, pw)
                 LoginService(this).tryPostEmailLogin(emailLoginRequest)
+            } else {
+                if(id.length == 11) {
+                    val phoneLoginRequest = PhoneLoginRequest(changePhoneFormat(id)!!, pw)
+                    LoginService(this).tryPostPhoneLogin(phoneLoginRequest)
+                }
             }
         }
 
@@ -75,7 +77,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         if(id.length < 3) {
             showErroDialog(this, "이메일 주소 또는 휴대폰 번호 필요", "계속하려면 이메일 주소 또는 휴대폰\\n번호를 입력하세요.")
         } else if (id.slice(0..2) == "010") {
-            idISEmail = false
+            if(id.length == 11){
+                idISEmail = false
+            }else{
+                showErroDialog(this, "잘못된 전화번호", "입력된 전화번호가 올바르지 않습니다.\n" + "다시 시도하세요")
+            }
         } else {
             idISEmail = true
         }
@@ -95,7 +101,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     }
 
-    override fun onPostEmailLoginSuccess(response: EmailLoginResponse) {
+    override fun onPostEmailLoginSuccess(response: LoginResponse) {
         val code: String = response.code.toString()
         Log.d(TAG, "onPostEmailLoginSuccess: "+ response)
 //        saveString(KEY_USERID, response.result.userIdx)
@@ -107,10 +113,25 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             waitAndMoveToNextActivity()
         } else {
             showErroDialog(this, "잘못된 비밀번호", "입력된 비밀번호가 올바르지 않습니다.\n다시 시도하세요.")
-            Log.d(TAG, "onPostEmailLoginSuccess: 비밀번호 복고화 실패")
         }
     }
-    override fun onPostEmailLoginFailure(message: String) {
+
+    override fun onPostPhoneLoginSuccess(response: LoginResponse) {
+        val code: String = response.code.toString()
+        Log.d(TAG, "onPostPhoneLoginSuccess: "+ response)
+//        saveString(KEY_USERID, response.result.userIdx)
+//        saveString(KEY_TOKEN, response.result.jwtToken)
+//        waitAndMoveToNextActivity()
+        if (code == "1000") {
+            saveInteger(KEY_USERID, response.result.userIdx)
+            saveString(KEY_TOKEN, response.result.jwtToken)
+            waitAndMoveToNextActivity()
+        } else {
+            showErroDialog(this, "잘못된 비밀번호", "입력된 비밀번호가 올바르지 않습니다.\n다시 시도하세요.")
+        }
+    }
+
+    override fun onPostLoginFailure(message: String) {
         Log.d(TAG, "onPostEmailLoginFailure: " + message)
     }
 

@@ -10,13 +10,26 @@ class LoginService(val loginActivityInterface: LoginActivityInterface) {
 
     fun tryPostEmailLogin(emailLoginRequest: EmailLoginRequest){
         val loginRetrofitInterface = ApplicationClass.sRetrofit.create(LoginRetrofitInterface::class.java)
-        loginRetrofitInterface.postEmailLogin(emailLoginRequest).enqueue(object : Callback<EmailLoginResponse?> {
-            override fun onResponse(call: Call<EmailLoginResponse?>, response: Response<EmailLoginResponse?>) {
-                loginActivityInterface.onPostEmailLoginSuccess(response.body() as EmailLoginResponse)
+        loginRetrofitInterface.postEmailLogin(emailLoginRequest).enqueue(object : Callback<LoginResponse?> {
+            override fun onResponse(call: Call<LoginResponse?>, response: Response<LoginResponse?>) {
+                loginActivityInterface.onPostEmailLoginSuccess(response.body() as LoginResponse)
             }
 
-            override fun onFailure(call: Call<EmailLoginResponse?>, t: Throwable) {
-                loginActivityInterface.onPostEmailLoginFailure("통신 실패")
+            override fun onFailure(call: Call<LoginResponse?>, t: Throwable) {
+                loginActivityInterface.onPostLoginFailure("통신 실패")
+            }
+        })
+    }
+
+    fun tryPostPhoneLogin(phoneLoginRequest: PhoneLoginRequest){
+        val loginRetrofitInterface = ApplicationClass.sRetrofit.create(LoginRetrofitInterface::class.java)
+        loginRetrofitInterface.postPhoneLogin(phoneLoginRequest).enqueue(object : Callback<LoginResponse?> {
+            override fun onResponse(call: Call<LoginResponse?>, response: Response<LoginResponse?>) {
+                loginActivityInterface.onPostEmailLoginSuccess(response.body() as LoginResponse)
+            }
+
+            override fun onFailure(call: Call<LoginResponse?>, t: Throwable) {
+                loginActivityInterface.onPostLoginFailure("통신 실패")
             }
         })
     }
