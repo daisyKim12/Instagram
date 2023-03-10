@@ -24,12 +24,16 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
 
     private val KEY_IMAGE_URI = "image_path"
     private val KEY_NICKNAME = "nickName"
+    private val KEY_ISIT_EMAIL = "isItEmail"
     private lateinit var handler: Handler
+    private var isItEmail = true
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        isItEmail = getBooleanValue(KEY_ISIT_EMAIL)!!
 
         handler = Handler(Looper.getMainLooper())
         //val absolutePath: String = "/storage/emulated/0/Pictures/Instagram/IMG_20220726_165002_301.jpg"
@@ -62,7 +66,7 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
         Log.d(TAG, "onPostNewAccountSuccess: "+ absolutePath)
         val nickName = getStringValue(KEY_NICKNAME)
         //change path to uri
-        binding.circleImageView.setImageURI(path2uri(absolutePath))
+//        binding.circleImageView.setImageURI(path2uri(absolutePath))
         binding.txtDetail1.text = nickName + "님, Instagram에 오신 것을 환영합니다"
         clearExtraSharedPref()
     }
@@ -73,19 +77,31 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
     }
 
     fun RegesterAccount() {
-        //data
-        val data : RequestBody = RequestBody.create( "application/json".toMediaTypeOrNull(), getDataForEmailAccount().toString())
-        val requestData = MultipartBody.Part.createFormData("sign-up-data","data", data)
-        Log.d(TAG, "RegesterAccount: json -> " + getDataForEmailAccount().toString())
-        Log.d(TAG, "RegesterAccount: data -> " + data)
-
         //image
         val file: File = File(getStringValue(KEY_IMAGE_URI))
         Log.d(TAG, "RegesterAccount: path -> " + getStringValue(KEY_IMAGE_URI))
         Log.d(TAG, "RegesterAccount: file -> " + file)
         val imageFile : RequestBody = RequestBody.create( "image/jpg".toMediaTypeOrNull(), file)
         val requestImage = MultipartBody.Part.createFormData("file",file.name, imageFile)
-        NewAccountService(this).tryPostNewAccount(requestData, requestImage)
+
+        //data
+        var jsonData: JSONObject? = null
+        if(isItEmail == true) {
+            jsonData = getDataForEmailAccount()
+        } else {
+            jsonData = getDataForPhoneAccount()
+        }
+
+        val data : RequestBody = RequestBody.create( "application/json".toMediaTypeOrNull(), jsonData.toString())
+        val requestData = MultipartBody.Part.createFormData("sign-up-data","data", data)
+        Log.d(TAG, "RegesterAccount: json -> " + getDataForEmailAccount().toString())
+        Log.d(TAG, "RegesterAccount: data -> " + data)
+
+        if(isItEmail == true) {
+            NewAccountService(this).tryPostEmailNewAccount(requestData, requestImage)
+        } else {
+            NewAccountService(this).tryPostPhoneNewAccount(requestData, requestImage)
+        }
     }
 
     fun getDataForEmailAccount(): JSONObject {
@@ -107,6 +123,25 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
         return rootObject
     }
 
+    fun getDataForPhoneAccount(): JSONObject {
+        val phone: String? = getStringValue("phone")
+        val password: String? = getStringValue("password")
+        val name: String? = getStringValue("name")
+        val nickName: String? = getStringValue("nickName")
+        val birthday: String? = getStringValue("birthday")
+
+        val rootObject= JSONObject()
+        rootObject.put("phone",phone)
+        rootObject.put("password",password)
+        rootObject.put("name",name)
+        rootObject.put("nickName",nickName)
+        rootObject.put("birthday",birthday)
+
+        Log.d(TAG, "getDataForEmailAccount: json -> " + rootObject)
+
+        return rootObject
+    }
+
     fun clearExtraSharedPref() {
         clearSharedPrefByKey("birthday")
         clearSharedPrefByKey("password")
@@ -114,6 +149,7 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
         clearSharedPrefByKey("nickName")
         clearSharedPrefByKey("name")
         clearSharedPrefByKey("email")
+        clearSharedPrefByKey("isItEmail")
     }
 
 }

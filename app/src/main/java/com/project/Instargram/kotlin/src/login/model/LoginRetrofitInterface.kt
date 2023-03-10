@@ -45,12 +45,18 @@ interface LoginRetrofitInterface {
 
     @Multipart
     @POST("auths/sign-up/email")
-    fun postNewAccount(@Part data: MultipartBody.Part, @Part image: MultipartBody.Part)
+    fun postEmailNewAccount(@Part data: MultipartBody.Part, @Part image: MultipartBody.Part)
     : Call<NewAccountResponse>
 
     //Phone
     @POST("auths/duplicate-check/phone")
     fun postPhoneDuplication(@Body phoneDuplicateRequest: PhoneDuplicateRequest)
             : Call<PhoneDuplicateResponse>
+
+
+    @Multipart
+    @POST("auths/sign-up/phone")
+    fun postPhoneNewAccount(@Part data: MultipartBody.Part, @Part image: MultipartBody.Part)
+            : Call<NewAccountResponse>
 
 }

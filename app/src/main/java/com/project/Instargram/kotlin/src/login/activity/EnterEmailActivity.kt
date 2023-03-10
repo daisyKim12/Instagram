@@ -19,6 +19,7 @@ import com.project.Instargram.kotlin.src.login.model.EmailAuth.*
 class EnterEmailActivity : BaseActivity<ActivityEnterEmailBinding>(ActivityEnterEmailBinding::inflate), EmailActivityInterface {
 
     private val KEY_SEND = "email"
+    private val KEY_ISIT_EMAIL = "isItEmail"
     private var data = ""
     private val networkingDone = false
     private val KEY_INTENT = "certification"
@@ -48,6 +49,7 @@ class EnterEmailActivity : BaseActivity<ActivityEnterEmailBinding>(ActivityEnter
                 binding.txtDetail2.setTextColor(ContextCompat.getColor(this, R.color.blackForText))
                 saveString(KEY_SEND, data)
 
+                saveBoolean(KEY_ISIT_EMAIL, true)
                 val emailDuplicateRequest = EmailDuplicateRequest(data)
                 EmailService(this).tryPostEmailDuplication(emailDuplicateRequest)
 

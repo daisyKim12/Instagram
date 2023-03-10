@@ -23,6 +23,7 @@ import com.project.Instargram.kotlin.src.login.model.PhoneAuth.PhoneService
 class EnterPhoneActivity: BaseActivity<ActivityEnterPhoneNumberBinding>(ActivityEnterPhoneNumberBinding::inflate), PhoneActivityInterface {
 
     private val KEY_SEND = "phone"
+    private val KEY_ISIT_EMAIL = "isItEmail"
     private var errorString = " "
     private lateinit var handler: Handler
 
@@ -47,6 +48,7 @@ class EnterPhoneActivity: BaseActivity<ActivityEnterPhoneNumberBinding>(Activity
                 val fdata = changePhoneFormat(data)
                 saveString(KEY_SEND, fdata)
                 Log.d(TAG, "onResume: "+fdata)
+                saveBoolean(KEY_ISIT_EMAIL, false)
                 val phoneDuplicateRequest = PhoneDuplicateRequest(fdata)
                 PhoneService(this).tryPostPhoneDuplication(phoneDuplicateRequest)
 
@@ -94,7 +96,7 @@ class EnterPhoneActivity: BaseActivity<ActivityEnterPhoneNumberBinding>(Activity
         }    }
 
     override fun onPostPhoneDuplicationFailure(message: String) {
-        TODO("Not yet implemented")
+        Log.d(TAG, "onPostPhoneDuplicationFailure: " + message)
     }
     private fun waitAndMoveToNextActivity() {
 
