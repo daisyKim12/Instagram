@@ -5,6 +5,8 @@ import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailAuthRequest
 import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailAuthResponse
 import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailDuplicateRequest
 import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailDuplicateResponse
+import com.project.Instargram.kotlin.src.login.model.PhoneAuth.PhoneDuplicateRequest
+import com.project.Instargram.kotlin.src.login.model.PhoneAuth.PhoneDuplicateResponse
 import com.project.Instargram.kotlin.src.login.model.login.EmailLoginRequest
 import com.project.Instargram.kotlin.src.login.model.login.EmailLoginResponse
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountResponse
@@ -19,15 +21,16 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface LoginRetrofitInterface {
-
+    //example
     @GET("/template/users")
     fun getUsers() : Call<UserResponse>
-
     @POST("/template/users")
     fun postSignUp(@Body params: PostSignUpRequest): Call<SignUpResponse>
 
+    //Email
     @POST("auths/email-auth")
     fun postEmailAuth(@Body emailAuthRequest: EmailAuthRequest)
     : Call<EmailAuthResponse>
@@ -36,12 +39,18 @@ interface LoginRetrofitInterface {
     fun postEmailDuplication(@Body emailDuplicateRequest: EmailDuplicateRequest)
             : Call<EmailDuplicateResponse>
 
-    @POST("auths/duplicate-check/email")
+    @POST("auths/sign-in/email")
     fun postEmailLogin(@Body emailLoginRequest: EmailLoginRequest)
             : Call<EmailLoginResponse>
 
     @Multipart
     @POST("auths/sign-up/email")
-    fun postNewAccount(@Part("sign-up-data") data: RequestBody, @Part image: MultipartBody.Part)
+    fun postNewAccount(@Part data: MultipartBody.Part, @Part image: MultipartBody.Part)
     : Call<NewAccountResponse>
+
+    //Phone
+    @POST("auths/duplicate-check/phone")
+    fun postPhoneDuplication(@Body phoneDuplicateRequest: PhoneDuplicateRequest)
+            : Call<PhoneDuplicateResponse>
+
 }

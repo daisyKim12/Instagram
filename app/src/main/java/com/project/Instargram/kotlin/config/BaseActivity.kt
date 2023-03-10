@@ -1,7 +1,11 @@
 package com.project.Instargram.kotlin.config
 
+import android.content.ContentUris
 import android.content.Context
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -71,8 +75,36 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         return ApplicationClass.sSharedPreferences.getString(KEY, "error")
     }
 
-    fun clearSharedPref() {
+    fun clearAllSharedPref() {
         ApplicationClass.sSharedPreferences.edit().clear().commit()
     }
+
+    fun clearSharedPrefByKey(KEY: String) {
+        ApplicationClass.sSharedPreferences.edit().remove(KEY).commit()
+    }
+
+
+    open fun path2uri(filePath: String): Uri? {
+        val cursor = this.contentResolver.query(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
+            "_data = '$filePath'", null, null
+        )
+        cursor!!.moveToNext()
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"))
+        return ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id.toLong())
+    }
+    fun uri2path(uri: Uri): String? {
+
+        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
+        var c: Cursor? = contentResolver.query(uri, proj, null, null, null)
+        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        c?.moveToFirst()
+
+        var result = c?.getString(index!!)
+
+        return result
+    }
+
+
 
 }

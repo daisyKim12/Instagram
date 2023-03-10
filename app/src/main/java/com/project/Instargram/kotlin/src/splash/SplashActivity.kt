@@ -13,6 +13,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         super.onCreate(savedInstanceState)
 
         Handler(Looper.getMainLooper()).postDelayed({
+            //if auto saved is on
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 1500)

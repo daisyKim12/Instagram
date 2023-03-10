@@ -60,7 +60,6 @@ class EnterTermsActivity : BaseActivity<ActivityEnterTermsBinding>(ActivityEnter
 
         binding.btnNext.setOnClickListener {
             val data = true
-            saveBoolean(KEY_SEND, data)
             startActivity(Intent(this, EnterPictureActivity::class.java))
         }
 

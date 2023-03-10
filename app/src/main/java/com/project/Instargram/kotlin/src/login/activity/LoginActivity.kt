@@ -97,17 +97,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     override fun onPostEmailLoginSuccess(response: EmailLoginResponse) {
         val code: String = response.code.toString()
-        if(code == "1000") {
+        Log.d(TAG, "onPostEmailLoginSuccess: "+ response)
+//        saveString(KEY_USERID, response.result.userIdx)
+//        saveString(KEY_TOKEN, response.result.jwtToken)
+//        waitAndMoveToNextActivity()
+        if (code == "1000") {
             saveInteger(KEY_USERID, response.result.userIdx)
             saveString(KEY_TOKEN, response.result.jwtToken)
             waitAndMoveToNextActivity()
-        } else
+        } else {
             showErroDialog(this, "잘못된 비밀번호", "입력된 비밀번호가 올바르지 않습니다.\n다시 시도하세요.")
             Log.d(TAG, "onPostEmailLoginSuccess: 비밀번호 복고화 실패")
         }
-
+    }
     override fun onPostEmailLoginFailure(message: String) {
-        Log.d(TAG, "onPostEmailLoginFailure: "+message)
+        Log.d(TAG, "onPostEmailLoginFailure: " + message)
     }
 
 }

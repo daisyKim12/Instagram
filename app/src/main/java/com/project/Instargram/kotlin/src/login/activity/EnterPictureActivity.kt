@@ -3,11 +3,11 @@ package com.project.Instargram.kotlin.src.login.activity
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
@@ -18,10 +18,14 @@ import androidx.core.content.ContextCompat
 import com.github.razir.progressbutton.bindProgressButton
 import com.github.razir.progressbutton.showProgress
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.project.Instargram.kotlin.BuildConfig
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityEnterPictureBinding
 import com.project.Instargram.kotlin.databinding.BottomSheetLoginGalleryBinding
 import com.project.Instargram.kotlin.src.splash.SplashNewAccountActivity
+import java.io.File
+import java.io.FileOutputStream
+import java.util.*
 
 
 class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityEnterPictureBinding::inflate) {
@@ -35,6 +39,7 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
     private lateinit var handler: Handler
     private var imageSelected = false
     private lateinit var photoUri: Uri
+    private var absolutePath: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +47,14 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
         bindProgressButton(binding.btnAddPicture)
 
         handler = Handler(Looper.getMainLooper())
-
         val permission_camera: Int? = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
 
         //check for permission
         if(permission_camera != PackageManager.PERMISSION_GRANTED ){
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
         }
+
+        //binding.circleImageView.setImageURI(path2uri("/storage/emulated/0/req_images"))
 
     }
 
@@ -64,9 +70,9 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
                 showBottomSheet()
             } else {
                 //완료, 고른 이미지와
-                val absolutePath = absolutelyPath(photoUri)
+                absolutePath = uri2path(photoUri)
                 if(absolutePath != null) {
-                    saveString(KEY_SEND, absolutePath)
+                    saveString(KEY_SEND, absolutePath!!)
                 }
                 waitAndMoveToNextActivity()
             }
@@ -74,8 +80,9 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
 
         binding.btnSkip.setOnClickListener {
             if(imageSelected == false){
-               //완료, 기본 이미지와
-               waitAndMoveToNextActivity()
+               //완료, 기본 이미지
+                saveString(KEY_SEND, absolutePath!!)
+                waitAndMoveToNextActivity()
             } else {
                 openGallery()
             }
@@ -83,17 +90,6 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
 
     }
 
-    fun absolutelyPath(path: Uri): String? {
-
-        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
-        var c: Cursor? = contentResolver.query(path, proj, null, null, null)
-        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        c?.moveToFirst()
-
-        var result = c?.getString(index!!)
-
-        return result
-    }
 
 
     fun waitAndMoveToNextActivity() {
@@ -159,12 +155,27 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
             if(requestCode == MY_CAMERA_PERMISSION_CODE) {
                 //binding.circleImageView.setImageURI(data?.data)
                 val bitmap: Bitmap = data?.extras?.get("data") as Bitmap
-                Log.d(TAG, "onActivityResult: "+ bitmap)
+                //absolutePath = createStorage()
                 binding.circleImageView.setImageBitmap(bitmap)
                 changeLayout()
             }
         }
     }
+
+//    private fun createStorage(): String {
+//        val file = File(
+//            this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), // you can change the path here
+//            //BuildConfig. // add it in build.gradle under android
+//        )
+//        try {
+//            if (!file.exists()) {
+//                file.mkdirs()
+//            }
+//        } catch (e: java.lang.Exception) {
+//            e.printStackTrace()
+//        }
+//        return file.absolutePath + "/" + System.currentTimeMillis() + ".jpg"
+//    }
 
     private fun changeLayout() {
         binding.txtDetail1.visibility = View.VISIBLE

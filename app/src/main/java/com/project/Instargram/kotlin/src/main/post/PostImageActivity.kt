@@ -105,7 +105,7 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
 
                 clickedsingleImage = path
                 if(path != null){
-                    Glide.with(this@PostImageActivity).load(clickedsingleImage).into(binding.imgResize)
+                    //Glide.with(this@PostImageActivity).load(clickedsingleImage).into(binding.imgResize)
                 }
 
             }
@@ -117,7 +117,7 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
                 clickedImages.add(path)
 
                 if(path != null){
-                    Glide.with(this@PostImageActivity).load(path).into(binding.imgResize)
+                    //Glide.with(this@PostImageActivity).load(path).into(binding.imgResize)
                 }
             }
         })

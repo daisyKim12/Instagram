@@ -9,6 +9,7 @@ import android.os.Looper
 import android.util.Log
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivitySplashNewAccountBinding
+import com.project.Instargram.kotlin.databinding.DialogDatePickerBinding
 import com.project.Instargram.kotlin.src.login.activity.EnterCertificationActivity
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountInterface
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountResponse
@@ -31,7 +32,8 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
         super.onCreate(savedInstanceState)
 
         handler = Handler(Looper.getMainLooper())
-
+        //val absolutePath: String = "/storage/emulated/0/Pictures/Instagram/IMG_20220726_165002_301.jpg"
+        //binding.circleImageView.setImageURI(path2uri(absolutePath))
         RegesterAccount()
     }
 
@@ -56,11 +58,13 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
 
     override fun onPostNewAccountSuccess(response: NewAccountResponse) {
         Log.d(ContentValues.TAG, "onPostNewAccountSuccess: " + response)
-        val absolutePath = response.result.imgURL.toString()
+        val absolutePath = response.result.imgURL
+        Log.d(TAG, "onPostNewAccountSuccess: "+ absolutePath)
         val nickName = getStringValue(KEY_NICKNAME)
         //change path to uri
-        //binding.circleImageView.setImageURI()
+        binding.circleImageView.setImageURI(path2uri(absolutePath))
         binding.txtDetail1.text = nickName + "님, Instagram에 오신 것을 환영합니다"
+        clearExtraSharedPref()
     }
 
     override fun onPostNewAccountFailure(message: String) {
@@ -69,31 +73,19 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
     }
 
     fun RegesterAccount() {
-        //val string = "multipart/form-data"
-        //application/json
-        //image/jpg
-
         //data
         val data : RequestBody = RequestBody.create( "application/json".toMediaTypeOrNull(), getDataForEmailAccount().toString())
+        val requestData = MultipartBody.Part.createFormData("sign-up-data","data", data)
+        Log.d(TAG, "RegesterAccount: json -> " + getDataForEmailAccount().toString())
         Log.d(TAG, "RegesterAccount: data -> " + data)
 
         //image
         val file: File = File(getStringValue(KEY_IMAGE_URI))
-        Log.d(TAG, "RegesterAccount: url -> " + getStringValue(KEY_IMAGE_URI))
+        Log.d(TAG, "RegesterAccount: path -> " + getStringValue(KEY_IMAGE_URI))
         Log.d(TAG, "RegesterAccount: file -> " + file)
-
         val imageFile : RequestBody = RequestBody.create( "image/jpg".toMediaTypeOrNull(), file)
         val requestImage = MultipartBody.Part.createFormData("file",file.name, imageFile)
-        NewAccountService(this).tryPostNewAccount(data, requestImage)
-
-
-//        val gson = GsonBuilder().setLenient().create()
-//        val modelBody: RequestBody = RequestBody.create("application/json".toMediaTypeOrNull(), gson.toJson(getDataForEmailAccount().toString()))
-//        val reqFileBody: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-//        val mPart1: MultipartBody.Part = MultipartBody.Part.createFormData("file", file.name, reqFileBody)
-
-//        LoginService(this).tryPostNewAccount(modelBody, mPart1)
-
+        NewAccountService(this).tryPostNewAccount(requestData, requestImage)
     }
 
     fun getDataForEmailAccount(): JSONObject {
@@ -115,4 +107,40 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
         return rootObject
     }
 
+    fun clearExtraSharedPref() {
+        clearSharedPrefByKey("birthday")
+        clearSharedPrefByKey("password")
+        clearSharedPrefByKey("phone")
+        clearSharedPrefByKey("nickName")
+        clearSharedPrefByKey("name")
+        clearSharedPrefByKey("email")
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

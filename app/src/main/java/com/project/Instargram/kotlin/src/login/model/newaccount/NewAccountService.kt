@@ -10,7 +10,7 @@ import retrofit2.Response
 
 class NewAccountService(val newAccountInterface: NewAccountInterface) {
 
-    fun tryPostNewAccount(data: RequestBody, image: MultipartBody.Part){
+    fun tryPostNewAccount(data: MultipartBody.Part, image: MultipartBody.Part){
         val loginRetrofitInterface = ApplicationClass.sRetrofit.create(LoginRetrofitInterface::class.java)
         loginRetrofitInterface.postNewAccount(data, image).enqueue(object :
             Callback<NewAccountResponse?> {
