@@ -1,32 +1,56 @@
 package com.project.Instargram.kotlin.src.login
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.github.razir.progressbutton.bindProgressButton
+import com.github.razir.progressbutton.showProgress
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.GsonBuilder
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityEnterPictureBinding
 import com.project.Instargram.kotlin.databinding.BottomSheetLoginGalleryBinding
+import com.project.Instargram.kotlin.src.login.model.*
+import com.project.Instargram.kotlin.src.splash.SplashNewAccountActivity
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import org.json.JSONObject
+import java.io.File
+
 
 class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityEnterPictureBinding::inflate) {
+
 
     private val MY_GALLERY_PERMISSION_CODE = 101
     private val MY_CAMERA_PERMISSION_CODE = 102
 
-    private val KEY_SEND = "profile_picture"
+    private val KEY_SEND = "image_path"
 
+    private lateinit var handler: Handler
     private var imageSelected = false
-
+    private lateinit var photoUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        bindProgressButton(binding.btnAddPicture)
+
+        handler = Handler(Looper.getMainLooper())
 
         val permission_camera: Int? = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
 
@@ -49,17 +73,49 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
                 showBottomSheet()
             } else {
                 //완료, 고른 이미지와
+                val absolutePath = absolutelyPath(photoUri)
+                if(absolutePath != null) {
+                    saveFromEditText(KEY_SEND, absolutePath)
+                }
+                waitAndMoveToNextActivity()
             }
         }
 
         binding.btnSkip.setOnClickListener {
             if(imageSelected == false){
                //완료, 기본 이미지와
+               waitAndMoveToNextActivity()
             } else {
                 openGallery()
             }
         }
 
+    }
+
+    fun absolutelyPath(path: Uri): String? {
+
+        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
+        var c: Cursor? = contentResolver.query(path, proj, null, null, null)
+        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        c?.moveToFirst()
+
+        var result = c?.getString(index!!)
+
+        return result
+    }
+
+
+    fun waitAndMoveToNextActivity() {
+        //button progress
+        Thread() {
+            handler.post(Runnable {
+                binding.btnAddPicture.showProgress{ progressColor = Color.WHITE }
+            })
+            Thread.sleep(5000)
+            //Log.d(TAG, "waitAndMoveToNext: "+ ???)
+            val intent = Intent(this, SplashNewAccountActivity::class.java)
+            startActivity(intent)
+        }.start()
     }
 
     private fun showBottomSheet() {
@@ -99,7 +155,11 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == RESULT_OK) {
             if(requestCode == MY_GALLERY_PERMISSION_CODE) {
-                binding.circleImageView.setImageURI(data?.data)
+                if(data != null) {
+                    binding.circleImageView.setImageURI(data.data)
+                    photoUri = data.data!!
+                    Log.d(TAG, "onActivityResult: " + data.data)
+                }
                 changeLayout()
             }
         }

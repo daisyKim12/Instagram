@@ -18,16 +18,18 @@ import java.util.*
 
 class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(ActivityEnterBirthDateBinding::inflate) {
 
-    private val KEY_SEND = "birth_date"
+    private val KEY_SEND = "birthday"
     private lateinit var datePicked: String
 //    private lateinit var today: String
 //    var dateFormat = SimpleDateFormat("YYYY/MM/DD")
 
+    //여전히 문제
+    //TODO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        datePicked = "2023년3월8일"
+        datePicked = "2023-3-8"
 
 //        getTodayDate()
 //        Log.d(TAG, "onCreate: "+todayFormat)
@@ -36,15 +38,10 @@ class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(Activi
 //        updateBirthDate()
     }
 
-    override fun onResumeFragments() {
-        super.onResumeFragments()
-
-//        updateBirthDate()
-//        binding.txtBithDate.text = datePicked
-    }
-
     override fun onResume() {
         super.onResume()
+
+        binding.txtBithDate.text = datePicked
 
         binding.tbBack.setOnClickListener {
             finish()
@@ -76,8 +73,7 @@ class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(Activi
             dialog.dismiss()
         }
         binding.btnSet.setOnClickListener {
-            datePicked = binding.timepicker.year.toString() +"년" + binding.timepicker.month.toString() +"월" + binding.timepicker.dayOfMonth + "일"
-
+            datePicked = binding.timepicker.year.toString() +"-" + binding.timepicker.month.toString() +"-" + binding.timepicker.dayOfMonth + "-"
             dialog.dismiss()
         }
 

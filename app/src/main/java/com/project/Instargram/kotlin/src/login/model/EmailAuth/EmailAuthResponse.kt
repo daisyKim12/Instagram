@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.login.model
+package com.project.Instargram.kotlin.src.login.model.EmailAuth
 
 import com.project.Instargram.kotlin.config.BaseResponse
 

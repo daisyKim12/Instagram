@@ -8,7 +8,7 @@ import com.project.Instargram.kotlin.databinding.ActivityEnterNicknameBinding
 
 class EnterNicknameActivity: BaseActivity<ActivityEnterNicknameBinding>(ActivityEnterNicknameBinding::inflate) {
 
-    private val KEY_SEND = "nickname"
+    private val KEY_SEND = "nickName"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class EnterNicknameActivity: BaseActivity<ActivityEnterNicknameBinding>(Activity
         }
 
         binding.btnNext.setOnClickListener {
-            val data = binding.edittext.text.toString()
+            val data:String = binding.edittext.text.toString()
 
             saveFromEditText(KEY_SEND, data)
             startActivity(Intent(this, EnterTermsActivity::class.java))

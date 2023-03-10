@@ -21,7 +21,7 @@ class EnterNameActivity: BaseActivity<ActivityEnterNameBinding>(ActivityEnterNam
         }
 
         binding.btnNext.setOnClickListener {
-            val data = binding.edittextPhonenum.text.toString()
+            val data:String = binding.edittextPhonenum.text.toString()
 
             saveFromEditText(KEY_SEND, data)
             startActivity(Intent(this, EnterPasswordActivity::class.java))

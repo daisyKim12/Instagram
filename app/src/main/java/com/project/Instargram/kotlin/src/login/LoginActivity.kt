@@ -27,6 +27,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         }
 
         binding.btnLogin.setOnClickListener {
+
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

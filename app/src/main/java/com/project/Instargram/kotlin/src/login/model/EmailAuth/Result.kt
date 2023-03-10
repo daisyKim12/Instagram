@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.login.model
+package com.project.Instargram.kotlin.src.login.model.EmailAuth
 
 data class Result(
     val authKey: Int,

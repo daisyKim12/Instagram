@@ -31,7 +31,7 @@ class EnterPasswordActivity: BaseActivity<ActivityEnterPasswordBinding>(Activity
         }
 
         binding.btnNext.setOnClickListener {
-            val data = binding.edittextPhonenum.text.toString()
+            val data:String = binding.edittextPhonenum.text.toString()
 
             if(validPassword(data)){
                 binding.expandableLayout.collapse()

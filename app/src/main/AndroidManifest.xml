@@ -24,11 +24,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -82,6 +77,17 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
         <activity
+            android:name="com.project.Instargram.kotlin.src.login.EnterEmailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterCertificationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -91,11 +97,7 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
-        <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterEmailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Login"/>
+
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterPasswordActivity"
             android:exported="false"
@@ -124,6 +126,11 @@
         <activity
             android:name="com.project.Instargram.kotlin.src.login.EnterPictureActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.splash.SplashNewAccountActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
 
