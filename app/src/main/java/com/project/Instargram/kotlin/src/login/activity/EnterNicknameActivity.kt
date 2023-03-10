@@ -1,12 +1,13 @@
-package com.project.Instargram.kotlin.src.login
+package com.project.Instargram.kotlin.src.login.activity
 
 import android.content.Intent
 import android.os.Bundle
 import com.project.Instargram.kotlin.config.BaseActivity
-import com.project.Instargram.kotlin.databinding.ActivityEnterNameBinding
-class EnterNameActivity: BaseActivity<ActivityEnterNameBinding>(ActivityEnterNameBinding::inflate) {
+import com.project.Instargram.kotlin.databinding.ActivityEnterNicknameBinding
 
-    private val KEY_SEND = "name"
+class EnterNicknameActivity: BaseActivity<ActivityEnterNicknameBinding>(ActivityEnterNicknameBinding::inflate) {
+
+    private val KEY_SEND = "nickName"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,14 +22,11 @@ class EnterNameActivity: BaseActivity<ActivityEnterNameBinding>(ActivityEnterNam
         }
 
         binding.btnNext.setOnClickListener {
-            val data:String = binding.edittextPhonenum.text.toString()
+            val data:String = binding.edittext.text.toString()
 
             saveFromEditText(KEY_SEND, data)
-            startActivity(Intent(this, EnterPasswordActivity::class.java))
+            startActivity(Intent(this, EnterTermsActivity::class.java))
         }
 
     }
-
-
-
 }

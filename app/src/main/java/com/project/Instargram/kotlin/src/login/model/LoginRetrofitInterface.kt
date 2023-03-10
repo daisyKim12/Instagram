@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.login
+package com.project.Instargram.kotlin.src.login.model
 
 import com.project.Instargram.kotlin.src.login.model.*
 import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailAuthRequest

@@ -3,16 +3,11 @@ package com.project.Instargram.kotlin.src.main
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Menu
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.graphics.toColor
 import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityMainBinding
-import com.project.Instargram.kotlin.src.login.EnterAutoLoginActivity
 import com.project.Instargram.kotlin.src.main.home.HomeFragment
 import com.project.Instargram.kotlin.src.main.myPage.MyPageFragment
-import com.project.Instargram.kotlin.src.main.post.PostFragment
 import com.project.Instargram.kotlin.src.main.post.PostImageActivity
 import com.project.Instargram.kotlin.src.main.reels.ReelsFragment
 import com.project.Instargram.kotlin.src.main.search.SearchFragment

@@ -1,26 +1,20 @@
-package com.project.Instargram.kotlin.src.login
+package com.project.Instargram.kotlin.src.login.activity
 
 import android.app.Dialog
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityEnterBirthDateBinding
 import com.project.Instargram.kotlin.databinding.DialogDatePickerBinding
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
-import java.util.*
 
 class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(ActivityEnterBirthDateBinding::inflate) {
 
     private val KEY_SEND = "birthday"
+    //date format yyyy-mm-dd
     private lateinit var datePicked: String
-//    private lateinit var today: String
+    private lateinit var today: String
+    private var age: Int = 0
 //    var dateFormat = SimpleDateFormat("YYYY/MM/DD")
 
     //여전히 문제
@@ -29,7 +23,8 @@ class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(Activi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        datePicked = "2023-3-8"
+        today = "2023-3-8"
+        datePicked = today
 
 //        getTodayDate()
 //        Log.d(TAG, "onCreate: "+todayFormat)
@@ -58,6 +53,7 @@ class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(Activi
         }
     }
 
+
     private fun openDatePickerDialog() {
         val dialog = Dialog(this)
         //We have added a title in the custom layout. So let's disable the default title.
@@ -73,7 +69,12 @@ class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(Activi
             dialog.dismiss()
         }
         binding.btnSet.setOnClickListener {
-            datePicked = binding.timepicker.year.toString() +"-" + binding.timepicker.month.toString() +"-" + binding.timepicker.dayOfMonth + "-"
+            datePicked = binding.timepicker.year.toString() +"-" + binding.timepicker.month.toString() +"-" + binding.timepicker.dayOfMonth
+            val thisYear = today.slice(0..3).toInt()
+            val birthYear = datePicked.slice(0..3).toInt()
+            age = thisYear - birthYear
+            this.binding.txtBithDate.text = datePicked
+            this.binding.txtAge.text = "생일("+age.toString() + "세)"
             dialog.dismiss()
         }
 
@@ -85,11 +86,7 @@ class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(Activi
 
 
 
-    //    private fun updateBirthDate() {
-//        binding.txtBithDate.text = changeDateFormat(datePickedFormat)
-//        //val age = compareDate(todayFormat, datePickedFormat).toString()
-//        //binding.txtAge.text = "생일("+age+")"
-//    }
+
 //
 //    private fun getTodayDate() {
 //        val today: Date = Date()

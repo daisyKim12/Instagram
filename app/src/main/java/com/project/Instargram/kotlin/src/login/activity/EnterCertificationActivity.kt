@@ -1,11 +1,7 @@
-package com.project.Instargram.kotlin.src.login
+package com.project.Instargram.kotlin.src.login.activity
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.core.content.ContextCompat
-import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityEnterCertificationBinding
 

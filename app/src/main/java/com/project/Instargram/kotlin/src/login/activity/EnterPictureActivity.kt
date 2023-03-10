@@ -1,7 +1,6 @@
-package com.project.Instargram.kotlin.src.login
+package com.project.Instargram.kotlin.src.login.activity
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -11,7 +10,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -20,17 +18,10 @@ import androidx.core.content.ContextCompat
 import com.github.razir.progressbutton.bindProgressButton
 import com.github.razir.progressbutton.showProgress
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.GsonBuilder
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityEnterPictureBinding
 import com.project.Instargram.kotlin.databinding.BottomSheetLoginGalleryBinding
-import com.project.Instargram.kotlin.src.login.model.*
 import com.project.Instargram.kotlin.src.splash.SplashNewAccountActivity
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import org.json.JSONObject
-import java.io.File
 
 
 class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityEnterPictureBinding::inflate) {

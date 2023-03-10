@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.login
+package com.project.Instargram.kotlin.src.login.activity
 
 import android.content.ContentValues.TAG
 import android.content.Intent

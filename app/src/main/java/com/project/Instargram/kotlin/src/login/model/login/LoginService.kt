@@ -1,7 +1,7 @@
 package com.project.Instargram.kotlin.src.login.model.login
 
 import com.project.Instargram.kotlin.config.ApplicationClass
-import com.project.Instargram.kotlin.src.login.LoginRetrofitInterface
+import com.project.Instargram.kotlin.src.login.model.LoginRetrofitInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

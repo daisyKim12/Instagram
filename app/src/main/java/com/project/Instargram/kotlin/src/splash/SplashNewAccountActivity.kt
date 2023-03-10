@@ -9,8 +9,7 @@ import android.os.Looper
 import android.util.Log
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivitySplashNewAccountBinding
-import com.project.Instargram.kotlin.src.login.EnterCertificationActivity
-import com.project.Instargram.kotlin.src.login.model.LoginService
+import com.project.Instargram.kotlin.src.login.activity.EnterCertificationActivity
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountInterface
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountResponse
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountService

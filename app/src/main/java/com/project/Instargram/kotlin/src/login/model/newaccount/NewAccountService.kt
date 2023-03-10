@@ -1,7 +1,7 @@
 package com.project.Instargram.kotlin.src.login.model.newaccount
 
 import com.project.Instargram.kotlin.config.ApplicationClass
-import com.project.Instargram.kotlin.src.login.LoginRetrofitInterface
+import com.project.Instargram.kotlin.src.login.model.LoginRetrofitInterface
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call

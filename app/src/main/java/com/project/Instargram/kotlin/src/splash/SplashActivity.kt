@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivitySplashBinding
-import com.project.Instargram.kotlin.src.login.LoginActivity
+import com.project.Instargram.kotlin.src.login.activity.LoginActivity
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {

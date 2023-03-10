@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name="com.project.Instargram.kotlin.src.login.LoginActivity"
+            android:name="com.project.Instargram.kotlin.src.login.activity.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
@@ -72,12 +72,38 @@
 
         <!--creating new account -->
         <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterPhoneActivity"
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterPhoneActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
         <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterEmailActivity"
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterEmailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterCertificationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterNameActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterAutoLoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterBirthDateActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login">
@@ -88,43 +114,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterCertificationActivity"
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterNicknameActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
         <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterNameActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Login"/>
-
-        <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterPasswordActivity"
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterTermsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
         <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterAutoLoginActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Login"/>
-        <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterBirthDateActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Login"/>
-        <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterNicknameActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Login"/>
-        <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterTermsActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Login"/>
-        <activity
-            android:name="com.project.Instargram.kotlin.src.login.EnterPictureActivity"
+            android:name="com.project.Instargram.kotlin.src.login.activity.EnterPictureActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
