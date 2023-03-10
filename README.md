@@ -45,4 +45,9 @@
 - progress button + thread 연결 완료
 
 <day 7>  3/10
-- email duplicate API 연결 완료
+- email 회원가입 관련 API 3개 연결
+- phone 회원가입 관련 API 2개 연결
+- 로그인 관련 API 2개 연결
+- error dialog 완성
+- path2uri, uri2path
+- userPage Activity 
