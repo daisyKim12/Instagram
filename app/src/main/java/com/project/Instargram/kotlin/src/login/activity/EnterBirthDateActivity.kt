@@ -1,8 +1,10 @@
 package com.project.Instargram.kotlin.src.login.activity
 
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityEnterBirthDateBinding
@@ -69,7 +71,7 @@ class EnterBirthDateActivity: BaseActivity<ActivityEnterBirthDateBinding>(Activi
             dialog.dismiss()
         }
         binding.btnSet.setOnClickListener {
-            datePicked = binding.timepicker.year.toString() +"-" + binding.timepicker.month.toString() +"-" + binding.timepicker.dayOfMonth
+            datePicked = binding.timepicker.year.toString() +"-" + (binding.timepicker.month+1).toString() +"-" + binding.timepicker.dayOfMonth
             val thisYear = today.slice(0..3).toInt()
             val birthYear = datePicked.slice(0..3).toInt()
             age = thisYear - birthYear
