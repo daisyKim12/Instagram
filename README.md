@@ -37,3 +37,12 @@
 - 다중 선택 구현
 - gallery에서 image가져와 rv 채우기 구현
 - 회원가입 activity 모두 완성
+
+<day 6> 3/9
+- connecting camera
+- connecting gallery
+- Email Authirity API 연결 완료
+- progress button + thread 연결 완료
+
+<day 7>  3/10
+- email duplicate API 연결 완료
