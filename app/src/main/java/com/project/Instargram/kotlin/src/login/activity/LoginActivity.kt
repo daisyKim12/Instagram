@@ -16,6 +16,7 @@ import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailDuplicateReq
 import com.project.Instargram.kotlin.src.login.model.EmailAuth.EmailService
 import com.project.Instargram.kotlin.src.login.model.login.*
 import com.project.Instargram.kotlin.src.main.MainActivity
+import com.project.Instargram.kotlin.src.main.page.UserPageActivity
 import com.project.Instargram.kotlin.util.LoadingDialog
 import okhttp3.internal.wait
 
@@ -64,6 +65,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         binding.btnNewAccount.setOnClickListener {
             startActivity(Intent(this, EnterPhoneActivity::class.java))
             finish()
+        }
+
+        binding.txtLost.setOnClickListener {
+            startActivity(Intent(this, UserPageActivity::class.java))
         }
     }
 

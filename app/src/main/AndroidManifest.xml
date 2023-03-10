@@ -38,7 +38,7 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
-<!--        android:windowSoftInputMode="adjustResize"-->
+        <!--android:windowSoftInputMode="adjustResize"-->
 
         <activity
             android:name="com.project.Instargram.kotlin.src.main.MainActivity"
@@ -74,6 +74,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main"
             android:usesCleartextTraffic="true"/>
+
+        <activity
+            android:name="com.project.Instargram.kotlin.src.main.page.UserPageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            android:usesCleartextTraffic="true"/>
+
 
         <!--creating new account -->
         <activity

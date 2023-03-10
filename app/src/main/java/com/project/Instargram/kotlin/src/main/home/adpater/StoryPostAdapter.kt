@@ -12,7 +12,8 @@ import com.project.Instargram.kotlin.src.main.TempPageLists
 import com.project.Instargram.kotlin.src.main.home.models.Post
 import com.project.Instargram.kotlin.src.main.home.models.Story
 
-class StoryPostAdapter(private val context: Context, private val post: List<Post>, private val story: List<Story>)
+class StoryPostAdapter(private val context: Context, private val post: List<Post>,
+                       private val story: List<Story>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class StoryViewHolder(private val binding : RvHomeStoryLayoutBinding)
@@ -26,6 +27,7 @@ class StoryPostAdapter(private val context: Context, private val post: List<Post
             adapter.notifyDataSetChanged()
             binding.rvStory.adapter = adapter
         }
+
     }
 
     inner class PostViewHolder(private val binding: RvHomePostItemBinding)

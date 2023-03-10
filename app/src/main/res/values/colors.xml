@@ -41,9 +41,12 @@
     <color name="profileBtnBg">#F3F3F3</color>
     <color name="grayForTextPofile">#7A7A7A</color>
 
-<!--    gallery-->
+    <!--gallery-->
     <color name="grayForGallery">#94BCBCBC</color>
     <color name="blurred">#B4F4F4F4</color>
+
+    <!--userProfile-->
+    <color name="blueForUserProfile">#216AE6</color>
 
 
 

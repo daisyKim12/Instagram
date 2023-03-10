@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.main.myPage
+package com.project.Instargram.kotlin.src.main.page
 
 import android.os.Bundle
 import android.view.View
@@ -9,9 +9,8 @@ import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.FragmentMyPageBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
-import com.project.Instargram.kotlin.src.main.home.adpater.StoryAdapter
-import com.project.Instargram.kotlin.src.main.myPage.adapter.StoryHighlightAdapter
-import com.project.Instargram.kotlin.src.main.myPage.adapter.TabFragmentAdapter
+import com.project.Instargram.kotlin.src.main.page.adapter.StoryHighlightAdapter
+import com.project.Instargram.kotlin.src.main.page.adapter.TabFragmentAdapter
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding::bind, R.layout.fragment_my_page) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,11 +25,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
 
     private fun setAdapterForFragment() {
         val adapter = TabFragmentAdapter(parentFragmentManager, lifecycle)
-
-//        //add tab in tab layout
-//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("홈"))
-//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("이벤트"))
-//        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("무비톡"))
 
         binding.container.adapter = adapter
 

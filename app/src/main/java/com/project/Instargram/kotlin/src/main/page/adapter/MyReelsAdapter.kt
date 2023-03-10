@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.main.myPage.adapter
+package com.project.Instargram.kotlin.src.main.page.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

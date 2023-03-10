@@ -7,7 +7,7 @@ import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityMainBinding
 import com.project.Instargram.kotlin.src.main.home.HomeFragment
-import com.project.Instargram.kotlin.src.main.myPage.MyPageFragment
+import com.project.Instargram.kotlin.src.main.page.MyPageFragment
 import com.project.Instargram.kotlin.src.main.post.PostImageActivity
 import com.project.Instargram.kotlin.src.main.reels.ReelsFragment
 import com.project.Instargram.kotlin.src.main.search.SearchFragment

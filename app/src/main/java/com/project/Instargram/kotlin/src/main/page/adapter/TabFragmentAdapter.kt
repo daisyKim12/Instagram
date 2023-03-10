@@ -1,12 +1,12 @@
-package com.project.Instargram.kotlin.src.main.myPage.adapter
+package com.project.Instargram.kotlin.src.main.page.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.project.Instargram.kotlin.src.main.myPage.fragment.MyPostFragment
-import com.project.Instargram.kotlin.src.main.myPage.fragment.MyReelsFragment
-import com.project.Instargram.kotlin.src.main.myPage.fragment.MyTagedFragment
+import com.project.Instargram.kotlin.src.main.page.fragment.MyPostFragment
+import com.project.Instargram.kotlin.src.main.page.fragment.MyReelsFragment
+import com.project.Instargram.kotlin.src.main.page.fragment.MyTagedFragment
 
 class TabFragmentAdapter (fragmentManager: FragmentManager, lifecycle: Lifecycle)
     : FragmentStateAdapter(fragmentManager, lifecycle){
