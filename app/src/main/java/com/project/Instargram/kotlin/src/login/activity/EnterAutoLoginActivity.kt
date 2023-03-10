@@ -23,12 +23,12 @@ class EnterAutoLoginActivity: BaseActivity<ActivityEnterAutoLoginBinding>(Activi
         }
 
         binding.btnSaveNext.setOnClickListener {
-            saveAutoLogin(KEY_SEND, true)
+            saveBoolean(KEY_SEND, true)
             startActivity(Intent(this, EnterBirthDateActivity::class.java))
         }
 
         binding.btnLaterNext.setOnClickListener {
-            saveAutoLogin(KEY_SEND, false)
+            saveBoolean(KEY_SEND, false)
             startActivity(Intent(this, EnterBirthDateActivity::class.java))
         }
 

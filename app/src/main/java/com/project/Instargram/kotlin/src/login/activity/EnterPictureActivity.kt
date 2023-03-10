@@ -66,7 +66,7 @@ class EnterPictureActivity : BaseActivity<ActivityEnterPictureBinding>(ActivityE
                 //완료, 고른 이미지와
                 val absolutePath = absolutelyPath(photoUri)
                 if(absolutePath != null) {
-                    saveFromEditText(KEY_SEND, absolutePath)
+                    saveString(KEY_SEND, absolutePath)
                 }
                 waitAndMoveToNextActivity()
             }

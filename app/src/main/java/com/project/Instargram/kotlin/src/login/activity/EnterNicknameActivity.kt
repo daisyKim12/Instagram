@@ -24,7 +24,7 @@ class EnterNicknameActivity: BaseActivity<ActivityEnterNicknameBinding>(Activity
         binding.btnNext.setOnClickListener {
             val data:String = binding.edittext.text.toString()
 
-            saveFromEditText(KEY_SEND, data)
+            saveString(KEY_SEND, data)
             startActivity(Intent(this, EnterTermsActivity::class.java))
         }
 

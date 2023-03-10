@@ -46,7 +46,7 @@ class EnterEmailActivity : BaseActivity<ActivityEnterEmailBinding>(ActivityEnter
             if (validEmail(data)) {
                 binding.txtDetail2.text = ""
                 binding.txtDetail2.setTextColor(ContextCompat.getColor(this, R.color.blackForText))
-                saveFromEditText(KEY_SEND, data)
+                saveString(KEY_SEND, data)
 
                 val emailDuplicateRequest = EmailDuplicateRequest(data)
                 EmailService(this).tryPostEmailDuplication(emailDuplicateRequest)

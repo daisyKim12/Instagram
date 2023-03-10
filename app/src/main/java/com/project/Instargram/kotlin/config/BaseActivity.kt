@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.project.Instargram.kotlin.util.ErrorDialog
 import com.project.Instargram.kotlin.util.LoadingDialog
 
 
@@ -15,6 +16,7 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
     protected lateinit var binding: B
         private set
     lateinit var mLoadingDialog: LoadingDialog
+    lateinit var mErrorDialog: ErrorDialog
 
     // 뷰 바인딩 객체를 받아서 inflate해서 화면을 만들어줌.
     // 즉 매번 onCreate에서 setContentView를 하지 않아도 됨.
@@ -37,30 +39,35 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         }
     }
 
+    fun showErroDialog(context: Context, title: String, message: String) {
+        mErrorDialog = ErrorDialog(context, title, message)
+        mErrorDialog.show()
+    }
+
     // 토스트를 쉽게 띄울 수 있게 해줌.
     fun showCustomToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    fun saveFromEditText(key: String, text: String) {
+    fun saveString(key: String, text: String) {
         val editor = ApplicationClass.sSharedPreferences.edit()
         editor.putString(key, text)
         editor.apply()
     }
 
-    fun saveAutoLogin(key: String, save: Boolean) {
+    fun saveBoolean(key: String, save: Boolean) {
         val editor = ApplicationClass.sSharedPreferences.edit()
         editor.putBoolean(key, save)
         editor.apply()
     }
 
-    fun saveTerms(key: String, save: Boolean) {
+    fun saveInteger(key: String, save: Int) {
         val editor = ApplicationClass.sSharedPreferences.edit()
-        editor.putBoolean(key, save)
+        editor.putInt(key, save)
         editor.apply()
     }
 
-    fun getValue(KEY: String): String? {
+    fun getStringValue(KEY: String): String? {
         return ApplicationClass.sSharedPreferences.getString(KEY, "error")
     }
 

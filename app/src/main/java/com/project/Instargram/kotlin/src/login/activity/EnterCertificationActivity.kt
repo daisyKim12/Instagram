@@ -17,7 +17,7 @@ class EnterCertificationActivity : BaseActivity<ActivityEnterCertificationBindin
         certificationNumber = intent.getStringExtra(KEY_INTENT).toString()
 
         binding.txtDetail1.text = "계정을 확인하려면 " +
-                getValue(KEY_GET).toString() + "번으로 전송된 6자리 코드를 입력하세요."
+                getStringValue(KEY_GET).toString() + "번으로 전송된 6자리 코드를 입력하세요."
     }
 
     override fun onResume() {

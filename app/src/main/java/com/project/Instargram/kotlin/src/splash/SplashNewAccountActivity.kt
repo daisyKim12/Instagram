@@ -57,7 +57,7 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
     override fun onPostNewAccountSuccess(response: NewAccountResponse) {
         Log.d(ContentValues.TAG, "onPostNewAccountSuccess: " + response)
         val absolutePath = response.result.imgURL.toString()
-        val nickName = getValue(KEY_NICKNAME)
+        val nickName = getStringValue(KEY_NICKNAME)
         //change path to uri
         //binding.circleImageView.setImageURI()
         binding.txtDetail1.text = nickName + "님, Instagram에 오신 것을 환영합니다"
@@ -78,11 +78,11 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
         Log.d(TAG, "RegesterAccount: data -> " + data)
 
         //image
-        val file: File = File(getValue(KEY_IMAGE_URI))
-        Log.d(TAG, "RegesterAccount: url -> " + getValue(KEY_IMAGE_URI))
+        val file: File = File(getStringValue(KEY_IMAGE_URI))
+        Log.d(TAG, "RegesterAccount: url -> " + getStringValue(KEY_IMAGE_URI))
         Log.d(TAG, "RegesterAccount: file -> " + file)
 
-        val imageFile : RequestBody = RequestBody.create( "multipart/form-data".toMediaTypeOrNull(), file)
+        val imageFile : RequestBody = RequestBody.create( "image/jpg".toMediaTypeOrNull(), file)
         val requestImage = MultipartBody.Part.createFormData("file",file.name, imageFile)
         NewAccountService(this).tryPostNewAccount(data, requestImage)
 
@@ -97,11 +97,11 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
     }
 
     fun getDataForEmailAccount(): JSONObject {
-        val email: String? = getValue("email")
-        val password: String? = getValue("password")
-        val name: String? = getValue("name")
-        val nickName: String? = getValue("nickName")
-        val birthday: String? = getValue("birthday")
+        val email: String? = getStringValue("email")
+        val password: String? = getStringValue("password")
+        val name: String? = getStringValue("name")
+        val nickName: String? = getStringValue("nickName")
+        val birthday: String? = getStringValue("birthday")
 
         val rootObject= JSONObject()
         rootObject.put("email",email)

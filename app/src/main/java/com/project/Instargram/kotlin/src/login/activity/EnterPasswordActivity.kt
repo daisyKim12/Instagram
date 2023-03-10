@@ -35,7 +35,7 @@ class EnterPasswordActivity: BaseActivity<ActivityEnterPasswordBinding>(Activity
 
             if(validPassword(data)){
                 binding.expandableLayout.collapse()
-                saveFromEditText(KEY_SEND, data)
+                saveString(KEY_SEND, data)
                 startActivity(Intent(this, EnterAutoLoginActivity::class.java))
             } else {
                 binding.txtDetail2.text = ERROR_TXT

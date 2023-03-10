@@ -30,7 +30,7 @@ class EnterPhoneActivity: BaseActivity<ActivityEnterPhoneNumberBinding>(Activity
             if(validCellPhone(data)){
                 binding.txtDetail2.text = "보안 및 로그인 목적으로 Instagram에서 보내는 SMS 알림을 수실할 수 있습니다."
                 binding.txtDetail2.setTextColor(ContextCompat.getColor(this, R.color.blackForText))
-                saveFromEditText(KEY_SEND, data)
+                saveString(KEY_SEND, data)
                 startActivity(Intent(this, EnterCertificationActivity::class.java))
             } else {
                 binding.txtDetail2.text = "휴대폰 번호가 정확하지 않습니다. " +
