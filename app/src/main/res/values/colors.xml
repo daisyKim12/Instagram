@@ -48,6 +48,14 @@
     <!--userProfile-->
     <color name="blueForUserProfile">#216AE6</color>
 
+    <!--comment-->
+    <color name="blueForCommentBtn_unclickec">#8AA8DA</color>
+    <color name="blueForCommentBtn_clicked">#216AE6</color>
+    <color name="grayForCommentMyProfileStroke">#A3A3A3</color>
+    <color name="grayForToWhom">#DDDDDD</color>
+    <color name="grayTxtForToWhom">#818181</color>
+
+
 
 
 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="75dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_thumbnail"
+            android:layout_width="45dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_launcher_background"
+            app:civ_border_color="@color/profileThumbnailStroke"
+            app:civ_border_width="1dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="simple_life_high_thinking"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toTopOf="@+id/img_thumbnail" />
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="12시간"
+            android:textColor="@color/grayForText"
+            android:textSize="12sp"
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toEndOf="@+id/txt_name"
+            app:layout_constraintTop_toTopOf="@+id/img_thumbnail" />
+
+        <TextView
+            android:id="@+id/txt_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="left|center"
+            android:text="회사 생활을 마무리하며\n\n마지막 근무일이었다. 송별회를 가졌고술을 몇잔 나눴다. 이런 저런 이야기를 하고, 또 들었다.ㅣ 나는  개인적으로 좋은 동료들을, 좋은 친구들을 만났다고 생각한다. ㄱ사람드링 만들어준 즐거운 추억이 참 많다. 괘 괜찮은 성과를 만들어서 짜릿했던 기엇도 많았다. 좋은 기억만있엇던 아니다. 하지만 좋은 기억은 분명 많았다. 어쨋건 이건 행운이었다 ."
+            android:textColor="@color/blackForText"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@id/txt_name" />
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
