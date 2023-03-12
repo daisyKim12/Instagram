@@ -51,3 +51,14 @@
 - error dialog 완성
 - path2uri, uri2path
 - userPage Activity 
+
+<day 8> 3/11
+- 댓글 activity item layout 완성
+
+<day 9> 3/12
+- 게시물 등록 api 연결
+- activity stack clear 완료
+- 피드 불러오는 API 연결
+- 내 프로필 불러오는 API 연결
+- 내 프로필 작성한 게시물 API 연결
+- search 전체 게시물 조회 API 연결
