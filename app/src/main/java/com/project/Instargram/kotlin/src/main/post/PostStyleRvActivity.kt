@@ -1,5 +1,6 @@
 package com.project.Instargram.kotlin.src.main.post
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -13,13 +14,14 @@ import com.project.Instargram.kotlin.src.main.post.model.PageLists
 
 class PostStyleRvActivity: BaseActivity<ActivityPostStyleRvBinding>(ActivityPostStyleRvBinding::inflate) {
 
-    private lateinit var imagesToPost: List<String>
+    private lateinit var imagesToPost: ArrayList<String>
     private val KEY_MULTI = "multi_image"
+    private val ISITSINGLE = "is_it_single_image"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        imagesToPost = intent.getStringArrayListExtra(KEY_MULTI)!!.toList()
+        imagesToPost = intent.getStringArrayListExtra(KEY_MULTI)!!
 
         loadStyleRecyclerView(0)
         loadImageRecyclerView()
@@ -33,10 +35,10 @@ class PostStyleRvActivity: BaseActivity<ActivityPostStyleRvBinding>(ActivityPost
             finish()
         }
         binding.tbNext.setOnClickListener {
-            //val intent= Intent(this, ??::class.java)
-//            intent.putExtra(BOOLEAN_MULTI, false)
-//            intent.putExtra(KEY_SINGLE, imageToPost)
-//            startActivity(intent)
+            val intent = Intent(this, PostFinalActivity::class.java)
+            intent.putExtra(ISITSINGLE, false)
+            intent.putStringArrayListExtra(KEY_MULTI, imagesToPost)
+            startActivity(intent)
         }
 
     }

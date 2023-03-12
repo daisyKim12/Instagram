@@ -32,4 +32,5 @@ object PageLists {
         Retouch("미니어쳐 효과조정", com.project.Instargram.kotlin.R.drawable.rv_retouch_12),
         Retouch("선명하게", com.project.Instargram.kotlin.R.drawable.rv_retouch_13)
         )
+
 }

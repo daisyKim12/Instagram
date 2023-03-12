@@ -16,19 +16,18 @@ import com.project.Instargram.kotlin.databinding.ActivityPostImageBinding
 import com.project.Instargram.kotlin.src.main.post.model.ImagesGallery
 import com.project.Instargram.kotlin.src.main.post.adapter.PostGalleryAdapter
 import com.project.Instargram.kotlin.src.main.post.adapter.PostGalleryMultiAdapter
+import com.project.Instargram.kotlin.src.main.post.model.Gallery
 
 class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostImageBinding::inflate){
 
     private val MY_GALLERY_PERMISSION_CODE = 101
     private val MY_CAMERA_PERMISSION_CODE = 102
-    private lateinit var images: List<String>
     private var clickedImages: ArrayList<String> = arrayListOf()
     private var clickedsingleImage: String = ""
     private var btnMultiClicked = false
 
     private val KEY_SINGLE = "sigle_image"
     private val KEY_MULTI = "multi_image"
-    private val BOOLEAN_MULTI = "is_it_a_multi_image"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +44,6 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), MY_GALLERY_PERMISSION_CODE)
         } else {
             loadGallery(false)
-
         }
     }
 
@@ -60,13 +58,11 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
             var intent: Intent
             if(btnMultiClicked == false) {
                 intent= Intent(this, PostStyleActivity::class.java)
-                intent.putExtra(BOOLEAN_MULTI, btnMultiClicked)
                 intent.putExtra(KEY_SINGLE, clickedsingleImage)
                 startActivity(intent)
             }
             else {
                 intent= Intent(this, PostStyleRvActivity::class.java)
-                intent.putExtra(BOOLEAN_MULTI, btnMultiClicked)
                 intent.putStringArrayListExtra(KEY_MULTI, clickedImages)
                 startActivity(intent)
             }
@@ -96,7 +92,7 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
     private fun loadGallery(multi: Boolean) {
         binding.rvGallery.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false)
-        images = ImagesGallery.listOfImages(this)
+        val images = ImagesGallery.listOfImages(this)
         binding.rvGallery.layoutManager = gridLayoutManager
 
 //        Log.d(TAG, "loadGallery: "+ images[0])
@@ -105,7 +101,7 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
 
                 clickedsingleImage = path
                 if(path != null){
-                    //Glide.with(this@PostImageActivity).load(clickedsingleImage).into(binding.imgResize)
+                    Glide.with(this@PostImageActivity).load(clickedsingleImage).into(binding.imgResize)
                 }
 
             }
@@ -117,11 +113,11 @@ class PostImageActivity : BaseActivity<ActivityPostImageBinding>(ActivityPostIma
                 clickedImages.add(path)
 
                 if(path != null){
-                    //Glide.with(this@PostImageActivity).load(path).into(binding.imgResize)
+                    Glide.with(this@PostImageActivity).load(path).into(binding.imgResize)
                 }
             }
         })
-        //adapter.notifyDataSetChanged()
+//        adapter.notifyDataSetChanged()
 
         if(multi != true) {
             binding.rvGallery.adapter = adapterSingle

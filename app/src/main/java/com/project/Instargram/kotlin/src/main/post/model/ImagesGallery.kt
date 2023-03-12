@@ -10,14 +10,14 @@ import android.util.Log
 class ImagesGallery {
 
     companion object {
-        fun listOfImages(context: Context): ArrayList<String> {
+        fun listOfImages(context: Context): ArrayList<Gallery> {
 
             var uri: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 
             var cursor: Cursor?
             var column_index_data:Int = 0
             //var column_index_folder_name:Int = 0
-            var listOfAllImages: ArrayList<String> = arrayListOf()
+            var listOfAllImages: ArrayList<Gallery> = arrayListOf()
             var absolutePathOfImage: String = ""
 
             val projection : Array<String> = arrayOf(MediaStore.MediaColumns.DATA,
@@ -41,8 +41,7 @@ class ImagesGallery {
                     break
                 }
                 absolutePathOfImage = cursor.getString(column_index_data)
-                listOfAllImages.add(absolutePathOfImage)
-
+                listOfAllImages.add(Gallery(false, absolutePathOfImage, 0))
 
             }
 

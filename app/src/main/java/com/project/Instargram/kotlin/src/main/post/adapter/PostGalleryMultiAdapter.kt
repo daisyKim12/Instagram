@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.RvSquareGalleryItemBinding
+import com.project.Instargram.kotlin.src.main.post.model.Gallery
 
-class PostGalleryMultiAdapter (private val context: Context, private val gallery: List<String>, private val photoListener: PhotoListener)
+class PostGalleryMultiAdapter (private val context: Context, private val gallery: List<Gallery>, private val photoListener: PhotoListener)
     : RecyclerView.Adapter<PostGalleryMultiAdapter.GalleryViewHolder>()  {
+
+    private var clickedNumber = 0
 
     inner class GalleryViewHolder(private val binding : RvSquareGalleryItemBinding)
         : RecyclerView.ViewHolder(binding.root){
@@ -19,14 +22,33 @@ class PostGalleryMultiAdapter (private val context: Context, private val gallery
         fun bindItem(url: String) {
             Glide.with(context).load(url).into(binding.imgPost)
             binding.imgMoreThanOne.visibility = View.VISIBLE
+            binding.txtMoreThanOne.visibility = View.INVISIBLE
             binding.blurred.visibility = View.INVISIBLE
-            //binding.imgMoreThanOne.visibility = View.INVISIBLE
         }
 
-        fun bindClickable(image: String) {
+        fun bindClickable(gallery: Gallery) {
             binding.imgPost.setOnClickListener {
-                photoListener.onPhotoClick(image)
-                binding.blurred.visibility = View.VISIBLE
+                if(gallery.clicked == false) {
+                    photoListener.onPhotoClick(gallery.url)
+                    binding.blurred.visibility = View.VISIBLE
+                    gallery.number  = ++clickedNumber
+                    binding.txtMoreThanOne.text = gallery.number.toString()
+                    binding.txtMoreThanOne.visibility = View.VISIBLE
+
+                    binding.imgMoreThanOne.setImageResource(com.project.Instargram.kotlin.R.color.blueForGallery)
+                    gallery.clicked = true
+                } else {
+                    photoListener.onPhotoClick(gallery.url)
+                    binding.blurred.visibility = View.INVISIBLE
+                    gallery.number  = --clickedNumber
+                    binding.txtMoreThanOne.visibility = View.INVISIBLE
+
+                    binding.imgMoreThanOne.setImageResource(com.project.Instargram.kotlin.R.color.grayForGallery)
+                    gallery.clicked = false
+                }
+
+                Log.d(ContentValues.TAG, "bindClickable: " + gallery.clicked)
+
             }
         }
     }
@@ -45,8 +67,7 @@ class PostGalleryMultiAdapter (private val context: Context, private val gallery
     }
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
-        Log.d(ContentValues.TAG, "onBindViewHolder: " + gallery[position])
-        holder.bindItem(gallery[position])
+        holder.bindItem(gallery[position].url)
         holder.bindClickable(gallery[position])
 
     }

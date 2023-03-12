@@ -37,10 +37,16 @@
 
         <activity
             android:name="com.project.Instargram.kotlin.src.main.MainActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main"
-            android:usesCleartextTraffic="true"/>
+            android:usesCleartextTraffic="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.project.Instargram.kotlin.src.main.post.PostImageActivity"
@@ -84,11 +90,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main"
             android:usesCleartextTraffic="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--creating new account -->

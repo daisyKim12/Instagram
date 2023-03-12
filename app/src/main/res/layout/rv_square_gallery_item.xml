@@ -23,13 +23,29 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         android:layout_margin="4dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:src="@color/grayForGallery"
+        android:elevation="3dp"
         app:civ_border_width="1dp"
         app:civ_border_color="@color/white"
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_more_than_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/img_more_than_one"
+        app:layout_constraintStart_toStartOf="@+id/img_more_than_one"
+        app:layout_constraintBottom_toBottomOf="@+id/img_more_than_one"
+        app:layout_constraintTop_toTopOf="@+id/img_more_than_one"
+        />
     <ImageView
         android:id="@+id/blurred"
         android:layout_width="0dp"

@@ -19,6 +19,7 @@ class PostStyleActivity: BaseActivity<ActivityPostStyleBinding>(ActivityPostStyl
 
     private lateinit var imageToPost: String
     private val KEY_SINGLE = "sigle_image"
+    private val ISITSINGLE = "is_it_single_image"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +39,10 @@ class PostStyleActivity: BaseActivity<ActivityPostStyleBinding>(ActivityPostStyl
             finish()
         }
         binding.tbNext.setOnClickListener {
-            //val intent= Intent(this, ??::class.java)
-//            intent.putExtra(BOOLEAN_MULTI, false)
-//            intent.putExtra(KEY_SINGLE, imageToPost)
-//            startActivity(intent)
+            val intent= Intent(this, PostFinalActivity::class.java)
+            intent.putExtra(ISITSINGLE, true)
+            intent.putExtra(KEY_SINGLE, imageToPost)
+            startActivity(intent)
         }
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

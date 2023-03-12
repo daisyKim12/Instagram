@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.RvSquareGalleryItemBinding
+import com.project.Instargram.kotlin.src.main.post.model.Gallery
 
-class PostGalleryAdapter(private val context: Context, private val gallery: List<String>, private val photoListener: PhotoListener)
+class PostGalleryAdapter(private val context: Context, private val gallery: List<Gallery>, private val photoListener: PhotoListener)
     : RecyclerView.Adapter<PostGalleryAdapter.GalleryViewHolder>()  {
 
     inner class GalleryViewHolder(private val binding : RvSquareGalleryItemBinding)
@@ -19,14 +20,25 @@ class PostGalleryAdapter(private val context: Context, private val gallery: List
         fun bindItem(url: String) {
             Glide.with(context).load(url).into(binding.imgPost)
             binding.imgMoreThanOne.visibility = View.INVISIBLE
+            binding.txtMoreThanOne.visibility = View.INVISIBLE
+
             binding.blurred.visibility = View.INVISIBLE
-            //binding.imgMoreThanOne.visibility = View.INVISIBLE
         }
 
-        fun bindClickable(image: String) {
+        fun bindClickable(gallery: Gallery) {
             binding.imgPost.setOnClickListener {
-                photoListener.onPhotoClick(image)
-                binding.blurred.visibility = View.VISIBLE
+                if(gallery.clicked == false) {
+                    photoListener.onPhotoClick(gallery.url)
+                    binding.blurred.visibility = View.VISIBLE
+                    gallery.clicked = true
+                } else {
+                    photoListener.onPhotoClick(gallery.url)
+                    binding.blurred.visibility = View.INVISIBLE
+                    gallery.clicked = false
+                }
+
+                Log.d(TAG, "bindClickable: " + gallery.clicked)
+
             }
         }
     }
@@ -46,7 +58,7 @@ class PostGalleryAdapter(private val context: Context, private val gallery: List
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         Log.d(TAG, "onBindViewHolder: " + gallery[position])
-        holder.bindItem(gallery[position])
+        holder.bindItem(gallery[position].url)
         holder.bindClickable(gallery[position])
 
     }
