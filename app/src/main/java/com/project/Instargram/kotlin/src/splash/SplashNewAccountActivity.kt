@@ -14,6 +14,7 @@ import com.project.Instargram.kotlin.src.login.activity.EnterCertificationActivi
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountInterface
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountResponse
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountService
+import com.project.Instargram.kotlin.src.main.MainActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -38,7 +39,7 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
         handler = Handler(Looper.getMainLooper())
         //val absolutePath: String = "/storage/emulated/0/Pictures/Instagram/IMG_20220726_165002_301.jpg"
         //binding.circleImageView.setImageURI(path2uri(absolutePath))
-        RegesterAccount()
+        regesterAccount()
     }
 
     fun waitAndMoveToNextActivity() {
@@ -54,7 +55,9 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
             //show welcome screen
             Thread.sleep(3000)
 
-            val intent = Intent(this, EnterCertificationActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }.start()
 
@@ -76,7 +79,7 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
 
     }
 
-    fun RegesterAccount() {
+    fun regesterAccount() {
         //image
         val file: File = File(getStringValue(KEY_IMAGE_URI))
         Log.d(TAG, "RegesterAccount: path -> " + getStringValue(KEY_IMAGE_URI))

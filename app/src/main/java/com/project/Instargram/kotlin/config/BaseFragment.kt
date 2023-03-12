@@ -52,14 +52,4 @@ abstract class BaseFragment<B : ViewBinding>(
         }
     }
 
-
-//    fun setUpRecyclerView(recyclerView: RecyclerView, layoutStyle: Int) {
-//        recyclerView.setHasFixedSize(true)
-//        val linearLayoutManager = LinearLayoutManager(activity, layoutStyle, false)
-//        recyclerView.layoutManager = linearLayoutManager
-//        val adapter = MovieTalkAdapter(requireContext(), PageLists.movieTalkSlide)
-//        adapter.notifyDataSetChanged()
-//        binding.rvMovieTalk.adapter = adapter
-//
-//    }
 }
