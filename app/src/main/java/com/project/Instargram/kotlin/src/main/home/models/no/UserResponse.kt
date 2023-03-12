@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.main.home.models
+package com.project.Instargram.kotlin.src.main.home.models.no
 
 import com.google.gson.annotations.SerializedName
 

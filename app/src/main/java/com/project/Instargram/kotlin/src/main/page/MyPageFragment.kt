@@ -1,9 +1,12 @@
 package com.project.Instargram.kotlin.src.main.page
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
@@ -11,16 +14,49 @@ import com.project.Instargram.kotlin.databinding.FragmentMyPageBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
 import com.project.Instargram.kotlin.src.main.page.adapter.StoryHighlightAdapter
 import com.project.Instargram.kotlin.src.main.page.adapter.TabFragmentAdapter
+import com.project.Instargram.kotlin.src.main.page.model.GetProfileResponse
+import com.project.Instargram.kotlin.src.main.page.model.ProfileInterface
 
-class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding::bind, R.layout.fragment_my_page) {
+class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding::bind, R.layout.fragment_my_page), ProfileInterface {
+
+    private val KEY_USERID = "userIdx"
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val userIdx = getIntegerValue(KEY_USERID)!!
+        Log.d(TAG, "onViewCreated: userIdx -> " + userIdx )
+        PageService(this).tryGetProfile(userIdx)
+
 
         setAdapterForFragment()
         setStoryHightlightRecyclerView()
         binding.txtStory.setOnClickListener{
             binding.expandableLayout.expand()
         }
+    }
+
+    override fun onGetProfileSuccess(response: GetProfileResponse) {
+        Log.d(TAG, "onGetProfileSuccess: " + response)
+        val result = response.result
+        val nickName: String = result.userNickName
+        val name: String = result.userName
+        val imageUrl: String = result.profileImgUrl
+        val postNumber: Int = result.postNumber
+        val followingNumber: Int = result.followingNumber
+        val followerNumber: Int = result.followerNumber
+
+        binding.tbProfile.text = nickName
+        binding.txtName.text = name
+        Glide.with(this).load(imageUrl).into(binding.imgThumbnail)
+        binding.txtPosterNm.text = postNumber.toString()
+        binding.txtFollowing.text = followingNumber.toString()
+        binding.txtFollower.text = followerNumber.toString()
+
+    }
+
+    override fun onGetProfileFailure(message: String) {
+        Log.d(TAG, "onGetProfileFailure: " + message)
     }
 
     private fun setAdapterForFragment() {

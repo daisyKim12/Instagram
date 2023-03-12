@@ -11,9 +11,9 @@ import com.project.Instargram.kotlin.src.login.model.login.EmailLoginRequest
 import com.project.Instargram.kotlin.src.login.model.login.LoginResponse
 import com.project.Instargram.kotlin.src.login.model.login.PhoneLoginRequest
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountResponse
-import com.project.Instargram.kotlin.src.main.home.models.PostSignUpRequest
-import com.project.Instargram.kotlin.src.main.home.models.SignUpResponse
-import com.project.Instargram.kotlin.src.main.home.models.UserResponse
+import com.project.Instargram.kotlin.src.main.home.models.no.PostSignUpRequest
+import com.project.Instargram.kotlin.src.main.home.models.no.SignUpResponse
+import com.project.Instargram.kotlin.src.main.home.models.no.UserResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body

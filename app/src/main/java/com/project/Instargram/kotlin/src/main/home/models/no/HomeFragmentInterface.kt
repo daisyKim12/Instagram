@@ -1,7 +1,7 @@
-package com.project.Instargram.kotlin.src.main.home
+package com.project.Instargram.kotlin.src.main.home.models.no
 
-import com.project.Instargram.kotlin.src.main.home.models.SignUpResponse
-import com.project.Instargram.kotlin.src.main.home.models.UserResponse
+import com.project.Instargram.kotlin.src.main.home.models.no.SignUpResponse
+import com.project.Instargram.kotlin.src.main.home.models.no.UserResponse
 
 interface HomeFragmentInterface {
 

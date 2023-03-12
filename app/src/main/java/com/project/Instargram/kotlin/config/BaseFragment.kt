@@ -52,4 +52,24 @@ abstract class BaseFragment<B : ViewBinding>(
         }
     }
 
+    fun getStringValue(KEY: String): String? {
+        return ApplicationClass.sSharedPreferences.getString(KEY, "error")
+    }
+
+    fun getBooleanValue(KEY: String): Boolean? {
+        return ApplicationClass.sSharedPreferences.getBoolean(KEY, true)
+    }
+
+    fun getIntegerValue(KEY: String): Int? {
+        return ApplicationClass.sSharedPreferences.getInt(KEY, 0)
+    }
+
+    fun clearAllSharedPref() {
+        ApplicationClass.sSharedPreferences.edit().clear().commit()
+    }
+
+    fun clearSharedPrefByKey(KEY: String) {
+        ApplicationClass.sSharedPreferences.edit().remove(KEY).commit()
+    }
+
 }

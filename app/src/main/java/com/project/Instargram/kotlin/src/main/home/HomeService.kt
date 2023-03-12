@@ -1,39 +1,25 @@
 package com.project.Instargram.kotlin.src.main.home
 
+import com.google.gson.annotations.SerializedName
 import com.project.Instargram.kotlin.config.ApplicationClass
-import com.project.Instargram.kotlin.src.main.home.models.PostSignUpRequest
-import com.project.Instargram.kotlin.src.main.home.models.SignUpResponse
-import com.project.Instargram.kotlin.src.main.home.models.UserResponse
+import com.project.Instargram.kotlin.src.main.MainRetrofitInterface
+import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeService(val homeFragmentInterface: HomeFragmentInterface) {
+class HomeService(val homeInterface: HomeInterface) {
 
-    fun tryGetUsers(){
-        val homeRetrofitInterface = ApplicationClass.sRetrofit.create(HomeRetrofitInterface::class.java)
-        homeRetrofitInterface.getUsers().enqueue(object : Callback<UserResponse>{
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                homeFragmentInterface.onGetUserSuccess(response.body() as UserResponse)
+    fun tryGetFeed(userIdx: Int, pageNum: Int){
+        val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
+        mainRetrofitInterface.getFeed(userIdx, pageNum).enqueue(object : Callback<GetPostResponse?> {
+            override fun onResponse(call: Call<GetPostResponse?>, response: Response<GetPostResponse?>) {
+                homeInterface.onGetFeedSuccess(response.body() as GetPostResponse)
             }
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                homeFragmentInterface.onGetUserFailure(t.message ?: "통신 오류")
-            }
-        })
-    }
-
-    fun tryPostSignUp(postSignUpRequest: PostSignUpRequest){
-        val homeRetrofitInterface = ApplicationClass.sRetrofit.create(HomeRetrofitInterface::class.java)
-        homeRetrofitInterface.postSignUp(postSignUpRequest).enqueue(object : Callback<SignUpResponse>{
-            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                homeFragmentInterface.onPostSignUpSuccess(response.body() as SignUpResponse)
-            }
-
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                homeFragmentInterface.onPostSignUpFailure(t.message ?: "통신 오류")
+            override fun onFailure(call: Call<GetPostResponse?>, t: Throwable) {
+                homeInterface.onGetFeedFailure("통신 오류")
             }
         })
     }
-
 }

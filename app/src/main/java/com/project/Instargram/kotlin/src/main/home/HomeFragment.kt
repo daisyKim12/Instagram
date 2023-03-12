@@ -1,21 +1,40 @@
 package com.project.Instargram.kotlin.src.main.home
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.annotations.SerializedName
 import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.BottomSheetHomeBinding
 import com.project.Instargram.kotlin.databinding.FragmentHomeBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
 import com.project.Instargram.kotlin.src.main.home.adpater.StoryPostAdapter
+import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostResponse
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home){
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home), HomeInterface{
+
+    private val KEY_USERID = "userIdx"
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setUpStoryPostRecyclerView()
+        val userIdx = getIntegerValue(KEY_USERID)!!
+        Log.d(TAG, "onViewCreated: " + userIdx)
+
+        HomeService(this).tryGetFeed(userIdx,1)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+
     }
 
     private fun setUpStoryPostRecyclerView() {
@@ -27,32 +46,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         binding.rvStorypost.adapter = adapter
     }
 
-    private fun showBottomSheetAdv() {
-        val bottomSheetDialog = BottomSheetDialog(requireContext())
-        val binding: BottomSheetHomeBinding = BottomSheetHomeBinding.inflate(layoutInflater)
-        bottomSheetDialog.setContentView(binding.root)
+
+
+    override fun onGetFeedSuccess(response: GetPostResponse) {
+        Log.d(TAG, "onGetFeedSuccess: " + response)
+
     }
 
+    override fun onGetFeedFailure(message: String) {
+        Log.d(TAG, "onGetFeedFailure: " + message)
+    }
+
+
+//    private fun showBottomSheetAdv() {
+//        val bottomSheetDialog = BottomSheetDialog(requireContext())
+//        val binding: BottomSheetHomeBinding = BottomSheetHomeBinding.inflate(layoutInflater)
+//        bottomSheetDialog.setContentView(binding.root)
+//    }
 }
-
-
-
-
-
-//    private fun setUpStoryRecyclerView() {
-//        binding.rvStory.setHasFixedSize(true)
-//        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-//        binding.rvStory.layoutManager = linearLayoutManager
-//        val adapter = StoryAdapter(requireContext(), TempPageLists.storyAdpSlides)
-//        adapter.notifyDataSetChanged()
-//        binding.rvStory.adapter = adapter
-//    }
-//
-//    private fun setUpPostRecyclerView() {
-//        binding.rvPost.setHasFixedSize(true)
-//        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-//        binding.rvPost.layoutManager = linearLayoutManager
-//        val adapter = PostAdapter(requireContext(), TempPageLists.postAdpSlides)
-//        adapter.notifyDataSetChanged()
-//        binding.rvPost.adapter = adapter
-//    }
