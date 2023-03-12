@@ -14,10 +14,12 @@ import com.project.Instargram.kotlin.databinding.FragmentMyPageBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
 import com.project.Instargram.kotlin.src.main.page.adapter.StoryHighlightAdapter
 import com.project.Instargram.kotlin.src.main.page.adapter.TabFragmentAdapter
-import com.project.Instargram.kotlin.src.main.page.model.GetProfileResponse
-import com.project.Instargram.kotlin.src.main.page.model.ProfileInterface
+import com.project.Instargram.kotlin.src.main.page.model.profile.PageService
+import com.project.Instargram.kotlin.src.main.page.model.profile.GetProfileResponse
+import com.project.Instargram.kotlin.src.main.page.model.profile.ProfileInterface
 
-class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding::bind, R.layout.fragment_my_page), ProfileInterface {
+class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding::bind, R.layout.fragment_my_page),
+    ProfileInterface {
 
     private val KEY_USERID = "userIdx"
 
@@ -50,8 +52,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         binding.txtName.text = name
         Glide.with(this).load(imageUrl).into(binding.imgThumbnail)
         binding.txtPosterNm.text = postNumber.toString()
-        binding.txtFollowing.text = followingNumber.toString()
-        binding.txtFollower.text = followerNumber.toString()
+        binding.txtFollowingNm.text = followingNumber.toString()
+        binding.txtFollowerNm.text = followerNumber.toString()
 
     }
 

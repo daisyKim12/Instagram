@@ -1,9 +1,7 @@
-package com.project.Instargram.kotlin.src.main.page
+package com.project.Instargram.kotlin.src.main.page.model.profile
 
 import com.project.Instargram.kotlin.config.ApplicationClass
 import com.project.Instargram.kotlin.src.main.MainRetrofitInterface
-import com.project.Instargram.kotlin.src.main.page.model.GetProfileResponse
-import com.project.Instargram.kotlin.src.main.page.model.ProfileInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

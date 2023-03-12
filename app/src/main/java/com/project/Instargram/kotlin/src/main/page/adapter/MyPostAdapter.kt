@@ -6,9 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.RvSquareItemBinding
+import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostResponse
 
-class MyPostAdapter(private val context: Context, private val square: List<String>)
+class MyPostAdapter(private val context: Context, private val response: GetUserPostResponse)
     : RecyclerView.Adapter<MyPostAdapter.SquareViewHolder>()  {
+
+    private var thumbnailList = response.result
 
     inner class SquareViewHolder(private val binding : RvSquareItemBinding)
         : RecyclerView.ViewHolder(binding.root){
@@ -32,10 +35,11 @@ class MyPostAdapter(private val context: Context, private val square: List<Strin
     }
 
     override fun onBindViewHolder(holder: SquareViewHolder, position: Int) {
-        holder.bindItem(square[position])
+        var thumnailUrl = thumbnailList[position].fileURLList[0]
+        holder.bindItem(thumnailUrl)
     }
 
     override fun getItemCount(): Int {
-        return square.size
+        return thumbnailList.size
     }
 }

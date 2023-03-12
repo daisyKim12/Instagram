@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.RvRectangleItemBinding
 import com.project.Instargram.kotlin.databinding.RvSquareItemBinding
+import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
 
-class SearchStaggeredAdapter(private val context: Context, private val square: List<String>, private val rectangle: List<String>)
+class SearchStaggeredAdapter(private val context: Context, private val response: GetWithoutSearchResponse, private val rectangle: List<String>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var squarePosition = 0
     private var rectanglePosition = 0
+    private val result = response.result
 
 
     inner class SquareViewHolder(private val binding : RvSquareItemBinding)
@@ -55,8 +57,8 @@ class SearchStaggeredAdapter(private val context: Context, private val square: L
         if(position % 13 == 0) {
             (holder as RectangleViewHolder).bindItem(rectangle[rectanglePosition++])
         } else {
-            (holder as SquareViewHolder).bindItem(square[squarePosition])
-            if(squarePosition < square.size-1){
+            (holder as SquareViewHolder).bindItem(result[squarePosition].fileURLList[0])
+            if(squarePosition < result.size-1){
                 squarePosition++
             }
         }
@@ -73,6 +75,6 @@ class SearchStaggeredAdapter(private val context: Context, private val square: L
     }
 
     override fun getItemCount(): Int {
-        return square.size + rectangle.size
+        return result.size + rectangle.size
     }
 }

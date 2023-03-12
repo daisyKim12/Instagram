@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.main.page.model
+package com.project.Instargram.kotlin.src.main.page.model.profile
 
 data class Result(
     val followerNumber: Int,
