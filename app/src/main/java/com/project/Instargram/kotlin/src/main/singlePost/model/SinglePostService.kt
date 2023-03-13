@@ -4,6 +4,8 @@ import com.project.Instargram.kotlin.config.ApplicationClass
 import com.project.Instargram.kotlin.src.main.MainRetrofitInterface
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
+import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,7 +28,7 @@ class SinglePostService(val singlePostInterface: SinglePostInterface) {
 
     fun tryUnFollow(newFollowRequest: NewFollowRequest) {
         val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
-        mainRetrofitInterface.postUnFollow(newFollowRequest).enqueue(object : Callback<NewFollowResponse?> {
+        mainRetrofitInterface.patchUnFollow(newFollowRequest).enqueue(object : Callback<NewFollowResponse?> {
             override fun onResponse(call: Call<NewFollowResponse?>, response: Response<NewFollowResponse?>) {
                 singlePostInterface.onUnFollowSuccess(response.body() as NewFollowResponse)
             }
@@ -36,4 +38,39 @@ class SinglePostService(val singlePostInterface: SinglePostInterface) {
             }
         })
     }
+
+    fun tryNewLike(newLikeRequest: NewLikeRequest){
+        val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
+        mainRetrofitInterface.postNewLike(newLikeRequest).enqueue(object : Callback<NewLikeResponse?> {
+            override fun onResponse(
+                call: Call<NewLikeResponse?>,
+                response: Response<NewLikeResponse?>
+            ) {
+                singlePostInterface.onNewLikeSuccess(response.body() as NewLikeResponse)
+            }
+
+            override fun onFailure(call: Call<NewLikeResponse?>, t: Throwable) {
+                singlePostInterface.onNewLikeFailure("통신 오류")
+            }
+        })
+    }
+
+    fun tryUnLike(newLikeRequest: NewLikeRequest) {
+        val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
+        mainRetrofitInterface.patchUnLike(newLikeRequest).enqueue(object : Callback<NewLikeResponse?> {
+            override fun onResponse(
+                call: Call<NewLikeResponse?>,
+                response: Response<NewLikeResponse?>
+            ) {
+                singlePostInterface.onUnLikeSuccess(response.body() as NewLikeResponse)
+            }
+
+            override fun onFailure(call: Call<NewLikeResponse?>, t: Throwable) {
+                singlePostInterface.onUnLikeFailure("통신 오류")
+            }
+        })
+    }
+
+
+
 }

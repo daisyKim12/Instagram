@@ -14,6 +14,8 @@ import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostInterfa
 import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostService
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
+import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeResponse
 
 class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySinglePostBinding::inflate),
     SinglePostInterface {
@@ -26,6 +28,8 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
 
     private var userIdx = 0
     private var targetIdx = 0
+    private var postIdx = 0
+
     private var isItMyPost = true
 
 
@@ -40,6 +44,7 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
 
         userIdx = getIntegerValue(KEY_USERID)!!.toInt()
         targetIdx = result.authorIdx
+        postIdx = result.postIdx
 
 
         if(isItMyPost == true) {
@@ -68,17 +73,16 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         }
         binding.btnFollow.setOnClickListener {
             //팔로우
+            val newFollowRequest = NewFollowRequest(userIdx, targetIdx)
             if(startFollow == true) {
                 binding.btnFollow.text = "팔로우"
                 startFollow = false
                 //call follow api
-                val newFollowRequest = NewFollowRequest(userIdx, targetIdx)
                 SinglePostService(this).tryNewFollow(newFollowRequest)
             } else {
                 binding.btnFollow.text = "팔로잉"
                 startFollow = true
                 //call unfollow api
-                val newFollowRequest = NewFollowRequest(userIdx, targetIdx)
                 SinglePostService(this).tryUnFollow(newFollowRequest)
             }
         }
@@ -87,20 +91,28 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         }
         binding.btnLike.setOnClickListener {
             //좋아요
+            val newlikeRequest = NewLikeRequest(postIdx, userIdx)
+            Log.d(TAG, "onResume: eeee" + newlikeRequest)
             if(startLike == true) {
-
-                startFollow = false
+                binding.btnLike.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_like_clicked)
+                startLike = false
                 //call follow api
-                val newFollowRequest = NewFollowRequest(userIdx, targetIdx)
-                SinglePostService(this).tryNewFollow(newFollowRequest)
+                SinglePostService(this).tryNewLike(newlikeRequest)
             } else {
-
-                startFollow = true
+                binding.btnLike.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_like_unclicked)
+                startLike = true
                 //call unfollow api
-                val newFollowRequest = NewFollowRequest(userIdx, targetIdx)
-                SinglePostService(this).tryUnFollow(newFollowRequest)
+                SinglePostService(this).tryUnLike(newlikeRequest)
             }
         }
+    }
+
+    fun setUpViewPager(context: Context, postUrlList: List<String>){
+        val adapter = PostImageAdapter(context, postUrlList)
+        val viewPager2 = binding.vpPost
+        viewPager2?.adapter = adapter
+        //viewPager2?.registerOnPageChangeCallback(pager2Callback)
+        binding.dotsIndicator.setViewPager2(viewPager2!!)
     }
 
     override fun onNewFollowSuccess(response: NewFollowResponse) {
@@ -119,11 +131,19 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         Log.d(TAG, "onUnFollowFailure: " + message)
     }
 
-    fun setUpViewPager(context: Context, postUrlList: List<String>){
-        val adapter = PostImageAdapter(context, postUrlList)
-        val viewPager2 = binding.vpPost
-        viewPager2?.adapter = adapter
-        //viewPager2?.registerOnPageChangeCallback(pager2Callback)
-        binding.dotsIndicator.setViewPager2(viewPager2!!)
+    override fun onNewLikeSuccess(response: NewLikeResponse) {
+        Log.d(TAG, "onNewLikeSuccess: " + response)
+    }
+
+    override fun onNewLikeFailure(message: String) {
+        Log.d(TAG, "onNewLikeFailure: " + message)
+    }
+
+    override fun onUnLikeSuccess(response: NewLikeResponse) {
+        Log.d(TAG, "onUnLikeSuccess: " + response)
+    }
+
+    override fun onUnLikeFailure(message: String) {
+        Log.d(TAG, "onUnLikeFailure: " + message)
     }
 }

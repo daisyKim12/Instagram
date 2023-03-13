@@ -8,6 +8,8 @@ import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostRespons
 import com.project.Instargram.kotlin.src.main.page.model.profile.GetProfileResponse
 import com.project.Instargram.kotlin.src.main.post.model.NewPostResponse
 import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
+import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -59,8 +61,19 @@ interface MainRetrofitInterface {
     ): Call<NewFollowResponse>
 
     @PATCH("users/user-follow")
-    fun postUnFollow(
+    fun patchUnFollow(
         @Body request: NewFollowRequest
     ): Call<NewFollowResponse>
+
+    //좋이요 요청
+    @POST("users/post-like")
+    fun postNewLike(
+        @Body request: NewLikeRequest
+    ): Call<NewLikeResponse>
+
+    @PATCH("users/post-like")
+    fun patchUnLike(
+        @Body request: NewLikeRequest
+    ): Call<NewLikeResponse>
 }
 
