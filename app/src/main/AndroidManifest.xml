@@ -155,7 +155,7 @@
 
         <!--extra-->
         <activity
-            android:name="com.project.Instargram.kotlin.src.main.extra.SinglePostActivity"
+            android:name="com.project.Instargram.kotlin.src.main.singlePost.SinglePostActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>

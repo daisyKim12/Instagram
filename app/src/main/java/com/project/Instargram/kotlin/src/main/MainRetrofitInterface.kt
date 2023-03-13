@@ -1,19 +1,16 @@
 package com.project.Instargram.kotlin.src.main
 
+import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
+import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
 import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostResponse
-import com.project.Instargram.kotlin.src.main.extra.model.GetSinglePostResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostResponse
 import com.project.Instargram.kotlin.src.main.page.model.profile.GetProfileResponse
 import com.project.Instargram.kotlin.src.main.post.model.NewPostResponse
 import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface MainRetrofitInterface {
 
@@ -55,5 +52,15 @@ interface MainRetrofitInterface {
         @Query("postIdx") postIdx: Int
     ): Call<GetSinglePostResponse>
 
+    //팔로우 요청
+    @POST("users/user-follow")
+    fun postNewFollow(
+        @Body request: NewFollowRequest
+    ): Call<NewFollowResponse>
+
+    @PATCH("users/user-follow")
+    fun postUnFollow(
+        @Body request: NewFollowRequest
+    ): Call<NewFollowResponse>
 }
 

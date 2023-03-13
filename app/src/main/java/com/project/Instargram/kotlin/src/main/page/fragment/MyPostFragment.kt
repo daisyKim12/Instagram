@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.FragmentMyPostBinding
-import com.project.Instargram.kotlin.src.main.extra.SinglePostActivity
-import com.project.Instargram.kotlin.src.main.extra.model.GetSinglePostResponse
+import com.project.Instargram.kotlin.src.main.singlePost.SinglePostActivity
+import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.page.adapter.MyPostAdapter
 import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostResponse
 import com.project.Instargram.kotlin.src.main.page.model.post.UserPostInterface
@@ -20,6 +20,7 @@ import com.project.Instargram.kotlin.src.main.page.model.post.UserPostService
 class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding::bind, R.layout.fragment_my_post), UserPostInterface, MyPostAdapter.PhotoListener {
 
     private val KEY_USERID = "userIdx"
+    private val IS_IT_MINE = "isItMyPost"
     private var userIdx: Int = 0
     private var KEY_SEND = "single_post"
 
@@ -56,6 +57,7 @@ class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding
         Log.d(TAG, "onGetSinglePostSuccess: " + response)
         val intent = Intent(activity, SinglePostActivity::class.java)
         intent.putExtra(KEY_SEND, response as java.io.Serializable)
+        intent.putExtra(IS_IT_MINE, true)
         startActivity(intent)
     }
 

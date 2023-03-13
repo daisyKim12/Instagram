@@ -2,7 +2,7 @@ package com.project.Instargram.kotlin.src.main.page.model.post
 
 import com.project.Instargram.kotlin.config.ApplicationClass
 import com.project.Instargram.kotlin.src.main.MainRetrofitInterface
-import com.project.Instargram.kotlin.src.main.extra.model.GetSinglePostResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

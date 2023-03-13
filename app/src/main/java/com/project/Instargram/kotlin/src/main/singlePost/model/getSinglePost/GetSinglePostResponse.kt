@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.main.extra.model
+package com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost
 
 data class GetSinglePostResponse(
     val code: Int,

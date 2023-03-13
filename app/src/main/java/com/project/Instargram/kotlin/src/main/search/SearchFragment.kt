@@ -12,12 +12,11 @@ import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.FragmentSearchBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
-import com.project.Instargram.kotlin.src.main.extra.SinglePostActivity
-import com.project.Instargram.kotlin.src.main.extra.model.GetSinglePostResponse
+import com.project.Instargram.kotlin.src.main.singlePost.SinglePostActivity
+import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostResponse
 import com.project.Instargram.kotlin.src.main.page.model.post.UserPostInterface
 import com.project.Instargram.kotlin.src.main.page.model.post.UserPostService
-import com.project.Instargram.kotlin.src.main.page.model.profile.PageService
 import com.project.Instargram.kotlin.src.main.search.adapter.SearchStaggeredAdapter
 import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
 
@@ -27,6 +26,7 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
 
     private val KEY_USERID = "userIdx"
     private var KEY_SEND = "single_post"
+    private val IS_IT_MINE = "isItMyPost"
     private var userIdx = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -102,7 +102,9 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
         Log.d(TAG, "onGetSinglePostSuccess: " + response)
         val intent = Intent(activity, SinglePostActivity::class.java)
         intent.putExtra(KEY_SEND, response as java.io.Serializable)
-        startActivity(intent)    }
+        intent.putExtra(IS_IT_MINE, false)
+        startActivity(intent)
+    }
 
     override fun onGetSinglePostFailure(message: String) {
         Log.d(TAG, "onGetSinglePostFailure: " + message)
