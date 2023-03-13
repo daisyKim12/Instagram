@@ -11,7 +11,8 @@ import com.project.Instargram.kotlin.databinding.RvRectangleItemBinding
 import com.project.Instargram.kotlin.databinding.RvSquareItemBinding
 import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
 
-class SearchStaggeredAdapter(private val context: Context, private val response: GetWithoutSearchResponse, private val rectangle: List<String>)
+class SearchStaggeredAdapter(private val context: Context, private val response: GetWithoutSearchResponse,
+                             private val rectangle: List<String>, private val photoListener: PhotoListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var squarePosition = 0
@@ -24,6 +25,11 @@ class SearchStaggeredAdapter(private val context: Context, private val response:
 
         fun bindItem(url: String) {
             Glide.with(context).load(url).into(binding.imgPost)
+        }
+        fun bindClickable(postIdx: Int){
+            binding.imgPost.setOnClickListener {
+                photoListener.onPhotoClick(postIdx)
+            }
         }
     }
 
@@ -60,6 +66,8 @@ class SearchStaggeredAdapter(private val context: Context, private val response:
             (holder as RectangleViewHolder).bindItem(rectangle[rectanglePosition++])
         } else {
             (holder as SquareViewHolder).bindItem(result[squarePosition].fileURLList[0])
+            var postIdx = result[position].postIdx
+            holder.bindClickable(postIdx)
             if(squarePosition < result.size-1){
                 squarePosition++
             }
@@ -78,5 +86,8 @@ class SearchStaggeredAdapter(private val context: Context, private val response:
 
     override fun getItemCount(): Int {
         return result.size + rectangle.size
+    }
+    public interface PhotoListener {
+        fun onPhotoClick(postIdx: Int)
     }
 }

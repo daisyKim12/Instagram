@@ -2,6 +2,7 @@ package com.project.Instargram.kotlin.src.main.search
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,14 +12,22 @@ import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.FragmentSearchBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
+import com.project.Instargram.kotlin.src.main.extra.SinglePostActivity
+import com.project.Instargram.kotlin.src.main.extra.model.GetSinglePostResponse
+import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostResponse
+import com.project.Instargram.kotlin.src.main.page.model.post.UserPostInterface
+import com.project.Instargram.kotlin.src.main.page.model.post.UserPostService
 import com.project.Instargram.kotlin.src.main.page.model.profile.PageService
 import com.project.Instargram.kotlin.src.main.search.adapter.SearchStaggeredAdapter
 import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
 
 
-class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search),SearchInterface {
+class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search)
+    ,SearchInterface, SearchStaggeredAdapter.PhotoListener, UserPostInterface {
 
     private val KEY_USERID = "userIdx"
+    private var KEY_SEND = "single_post"
+    private var userIdx = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,11 +39,9 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
             changeEditText(false)
         }
 
-        val userIdx = getIntegerValue(KEY_USERID)!!
+        userIdx = getIntegerValue(KEY_USERID)!!
         Log.d(ContentValues.TAG, "onViewCreated: userIdx -> " + userIdx )
         SearchService(this).tryGetWitoutSearch(userIdx, 1)
-
-        //setUpStaggeredRecyclerView()
     }
 
     private fun changeEditText(b: Boolean) {
@@ -78,8 +85,26 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
         binding.rvSearch.setHasFixedSize(true)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.rvSearch.layoutManager = staggeredGridLayoutManager
-        val adapter = SearchStaggeredAdapter(requireContext(), response, TempPageLists.rectangleAdpSlides)
+        val adapter = SearchStaggeredAdapter(requireContext(), response, TempPageLists.rectangleAdpSlides, this)
         adapter.notifyDataSetChanged()
         binding.rvSearch.adapter = adapter
+    }
+
+    override fun onPhotoClick(postIdx: Int) {
+        UserPostService(this).tryGetSinglePost(userIdx, postIdx)
+    }
+
+    override fun onGetUserPostSuccess(response: GetUserPostResponse) {}
+
+    override fun onGetUserPostFailure(message: String) {}
+
+    override fun onGetSinglePostSuccess(response: GetSinglePostResponse) {
+        Log.d(TAG, "onGetSinglePostSuccess: " + response)
+        val intent = Intent(activity, SinglePostActivity::class.java)
+        intent.putExtra(KEY_SEND, response as java.io.Serializable)
+        startActivity(intent)    }
+
+    override fun onGetSinglePostFailure(message: String) {
+        Log.d(TAG, "onGetSinglePostFailure: " + message)
     }
 }
