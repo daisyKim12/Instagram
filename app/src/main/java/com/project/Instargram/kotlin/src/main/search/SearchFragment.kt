@@ -53,7 +53,7 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
     }
 
     override fun onGetWithoutSearchSuccess(response: GetWithoutSearchResponse) {
-        Log.d(TAG, "onGetWithoutSearchSuccess: " + response)
+        Log.d(TAG, "onGetWithoutSearchSuccess: " + response.result)
         setUpStaggeredRecyclerView(response)
     }
 

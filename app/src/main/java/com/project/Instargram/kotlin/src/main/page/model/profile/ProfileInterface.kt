@@ -7,5 +7,4 @@ interface ProfileInterface {
     fun onGetProfileSuccess(response: GetProfileResponse)
 
     fun onGetProfileFailure(message: String)
-
 }

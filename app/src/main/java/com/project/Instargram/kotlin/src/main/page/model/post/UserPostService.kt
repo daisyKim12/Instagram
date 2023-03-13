@@ -2,6 +2,7 @@ package com.project.Instargram.kotlin.src.main.page.model.post
 
 import com.project.Instargram.kotlin.config.ApplicationClass
 import com.project.Instargram.kotlin.src.main.MainRetrofitInterface
+import com.project.Instargram.kotlin.src.main.extra.model.GetSinglePostResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +18,20 @@ class UserPostService(val userPostInterface: UserPostInterface) {
 
             override fun onFailure(call: Call<GetUserPostResponse?>, t: Throwable) {
                 userPostInterface.onGetUserPostFailure("통신 오류")
+            }
+        })
+    }
+
+    fun tryGetSinglePost(userIdx: Int, postIdx: Int){
+        val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
+        mainRetrofitInterface.getSinglePost(userIdx, postIdx).enqueue(object : Callback<GetSinglePostResponse?> {
+            override fun onResponse(call: Call<GetSinglePostResponse?>, response: Response<GetSinglePostResponse?>
+            ) {
+                userPostInterface.onGetSinglePostSuccess(response.body() as GetSinglePostResponse)
+            }
+
+            override fun onFailure(call: Call<GetSinglePostResponse?>, t: Throwable) {
+                userPostInterface.onGetUserPostFailure("통신오류")
             }
         })
     }

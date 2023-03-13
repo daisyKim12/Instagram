@@ -152,6 +152,14 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
+
+        <!--extra-->
+        <activity
+            android:name="com.project.Instargram.kotlin.src.main.extra.SinglePostActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+        
     </application>
 
 </manifest>

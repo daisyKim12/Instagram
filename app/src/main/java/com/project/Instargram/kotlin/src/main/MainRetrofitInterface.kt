@@ -1,6 +1,7 @@
 package com.project.Instargram.kotlin.src.main
 
 import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostResponse
+import com.project.Instargram.kotlin.src.main.extra.model.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostResponse
 import com.project.Instargram.kotlin.src.main.page.model.profile.GetProfileResponse
 import com.project.Instargram.kotlin.src.main.post.model.NewPostResponse
@@ -16,6 +17,7 @@ import retrofit2.http.Query
 
 interface MainRetrofitInterface {
 
+    //new post
     @Multipart
     @POST("posts")
     fun postNewPost(@Part data: MultipartBody.Part, @Part image: MultipartBody.Part)
@@ -46,7 +48,12 @@ interface MainRetrofitInterface {
         @Path("userIdx") userIdx: Int
     ): Call<GetUserPostResponse>
 
-
+    //특정 게시물 가져오기
+    @GET("posts/detail?")
+    fun getSinglePost(
+        @Query("userIdx") userIdx: Int,
+        @Query("postIdx") postIdx: Int
+    ): Call<GetSinglePostResponse>
 
 }
 

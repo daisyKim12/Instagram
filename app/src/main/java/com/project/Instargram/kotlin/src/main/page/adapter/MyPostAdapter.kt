@@ -6,18 +6,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.RvSquareItemBinding
+import com.project.Instargram.kotlin.src.main.home.adpater.PostListener
 import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostResponse
 
-class MyPostAdapter(private val context: Context, private val response: GetUserPostResponse)
-    : RecyclerView.Adapter<MyPostAdapter.SquareViewHolder>()  {
+class MyPostAdapter(private val context: Context, private val response: GetUserPostResponse, private val photoListener: PhotoListener)
+    : RecyclerView.Adapter<MyPostAdapter.SquareViewHolder>() {
 
-    private var thumbnailList = response.result
+    private var result = response.result
 
-    inner class SquareViewHolder(private val binding : RvSquareItemBinding)
-        : RecyclerView.ViewHolder(binding.root){
+    inner class SquareViewHolder(private val binding: RvSquareItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bindItem(url: String) {
             Glide.with(context).load(url).into(binding.imgPost)
+        }
+
+        fun bindClickable(postIdx: Int){
+            binding.imgPost.setOnClickListener {
+                photoListener.onPhotoClick(postIdx)
+            }
         }
     }
 
@@ -35,11 +42,17 @@ class MyPostAdapter(private val context: Context, private val response: GetUserP
     }
 
     override fun onBindViewHolder(holder: SquareViewHolder, position: Int) {
-        var thumnailUrl = thumbnailList[position].fileURLList[0]
+        var thumnailUrl = result[position].fileURLList[0]
+        var postIdx = result[position].postIdx
         holder.bindItem(thumnailUrl)
+        holder.bindClickable(postIdx)
     }
 
     override fun getItemCount(): Int {
-        return thumbnailList.size
+        return result.size
+    }
+
+    public interface PhotoListener {
+        fun onPhotoClick(postIdx: Int)
     }
 }
