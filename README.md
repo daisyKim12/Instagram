@@ -62,3 +62,13 @@
 - 내 프로필 불러오는 API 연결
 - 내 프로필 작성한 게시물 API 연결
 - search 전체 게시물 조회 API 연결
+
+<day 10> 3/13
+/좋아요 요청 API 연결 
+/좋아요 취소 API 연결
+/게시물 상세 불러오기 API 연결 @ search
+/팔로우 요청 API 연결 
+/팔로우 취소 API 연결
+/게시물 상세 불러오기 API 연결 @ my profile
+/게시물 상세 불러오기 API 연결 @ my profile
+
