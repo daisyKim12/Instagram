@@ -2,6 +2,7 @@ package com.project.Instargram.kotlin.src.main.singlePost
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivitySinglePostBinding
 import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.home.adpater.PostImageAdapter
+import com.project.Instargram.kotlin.src.main.page.UserPageActivity
 import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostInterface
 import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostService
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
@@ -20,7 +22,8 @@ import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRespo
 class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySinglePostBinding::inflate),
     SinglePostInterface {
 
-    private var KEY_GET = "single_post"
+    private val KEY_GET = "single_post"
+    private val KEY_SEND = "not_my_userIdx"
     private val IS_IT_MINE = "isItMyPost"
     private val KEY_USERID = "userIdx"
     private var startFollow = true
@@ -46,7 +49,6 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         targetIdx = result.authorIdx
         postIdx = result.postIdx
 
-
         if(isItMyPost == true) {
             binding.btnFollow.visibility = View.INVISIBLE
             binding.btnFollow.isClickable = false
@@ -70,6 +72,13 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
 
         binding.tbBack.setOnClickListener {
             finish()
+        }
+
+        binding.txtName.setOnClickListener {
+            //유저 프로필 화면으로 전환
+            val intent = Intent(this, UserPageActivity::class.java)
+            intent.putExtra(KEY_SEND, targetIdx)
+            startActivity(intent)
         }
         binding.btnFollow.setOnClickListener {
             //팔로우

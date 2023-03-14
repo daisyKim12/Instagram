@@ -10,7 +10,7 @@ import retrofit2.Response
 
 class PostService(val newPostInterface: NewPostInterface) {
 
-    fun tryPostNewPost(data: MultipartBody.Part, image: MultipartBody.Part){
+    fun tryPostNewPost(data: MultipartBody.Part, image: List<MultipartBody.Part>){
         val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
         mainRetrofitInterface.postNewPost(data, image).enqueue(object : Callback<NewPostResponse?> {
             override fun onResponse(call: Call<NewPostResponse?>, response: Response<NewPostResponse?>) {

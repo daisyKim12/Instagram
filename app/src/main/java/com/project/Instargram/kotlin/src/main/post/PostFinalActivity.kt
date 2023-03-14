@@ -14,12 +14,13 @@ import com.project.Instargram.kotlin.src.main.MainActivity
 import com.project.Instargram.kotlin.src.main.post.model.NewPostInterface
 import com.project.Instargram.kotlin.src.main.post.model.NewPostResponse
 import com.project.Instargram.kotlin.src.main.post.model.PostService
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import org.json.JSONArray
 import org.json.JSONObject
+import retrofit2.http.Multipart
 import java.io.File
+import java.io.IOException
 
 
 class PostFinalActivity: BaseActivity<ActivityPostFinalBinding>(ActivityPostFinalBinding::inflate), NewPostInterface{
@@ -35,6 +36,7 @@ class PostFinalActivity: BaseActivity<ActivityPostFinalBinding>(ActivityPostFina
     private var photoTagUserList: List<String> = listOf("null")
     private var hashTag:String = "#null"
     private var postType:Int = 0
+    var path: String  = ""
 
     private var finalImageList: MutableList<String> = mutableListOf()
 
@@ -51,6 +53,8 @@ class PostFinalActivity: BaseActivity<ActivityPostFinalBinding>(ActivityPostFina
                 finalImageList.add(it)
             }
         }
+        path = "/storage/emulated/0/Pictures/Naver/다운로드파일_20230310_214721.jpg"
+        Log.d(TAG, "onCreate: post-> " + path)
     }
 
 
@@ -72,7 +76,7 @@ class PostFinalActivity: BaseActivity<ActivityPostFinalBinding>(ActivityPostFina
     }
 
     override fun onPostNewPostSuccess(response: NewPostResponse) {
-        Log.d(TAG, "onPostNewAccountSuccess: " + response)
+        Log.d(TAG, "onPostNewAccountSuccess:  post->" + response)
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -85,17 +89,14 @@ class PostFinalActivity: BaseActivity<ActivityPostFinalBinding>(ActivityPostFina
 
     fun newPost() {
         //image
-        val requestImage: MultipartBody.Part
 
-        var fileList: MutableList<File> = mutableListOf()
-
+        val requestImage: MutableList<MultipartBody.Part> = mutableListOf()
         finalImageList.forEach{
             val file: File = File(it)
-            fileList.add(file)
+            val imageFile : RequestBody = RequestBody.create( "image/jpg".toMediaTypeOrNull(), file)
+            val requestElement = MultipartBody.Part.createFormData("post-files", "file", imageFile)
+            requestImage.add(requestElement)
         }
-
-        val imageFile : RequestBody = RequestBody.create( "image/jpg".toMediaTypeOrNull(), fileList.toList().toString())
-        requestImage = MultipartBody.Part.createFormData("post-files","files", imageFile)
 
         //data
         var jsonData: JSONObject? = getDataForNewPost()
@@ -104,8 +105,10 @@ class PostFinalActivity: BaseActivity<ActivityPostFinalBinding>(ActivityPostFina
         Log.d(TAG, "RegesterAccount: json -> " + getDataForNewPost().toString())
         Log.d(TAG, "RegesterAccount: data -> " + data)
 
-        PostService(this).tryPostNewPost(requestData, requestImage)
+        PostService(this).tryPostNewPost(requestData, requestImage.toList())
+
     }
+
 
     fun getDataForNewPost(): JSONObject {
         val rootObject= JSONObject()
@@ -117,7 +120,7 @@ class PostFinalActivity: BaseActivity<ActivityPostFinalBinding>(ActivityPostFina
         rootObject.put("postType",postType)
 
 
-        Log.d(TAG, "getDataForNewPost: json -> " + rootObject)
+        Log.d(TAG, "getDataForNewPost: post-> " + rootObject)
 
         return rootObject
     }

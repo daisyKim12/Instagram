@@ -17,7 +17,8 @@ import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostRespons
 import com.project.Instargram.kotlin.src.main.page.model.post.UserPostInterface
 import com.project.Instargram.kotlin.src.main.page.model.post.UserPostService
 
-class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding::bind, R.layout.fragment_my_post), UserPostInterface, MyPostAdapter.PhotoListener {
+class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding::bind, R.layout.fragment_my_post)
+    , UserPostInterface, MyPostAdapter.PhotoListener {
 
     private val KEY_USERID = "userIdx"
     private val IS_IT_MINE = "isItMyPost"

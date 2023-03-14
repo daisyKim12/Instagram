@@ -19,7 +19,7 @@ interface MainRetrofitInterface {
     //new post
     @Multipart
     @POST("posts")
-    fun postNewPost(@Part data: MultipartBody.Part, @Part image: MultipartBody.Part)
+    fun postNewPost(@Part data: MultipartBody.Part, @Part image: List<MultipartBody.Part>)
             : Call<NewPostResponse>
 
     //feed

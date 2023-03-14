@@ -71,10 +71,13 @@
 
         <activity
             android:name="com.project.Instargram.kotlin.src.main.post.PostFinalActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main"
-            android:usesCleartextTraffic="true"/>
+            android:usesCleartextTraffic="true">
+
+
+        </activity>
 
         <activity
             android:name="com.project.Instargram.kotlin.src.main.page.UserPageActivity"
