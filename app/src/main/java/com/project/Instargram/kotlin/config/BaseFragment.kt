@@ -72,4 +72,10 @@ abstract class BaseFragment<B : ViewBinding>(
         ApplicationClass.sSharedPreferences.edit().remove(KEY).commit()
     }
 
+    fun saveString(key: String, text: String) {
+        val editor = ApplicationClass.sSharedPreferences.edit()
+        editor.putString(key, text)
+        editor.apply()
+    }
+
 }

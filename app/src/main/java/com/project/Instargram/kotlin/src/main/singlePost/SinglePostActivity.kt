@@ -9,6 +9,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivitySinglePostBinding
+import com.project.Instargram.kotlin.src.main.comment.CommentActivity
 import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.home.adpater.PostImageAdapter
 import com.project.Instargram.kotlin.src.main.page.UserPageActivity
@@ -28,6 +29,7 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
     private val KEY_SEND = "not_my_userIdx"
     private val IS_IT_MINE = "isItMyPost"
     private val KEY_USERID = "userIdx"
+    private val KEY_PRE_COMMENT = "data_for_comment"
     private var startFollow = true
     private var startLike = true
     private var startSave = true
@@ -35,8 +37,10 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
     private var userIdx = 0
     private var targetIdx = 0
     private var postIdx = 0
+    private lateinit var singlePostData: GetSinglePostResponse
 
     private var isItMyPost = true
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +49,7 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         isItMyPost = intent.getBooleanExtra(IS_IT_MINE, true)
 
         val response = intent.extras?.getSerializable(KEY_GET) as GetSinglePostResponse
+        singlePostData = response
         val result = response.result
         Log.d(TAG, "onCreate: " + result)
 
@@ -128,7 +133,6 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         binding.btnLike.setOnClickListener {
             //좋아요
             val newlikeRequest = NewLikeRequest(postIdx, userIdx)
-            Log.d(TAG, "onResume: eeee" + newlikeRequest)
             if(startLike == true) {
                 binding.btnLike.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_like_clicked)
                 startLike = false
@@ -140,6 +144,12 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
                 //call unfollow api
                 SinglePostService(this).tryUnLike(newlikeRequest)
             }
+        }
+        binding.txtComment.setOnClickListener {
+            val intent = Intent(this, CommentActivity::class.java)
+            intent.putExtra(KEY_PRE_COMMENT, singlePostData as java.io.Serializable)
+            //intent.putExtra(KEY_COMMENT, response as java.io.Serializable)
+            startActivity(intent)
         }
     }
 

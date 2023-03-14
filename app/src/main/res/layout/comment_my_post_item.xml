@@ -61,6 +61,7 @@
             android:text="회사 생활을 마무리하며\n\n마지막 근무일이었다. 송별회를 가졌고술을 몇잔 나눴다. 이런 저런 이야기를 하고, 또 들었다.ㅣ 나는  개인적으로 좋은 동료들을, 좋은 친구들을 만났다고 생각한다. ㄱ사람드링 만들어준 즐거운 추억이 참 많다. 괘 괜찮은 성과를 만들어서 짜릿했던 기엇도 많았다. 좋은 기억만있엇던 아니다. 하지만 좋은 기억은 분명 많았다. 어쨋건 이건 행운이었다 ."
             android:textColor="@color/blackForText"
             android:textSize="13sp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_right"
             app:layout_constraintStart_toStartOf="@id/guideline_left"

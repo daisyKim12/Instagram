@@ -29,6 +29,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
     private val KEY_FOLLOWER_NM="follower"
     private val KEY_FOLLOWING_NM="following"
 
+    private val KEY_NICK_NAME = "nickName"
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -85,6 +87,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         val followingNumber: Int = result.followingNumber
         val followerNumber: Int = result.followerNumber
         val userDescription: String = result.userDescription
+
+        saveString(KEY_NICK_NAME, nickName)
 
         binding.tbProfile.text = nickName
         binding.txtName.text = name

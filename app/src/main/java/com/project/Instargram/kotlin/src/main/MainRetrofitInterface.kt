@@ -1,5 +1,8 @@
 package com.project.Instargram.kotlin.src.main
 
+import com.project.Instargram.kotlin.src.main.comment.model.getComment.GetCommentResponse
+import com.project.Instargram.kotlin.src.main.comment.model.newComment.NewCommentRequest
+import com.project.Instargram.kotlin.src.main.comment.model.newComment.NewCommentResponse
 import com.project.Instargram.kotlin.src.main.follow.model.follower.GetFollowerResponse
 import com.project.Instargram.kotlin.src.main.follow.model.following.GetFollowingResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
@@ -101,6 +104,18 @@ interface MainRetrofitInterface {
     fun getFollowing(
         @Query("userIdx") userIdx: Int
     ): Call<GetFollowingResponse>
+
+    //댓글 작성
+    @POST("posts/comment")
+    fun postComment(
+        @Body request: NewCommentRequest
+    ): Call<NewCommentResponse>
+    //댓글 조회
+    @GET("posts/comment?")
+    fun getComment(
+        @Query("postIdx") postIdx: Int,
+        @Query("userIdx") userIdx: Int
+    ):Call<GetCommentResponse>
 
 
 }
