@@ -92,9 +92,16 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main"
-            android:usesCleartextTraffic="true">
+            android:usesCleartextTraffic="true"/>
 
-        </activity>
+        <activity
+            android:name="com.project.Instargram.kotlin.src.main.follow.FollowActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            android:usesCleartextTraffic="true"/>
+
 
         <!--creating new account -->
         <activity

@@ -1,6 +1,7 @@
 package com.project.Instargram.kotlin.src.main.page
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +13,7 @@ import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.FragmentMyPageBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
+import com.project.Instargram.kotlin.src.main.follow.FollowActivity
 import com.project.Instargram.kotlin.src.main.page.adapter.StoryHighlightAdapter
 import com.project.Instargram.kotlin.src.main.page.adapter.TabFragmentAdapter
 import com.project.Instargram.kotlin.src.main.page.model.profile.PageService
@@ -22,6 +24,11 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
     ProfileInterface {
 
     private val KEY_USERID = "userIdx"
+    private val KEY_SEND = "nickName"
+    private val KEY_FLAG = "is_it_follower"
+    private val KEY_FOLLOWER_NM="follower"
+    private val KEY_FOLLOWING_NM="following"
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,10 +45,40 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val intent = Intent(activity, FollowActivity::class.java)
+        val nickName = binding.tbProfile.text.toString()
+        val followerNm = binding.txtFollowerNm.text.toString()
+        val followingNm = binding.txtFollowingNm.text.toString()
+        intent.putExtra(KEY_SEND, nickName)
+        intent.putExtra(KEY_FOLLOWER_NM, followerNm)
+        intent.putExtra(KEY_FOLLOWING_NM, followingNm)
+        binding.txtFollowerNm.setOnClickListener {
+            intent.putExtra(KEY_FLAG, true)
+            startActivity(intent)
+        }
+        binding.txtFollower.setOnClickListener {
+            intent.putExtra(KEY_FLAG, true)
+            startActivity(intent)
+        }
+        binding.txtFollowingNm.setOnClickListener {
+            intent.putExtra(KEY_FLAG, false)
+            startActivity(intent)
+        }
+        binding.txtFollowing.setOnClickListener {
+            intent.putExtra(KEY_FLAG, false)
+            startActivity(intent)
+        }
+        binding.txtPostNm.setOnClickListener {
+            binding.appbarLayout.setExpanded(false)
+        }
+    }
+
     override fun onGetProfileSuccess(response: GetProfileResponse) {
         Log.d(TAG, "onGetProfileSuccess: " + response)
         val result = response.result
-        val nickName: String = result.userNickName
+        val nickName = result.userNickName
         val name: String = result.userName
         val imageUrl: String = result.profileImgUrl
         val postNumber: Int = result.postNumber
@@ -51,10 +88,9 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         binding.tbProfile.text = nickName
         binding.txtName.text = name
         Glide.with(this).load(imageUrl).into(binding.imgThumbnail)
-        binding.txtPosterNm.text = postNumber.toString()
+        binding.txtPostNm.text = postNumber.toString()
         binding.txtFollowingNm.text = followingNumber.toString()
         binding.txtFollowerNm.text = followerNumber.toString()
-
     }
 
     override fun onGetProfileFailure(message: String) {

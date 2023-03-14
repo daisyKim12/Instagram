@@ -1,5 +1,7 @@
 package com.project.Instargram.kotlin.src.main
 
+import com.project.Instargram.kotlin.src.main.follow.model.follower.GetFollowerResponse
+import com.project.Instargram.kotlin.src.main.follow.model.following.GetFollowingResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
 import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostResponse
@@ -75,5 +77,18 @@ interface MainRetrofitInterface {
     fun patchUnLike(
         @Body request: NewLikeRequest
     ): Call<NewLikeResponse>
+
+    //팔로우 팔로잉 목록 가져오기
+    @GET("users/profile/follower-list?")
+    fun getFollower(
+        @Query("userIdx") userIdx: Int
+    ): Call<GetFollowerResponse>
+
+    @GET("users/profile/following-list?")
+    fun getFollowing(
+        @Query("userIdx") userIdx: Int
+    ): Call<GetFollowingResponse>
+
+
 }
 

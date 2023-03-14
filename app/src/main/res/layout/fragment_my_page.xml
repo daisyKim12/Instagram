@@ -111,7 +111,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/txt_post1"
+                            android:id="@+id/txt_post"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="12dp"
@@ -124,16 +124,16 @@
                             app:layout_constraintStart_toEndOf="@id/img_thumbnail" />
 
                         <TextView
-                            android:id="@+id/txt_posterNm"
+                            android:id="@+id/txt_postNm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="21"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/txt_post1"
-                            app:layout_constraintEnd_toEndOf="@+id/txt_post1"
-                            app:layout_constraintStart_toStartOf="@+id/txt_post1" />
+                            app:layout_constraintBottom_toTopOf="@+id/txt_post"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_post"
+                            app:layout_constraintStart_toStartOf="@+id/txt_post" />
 
                         <TextView
                             android:id="@+id/txt_follower"
@@ -142,10 +142,10 @@
                             android:text="팔로워"
                             android:textColor="@color/black"
                             android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="@id/txt_post1"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_post"
                             app:layout_constraintEnd_toStartOf="@+id/txt_following"
                             app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/txt_post1" />
+                            app:layout_constraintStart_toEndOf="@+id/txt_post" />
 
                         <TextView
                             android:id="@+id/txt_followerNm"
@@ -167,7 +167,7 @@
                             android:text="팔로잉"
                             android:textColor="@color/black"
                             android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="@id/txt_post1"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_post"
                             app:layout_constraintEnd_toEndOf="@id/guideline_right"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toEndOf="@+id/txt_follower" />
