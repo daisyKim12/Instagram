@@ -106,7 +106,7 @@ class CommentActivity:BaseActivity<ActivityCommentBinding>(ActivityCommentBindin
         binding.rvComment.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvComment.layoutManager = linearLayoutManager
-        val adapter = CommentAdapter(this, response, getCommentResponse, this)
+        val adapter = CommentAdapter(this, response, getCommentResponse, userIdx, this)
         adapter.notifyDataSetChanged()
         binding.rvComment.adapter = adapter
     }

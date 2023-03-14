@@ -85,6 +85,7 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         binding.txtLike.text = "좋아요 " + result.likeNumber.toString() + "개"
         binding.txtDetail.text = result.postText
         binding.txtTime.text = result.since.toString() + "전"
+        //binding.txtComment.text
 
         setUpViewPager(this, result.postFileURLList)
     }

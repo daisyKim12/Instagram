@@ -1,9 +1,12 @@
 package com.project.Instargram.kotlin.src.main.comment.adapter
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.CommentMyPostItemBinding
@@ -12,12 +15,13 @@ import com.project.Instargram.kotlin.src.main.comment.ReplyInterface
 import com.project.Instargram.kotlin.src.main.comment.CommentService
 import com.project.Instargram.kotlin.src.main.comment.ReplyService
 import com.project.Instargram.kotlin.src.main.comment.model.getComment.GetCommentResponse
+import com.project.Instargram.kotlin.src.main.comment.model.getReply.GetReplyResponse
 import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyRequest
 import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 
 class CommentAdapter(private val context: Context, private val preComment: GetSinglePostResponse,
-                     private val getCommentResponse: GetCommentResponse, private val commentListener: CommentListener)
+                     private val getCommentResponse: GetCommentResponse, private val userIdx: Int, private val commentListener: CommentListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class PreCommentViewHolder(private val binding : CommentMyPostItemBinding)
@@ -47,10 +51,7 @@ class CommentAdapter(private val context: Context, private val preComment: GetSi
                 binding.clC2c.visibility = View.INVISIBLE
                 binding.clC2c.isClickable = false
 
-            }
-
-            binding.clC2c.setOnClickListener {
-//                ReplyService(this).tryGetReply()
+                ReplyService(this).tryGetReply(result.postIdx, result.commentIdx, userIdx)
             }
         }
 
@@ -60,8 +61,18 @@ class CommentAdapter(private val context: Context, private val preComment: GetSi
             }
         }
 
-        override fun onGetReplySuccess() {
-            //TODO("Not yet implemented")
+        override fun onGetReplySuccess(response: GetReplyResponse) {
+            Log.d(TAG, "onGetReplySuccess: " + response)
+            setReplyRecyclerView(response)
+        }
+
+        fun setReplyRecyclerView(response: GetReplyResponse) {
+            binding.rvC2c.setHasFixedSize(true)
+            val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            binding.rvC2c.layoutManager = linearLayoutManager
+            val adapter = ReplyAdapter(context, response)
+            adapter.notifyDataSetChanged()
+            binding.rvC2c.adapter = adapter
         }
     }
 

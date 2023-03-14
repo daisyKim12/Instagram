@@ -1,6 +1,7 @@
 package com.project.Instargram.kotlin.src.main
 
 import com.project.Instargram.kotlin.src.main.comment.model.getComment.GetCommentResponse
+import com.project.Instargram.kotlin.src.main.comment.model.getReply.GetReplyResponse
 import com.project.Instargram.kotlin.src.main.comment.model.newComment.NewCommentRequest
 import com.project.Instargram.kotlin.src.main.comment.model.newComment.NewCommentResponse
 import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyRequest
@@ -124,6 +125,14 @@ interface MainRetrofitInterface {
     fun postReply(
         @Body request: NewReplyRequest
     ): Call<NewReplyResponse>
+
+    //대댓글 조회
+    @GET("posts/comment-reply?")
+    fun getReply(
+        @Query("postIdx") postIdx: Int,
+        @Query("commentIdx") commentIdx: Int,
+        @Query("userIdx") userIdx: Int
+    ):Call<GetReplyResponse>
 
 
 }
