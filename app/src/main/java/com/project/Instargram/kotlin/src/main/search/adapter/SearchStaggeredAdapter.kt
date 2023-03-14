@@ -66,7 +66,7 @@ class SearchStaggeredAdapter(private val context: Context, private val response:
             (holder as RectangleViewHolder).bindItem(rectangle[rectanglePosition++])
         } else {
             (holder as SquareViewHolder).bindItem(result[squarePosition].fileURLList[0])
-            var postIdx = result[position].postIdx
+            var postIdx = result[squarePosition].postIdx
             holder.bindClickable(postIdx)
             if(squarePosition < result.size-1){
                 squarePosition++
