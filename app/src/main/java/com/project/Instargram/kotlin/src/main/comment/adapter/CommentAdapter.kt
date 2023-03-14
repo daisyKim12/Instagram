@@ -1,21 +1,23 @@
 package com.project.Instargram.kotlin.src.main.comment.adapter
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.CommentMyPostItemBinding
 import com.project.Instargram.kotlin.databinding.CommentUserItemBinding
-import com.project.Instargram.kotlin.databinding.RvRectangleItemBinding
-import com.project.Instargram.kotlin.databinding.RvSquareItemBinding
+import com.project.Instargram.kotlin.src.main.comment.ReplyInterface
+import com.project.Instargram.kotlin.src.main.comment.CommentService
+import com.project.Instargram.kotlin.src.main.comment.ReplyService
 import com.project.Instargram.kotlin.src.main.comment.model.getComment.GetCommentResponse
-import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
+import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyRequest
+import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 
-class CommentAdapter(private val context: Context, private val preComment: GetSinglePostResponse, private val getCommentResponse: GetCommentResponse)
+class CommentAdapter(private val context: Context, private val preComment: GetSinglePostResponse,
+                     private val getCommentResponse: GetCommentResponse, private val commentListener: CommentListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class PreCommentViewHolder(private val binding : CommentMyPostItemBinding)
@@ -32,15 +34,34 @@ class CommentAdapter(private val context: Context, private val preComment: GetSi
     }
 
     inner class CommentViewHolder(private val binding: CommentUserItemBinding)
-        : RecyclerView.ViewHolder(binding.root) {
+        : RecyclerView.ViewHolder(binding.root), ReplyInterface {
 
         fun bindItem(result: com.project.Instargram.kotlin.src.main.comment.model.getComment.Result) {
             Glide.with(context).load(result.profileImgURL).into(binding.imgThumbnail)
             binding.txtName.text = result.authorNickName
             binding.txtTime.text = result.since.toString()
             binding.txtDetail.text = result.commentText
-
             binding.txtC2cNumber.text = "답글 " + result.commentReplyCount.toString() +"개 보기"
+
+            binding.clC2c.setOnClickListener {
+                binding.clC2c.visibility = View.INVISIBLE
+                binding.clC2c.isClickable = false
+
+            }
+
+            binding.clC2c.setOnClickListener {
+//                ReplyService(this).tryGetReply()
+            }
+        }
+
+        fun bindClickable(rootIdx: Int, targetNickName: String) {
+            binding.btnAddComment.setOnClickListener {
+                commentListener.onCommentClick(rootIdx, targetNickName)
+            }
+        }
+
+        override fun onGetReplySuccess() {
+            //TODO("Not yet implemented")
         }
     }
 
@@ -71,6 +92,7 @@ class CommentAdapter(private val context: Context, private val preComment: GetSi
             //position - 1
             val result = getCommentResponse.result[position-1]
             (holder as CommentViewHolder).bindItem(result)
+            (holder as CommentViewHolder).bindClickable(result.commentIdx, result.authorNickName)
         }
     }
 
@@ -86,7 +108,7 @@ class CommentAdapter(private val context: Context, private val preComment: GetSi
         return getCommentResponse.result.size + 1
     }
 
-//    public interface PhotoListener {
-//        fun onPhotoClick(postIdx: Int)
-//    }
+    public interface CommentListener {
+        fun onCommentClick(rootIdx: Int, targetNickName: String)
+    }
 }

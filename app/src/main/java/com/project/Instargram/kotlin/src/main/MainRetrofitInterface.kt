@@ -3,6 +3,8 @@ package com.project.Instargram.kotlin.src.main
 import com.project.Instargram.kotlin.src.main.comment.model.getComment.GetCommentResponse
 import com.project.Instargram.kotlin.src.main.comment.model.newComment.NewCommentRequest
 import com.project.Instargram.kotlin.src.main.comment.model.newComment.NewCommentResponse
+import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyRequest
+import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyResponse
 import com.project.Instargram.kotlin.src.main.follow.model.follower.GetFollowerResponse
 import com.project.Instargram.kotlin.src.main.follow.model.following.GetFollowingResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
@@ -116,6 +118,12 @@ interface MainRetrofitInterface {
         @Query("postIdx") postIdx: Int,
         @Query("userIdx") userIdx: Int
     ):Call<GetCommentResponse>
+
+    //대댓글 작성
+    @POST("posts/comment-reply")
+    fun postReply(
+        @Body request: NewReplyRequest
+    ): Call<NewReplyResponse>
 
 
 }
