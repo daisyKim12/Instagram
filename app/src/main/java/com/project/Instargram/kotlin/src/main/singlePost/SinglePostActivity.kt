@@ -14,6 +14,8 @@ import com.project.Instargram.kotlin.src.main.home.adpater.PostImageAdapter
 import com.project.Instargram.kotlin.src.main.page.UserPageActivity
 import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostInterface
 import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostService
+import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkRequest
+import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
@@ -28,6 +30,7 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
     private val KEY_USERID = "userIdx"
     private var startFollow = true
     private var startLike = true
+    private var startSave = true
 
     private var userIdx = 0
     private var targetIdx = 0
@@ -48,6 +51,8 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         userIdx = getIntegerValue(KEY_USERID)!!.toInt()
         targetIdx = result.authorIdx
         postIdx = result.postIdx
+        startLike = !result.isLikedPost
+        startSave = !result.isSavedPost
 
         if(isItMyPost == true) {
             binding.btnFollow.visibility = View.INVISIBLE
@@ -55,6 +60,18 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         } else {
             binding.btnFollow.visibility = View.VISIBLE
             binding.btnFollow.isClickable = true
+        }
+
+        if(startLike == true) {
+            binding.btnLike.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_like_unclicked)
+        } else {
+            binding.btnLike.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_like_clicked)
+        }
+
+        if(startSave == true) {
+            binding.btnBookmark.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_bookmark_unclicked)
+        } else {
+            binding.btnBookmark.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_bookmark_clicked)
         }
 
         Glide.with(this).load(result.authorProfileImgURL).into(binding.imgThumbnail)
@@ -97,6 +114,16 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         }
         binding.btnBookmark.setOnClickListener {
             //북마크
+            val newBookmarkRequest = NewBookmarkRequest(postIdx, userIdx)
+            if(startSave == true) {
+                binding.btnBookmark.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_bookmark_clicked)
+                startSave = false
+                SinglePostService(this).tryNewBookmark(newBookmarkRequest)
+            } else {
+                binding.btnBookmark.setImageResource(com.project.Instargram.kotlin.R.drawable.ic_bookmark_unclicked)
+                startSave = true
+                SinglePostService(this).tryUnBookmark(newBookmarkRequest)
+            }
         }
         binding.btnLike.setOnClickListener {
             //좋아요
@@ -154,5 +181,21 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
 
     override fun onUnLikeFailure(message: String) {
         Log.d(TAG, "onUnLikeFailure: " + message)
+    }
+
+    override fun onNewBookmarkSuccess(response: NewBookmarkResponse) {
+        Log.d(TAG, "onNewBookmarkSuccess: " + response)
+    }
+
+    override fun onNewBookmarkFailure(message: String) {
+        Log.d(TAG, "onNewBookmarkFailure: " + message)
+    }
+
+    override fun onUnBookmarkSuccess(response: NewBookmarkResponse) {
+        Log.d(TAG, "onUnBookmarkSuccess: " + response)
+    }
+
+    override fun onUnBookmarkFailure(message: String) {
+        Log.d(TAG, "onUnBookmarkFailure: " + message)
     }
 }

@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="@+id/img_thumbnail"
         android:layout_marginStart="15dp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_message"
         android:layout_width="75dp"
         android:layout_height="30dp"

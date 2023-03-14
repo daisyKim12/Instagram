@@ -84,6 +84,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         val postNumber: Int = result.postNumber
         val followingNumber: Int = result.followingNumber
         val followerNumber: Int = result.followerNumber
+        val userDescription: String = result.userDescription
 
         binding.tbProfile.text = nickName
         binding.txtName.text = name
@@ -91,6 +92,9 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         binding.txtPostNm.text = postNumber.toString()
         binding.txtFollowingNm.text = followingNumber.toString()
         binding.txtFollowerNm.text = followerNumber.toString()
+        if(userDescription.toString() != "NULL") {
+            binding.txtDetail.text = userDescription.toString()
+        }
     }
 
     override fun onGetProfileFailure(message: String) {

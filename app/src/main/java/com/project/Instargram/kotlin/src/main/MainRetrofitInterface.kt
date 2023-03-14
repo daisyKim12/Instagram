@@ -10,6 +10,8 @@ import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostRespons
 import com.project.Instargram.kotlin.src.main.page.model.profile.GetProfileResponse
 import com.project.Instargram.kotlin.src.main.post.model.NewPostResponse
 import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkRequest
+import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeResponse
 import okhttp3.MultipartBody
@@ -77,6 +79,17 @@ interface MainRetrofitInterface {
     fun patchUnLike(
         @Body request: NewLikeRequest
     ): Call<NewLikeResponse>
+
+    //북마크 요청
+    @POST("users/save-post")
+    fun postNewBookmark(
+        @Body request: NewBookmarkRequest
+    ): Call<NewBookmarkResponse>
+
+    @PATCH("users/save-post")
+    fun patchUnBookmark(
+        @Body request: NewBookmarkRequest
+    ): Call<NewBookmarkResponse>
 
     //팔로우 팔로잉 목록 가져오기
     @GET("users/profile/follower-list?")

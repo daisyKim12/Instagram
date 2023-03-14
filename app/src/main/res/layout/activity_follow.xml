@@ -86,6 +86,7 @@
         android:id="@+id/img_blank"
         android:layout_width="300dp"
         android:layout_height="0dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H, 3:2"
         app:layout_constraintEnd_toEndOf="parent"

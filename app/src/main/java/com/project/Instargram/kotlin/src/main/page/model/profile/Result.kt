@@ -7,5 +7,6 @@ data class Result(
     val profileImgUrl: String,
     val userIdx: Int,
     val userName: String,
-    val userNickName: String
+    val userNickName: String,
+    val userDescription: String
 )

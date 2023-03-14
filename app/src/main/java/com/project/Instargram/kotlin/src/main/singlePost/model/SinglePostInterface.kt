@@ -1,5 +1,6 @@
 package com.project.Instargram.kotlin.src.main.singlePost.model
 
+import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeResponse
 
@@ -22,6 +23,13 @@ interface SinglePostInterface {
 
     fun onUnLikeFailure(message: String)
 
+    fun onNewBookmarkSuccess(response: NewBookmarkResponse)
+
+    fun onNewBookmarkFailure(message: String)
+
+    fun onUnBookmarkSuccess(response: NewBookmarkResponse)
+
+    fun onUnBookmarkFailure(message: String)
 
 
 }

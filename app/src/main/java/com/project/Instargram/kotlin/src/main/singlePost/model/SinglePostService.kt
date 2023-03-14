@@ -2,6 +2,8 @@ package com.project.Instargram.kotlin.src.main.singlePost.model
 
 import com.project.Instargram.kotlin.config.ApplicationClass
 import com.project.Instargram.kotlin.src.main.MainRetrofitInterface
+import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkRequest
+import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
@@ -67,6 +69,39 @@ class SinglePostService(val singlePostInterface: SinglePostInterface) {
 
             override fun onFailure(call: Call<NewLikeResponse?>, t: Throwable) {
                 singlePostInterface.onUnLikeFailure("통신 오류")
+            }
+        })
+    }
+
+
+    fun tryNewBookmark(newBookmarkRequest: NewBookmarkRequest){
+        val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
+        mainRetrofitInterface.postNewBookmark(newBookmarkRequest).enqueue(object : Callback<NewBookmarkResponse?> {
+            override fun onResponse(
+                call: Call<NewBookmarkResponse?>,
+                response: Response<NewBookmarkResponse?>
+            ) {
+                singlePostInterface.onNewBookmarkSuccess(response.body() as NewBookmarkResponse)
+            }
+
+            override fun onFailure(call: Call<NewBookmarkResponse?>, t: Throwable) {
+                singlePostInterface.onNewBookmarkFailure("통신 오류")
+            }
+        })
+    }
+
+    fun tryUnBookmark(newBookmarkRequest: NewBookmarkRequest) {
+        val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
+        mainRetrofitInterface.patchUnBookmark(newBookmarkRequest).enqueue(object : Callback<NewBookmarkResponse?> {
+            override fun onResponse(
+                call: Call<NewBookmarkResponse?>,
+                response: Response<NewBookmarkResponse?>
+            ) {
+                singlePostInterface.onUnBookmarkSuccess(response.body() as NewBookmarkResponse)
+            }
+
+            override fun onFailure(call: Call<NewBookmarkResponse?>, t: Throwable) {
+                singlePostInterface.onUnBookmarkFailure("통신 오류")
             }
         })
     }

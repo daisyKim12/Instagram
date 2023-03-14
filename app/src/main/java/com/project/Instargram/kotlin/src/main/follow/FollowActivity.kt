@@ -3,6 +3,7 @@ package com.project.Instargram.kotlin.src.main.follow
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.project.Instargram.kotlin.config.BaseActivity
@@ -74,11 +75,15 @@ class FollowActivity: BaseActivity<ActivityFollowBinding>(ActivityFollowBinding:
         })
     }
 
+
+
     override fun onGetFollowerSuccess(response: GetFollowerResponse) {
         Log.d(TAG, "onGetFollowerSuccess: " + response)
         if(response.result.size == 0) {
+            binding.imgBlank.visibility = View.VISIBLE
             binding.imgBlank.setBackgroundResource(com.project.Instargram.kotlin.R.drawable.follower_bg)
         } else {
+            binding.imgBlank.visibility = View.INVISIBLE
             setFollowerRecyclerView(response)
         }
     }
@@ -89,8 +94,10 @@ class FollowActivity: BaseActivity<ActivityFollowBinding>(ActivityFollowBinding:
     override fun onGetFollowingSuccess(response: GetFollowingResponse) {
         Log.d(TAG, "onGetFollowingSuccess: " + response)
         if(response.result.size == 0) {
+            binding.imgBlank.visibility = View.VISIBLE
             binding.imgBlank.setBackgroundResource(com.project.Instargram.kotlin.R.drawable.following_bg)
         } else {
+            binding.imgBlank.visibility = View.INVISIBLE
             setFollowingRecyclerView(response)
         }
     }
