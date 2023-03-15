@@ -20,6 +20,8 @@ import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookm
 import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.Result
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeResponse
 
@@ -78,12 +80,38 @@ class PostViewHolder(private val context: Context, private val binding: RvHomePo
                 SinglePostService(this).tryUnLike(newlikeRequest)
             }
         }
-//        binding.txtComment.setOnClickListener {
-//            val intent = Intent(this, CommentActivity::class.java)
-//            intent.putExtra(KEY_PRE_COMMENT, singlePostData as java.io.Serializable)
-//            //intent.putExtra(KEY_COMMENT, response as java.io.Serializable)
-//            startActivity(intent)
-//        }
+        binding.txtComment.setOnClickListener {
+            val intent = Intent(context, CommentActivity::class.java)
+            val getSinglePostResponse = setSinglePostData(feed)
+            intent.putExtra(KEY_PRE_COMMENT, getSinglePostResponse as java.io.Serializable)
+            startActivity(context, intent, null)
+        }
+    }
+
+    private fun setSinglePostData(feed: Feed): GetSinglePostResponse{
+        val code: Int = 1000
+        val isSuccess: Boolean = true
+        val message: String = ""
+        val authorIdx: Int = feed.authorIdx
+        val authorNickName: String = feed.authorNickName
+        val authorProfileImgURL: String = feed.authorProfileImgURL
+        val hashTagList: List<String> = feed.hashTagList
+        val likeNumber: Int = feed.likeNumber
+        val location: String = feed.location
+        val postFileURLList: List<String> = feed.postFileURLList
+        val postIdx: Int= feed.postIdx
+        val postText: String = feed.postText
+        val since: Int = feed.since
+        val taggedUserList: List<String> = feed.taggedUserList
+        val isSavedPost: Boolean = feed.isSavedPost
+        val isLikedPost: Boolean = feed.isLikedPost
+        val commentNumber: Int = feed.commentNumber
+
+        val result: Result = com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.Result(
+            authorIdx,authorNickName,authorProfileImgURL,hashTagList,likeNumber,
+            location,postFileURLList,postIdx,postText,since,taggedUserList,isSavedPost,isLikedPost,commentNumber
+        )
+        return GetSinglePostResponse(code, isSuccess, message, result)
     }
 
     fun init(feed: Feed) {
