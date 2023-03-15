@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.project.Instargram.kotlin.util.LoadingDialog
+import java.text.SimpleDateFormat
+import java.util.*
 
 // Fragment의 기본을 작성, 뷰 바인딩 활용
 abstract class BaseFragment<B : ViewBinding>(
@@ -82,6 +84,27 @@ abstract class BaseFragment<B : ViewBinding>(
         val editor = ApplicationClass.sSharedPreferences.edit()
         editor.putInt(key, save)
         editor.apply()
+    }
+
+    fun timeStamp2Since(timeStamp: String): String {
+        val now = System.currentTimeMillis()
+        val post: Long = java.lang.Long.valueOf(timeStamp) * 1000 // its need to be in milisecond
+        val datePost: Date = Date(post)
+
+        val since = now-post
+        val dateSince: Date = Date(since)
+        if(since > 8.64e+7){
+            //하루
+            return SimpleDateFormat("M월 d일").format(datePost)
+        } else if (since > 3.6e+6) {
+            //12시간
+            return SimpleDateFormat("h시간 전").format(dateSince)
+        } else if(since > 0){
+            //1시간
+            return SimpleDateFormat("m분 전").format(dateSince)
+        } else {
+            return ""
+        }
     }
 
 }

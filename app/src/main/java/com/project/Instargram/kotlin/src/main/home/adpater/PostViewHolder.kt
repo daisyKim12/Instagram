@@ -1,4 +1,4 @@
-package com.project.Instargram.kotlin.src.main.post.adapter
+package com.project.Instargram.kotlin.src.main.home.adpater
 
 import android.content.ContentValues
 import android.content.Context
@@ -10,20 +10,19 @@ import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.config.ApplicationClass
 import com.project.Instargram.kotlin.databinding.RvHomePostItemBinding
 import com.project.Instargram.kotlin.src.main.comment.CommentActivity
-import com.project.Instargram.kotlin.src.main.home.adpater.PostImageAdapter
 import com.project.Instargram.kotlin.src.main.home.models.getFeed.Feed
-import com.project.Instargram.kotlin.src.main.home.models.getFeed.FollowInfo
 import com.project.Instargram.kotlin.src.main.page.UserPageActivity
 import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostInterface
 import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostService
 import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkResponse
-import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.Result
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeResponse
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PostViewHolder(private val context: Context, private val binding: RvHomePostItemBinding)
     : RecyclerView.ViewHolder(binding.root), SinglePostInterface {
@@ -136,7 +135,7 @@ class PostViewHolder(private val context: Context, private val binding: RvHomePo
         binding.txtComment.text = "댓글 " +
                 feed.commentNumber.toString() +
                 "개 보기"
-        binding.txtTime.text = feed.since.toString()
+        binding.txtTime.text = timeStamp2Since(feed.since.toString())
 
         setUpViewPager(context, feed.postFileURLList)
     }
@@ -208,5 +207,26 @@ class PostViewHolder(private val context: Context, private val binding: RvHomePo
 
     override fun onUnBookmarkFailure(message: String) {
         Log.d(ContentValues.TAG, "onUnBookmarkFailure: " + message)
+    }
+
+    fun timeStamp2Since(timeStamp: String): String {
+        val now = System.currentTimeMillis()
+        val post: Long = java.lang.Long.valueOf(timeStamp) * 1000 // its need to be in milisecond
+        val datePost: Date = Date(post)
+
+        val since = now-post
+        val dateSince: Date = Date(since)
+        if(since > 8.64e+7){
+            //하루
+            return SimpleDateFormat("M월 d일").format(datePost)
+        } else if (since > 3.6e+6) {
+            //12시간
+            return SimpleDateFormat("h시간 전").format(dateSince)
+        } else if(since > 0){
+            //1시간
+            return SimpleDateFormat("m분 전").format(dateSince)
+        } else {
+            return ""
+        }
     }
 }

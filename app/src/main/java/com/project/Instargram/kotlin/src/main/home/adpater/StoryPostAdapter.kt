@@ -5,15 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.RvHomePostItemBinding
 import com.project.Instargram.kotlin.databinding.RvHomeStoryLayoutBinding
-import com.project.Instargram.kotlin.src.main.TempPageLists
-import com.project.Instargram.kotlin.src.main.home.models.Post
 import com.project.Instargram.kotlin.src.main.home.models.Story
-import com.project.Instargram.kotlin.src.main.home.models.getFeed.Feed
 import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostResponse
-import com.project.Instargram.kotlin.src.main.post.adapter.PostViewHolder
 
 class StoryPostAdapter(private val context: Context, private val getPostResponse: GetPostResponse,
                        //private val post: List<Post>,

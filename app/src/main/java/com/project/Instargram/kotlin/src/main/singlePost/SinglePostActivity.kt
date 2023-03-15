@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivitySinglePostBinding
 import com.project.Instargram.kotlin.src.main.comment.CommentActivity
-import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.home.adpater.PostImageAdapter
 import com.project.Instargram.kotlin.src.main.page.UserPageActivity
 import com.project.Instargram.kotlin.src.main.singlePost.model.SinglePostInterface
@@ -19,8 +18,11 @@ import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookm
 import com.project.Instargram.kotlin.src.main.singlePost.model.bookmark.NewBookmarkResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.follow.NewFollowResponse
+import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeRequest
 import com.project.Instargram.kotlin.src.main.singlePost.model.like.NewLikeResponse
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySinglePostBinding::inflate),
     SinglePostInterface {
@@ -85,10 +87,10 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         //Glide.with(this).load(result.postFileURLList[0]).into(binding.vpPost)
         binding.txtLike.text = "좋아요 " + result.likeNumber.toString() + "개"
         binding.txtDetail.text = result.postText
-        binding.txtTime.text = result.since.toString() + "전"
-        binding.txtComment.text = "댓글 " +
-                result.commentNumber.toString() +
-                "개 보기"
+        //binding.txtTime.text = result.since.toString() + "전"
+        binding.txtTime.text = timeStamp2Since(result.since.toString())
+        //+ "전"
+        binding.txtComment.text = "댓글 " + result.commentNumber.toString() + "개 보기"
 
         setUpViewPager(this, result.postFileURLList)
     }
