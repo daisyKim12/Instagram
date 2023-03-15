@@ -22,14 +22,20 @@ class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding
 
     private val KEY_USERID = "userIdx"
     private val IS_IT_MINE = "isItMyPost"
-    private var userIdx: Int = 0
     private var KEY_SEND = "single_post"
+    private val KEY_TARGET_IDX = "targetIdx_for_prfile"
+
+    private var userIdx: Int = 0
+    private var targetIdx = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         userIdx = getIntegerValue(KEY_USERID)!!
-        Log.d(ContentValues.TAG, "onViewCreated: userIdx -> " + userIdx )
+        targetIdx = getIntegerValue(KEY_TARGET_IDX)!!
+
+        // TODO
+        //UserPostService(this).tryGetUserPost(targetIdx)
         UserPostService(this).tryGetUserPost(userIdx)
 
         //setUpMyPostRecyclerView()

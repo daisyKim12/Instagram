@@ -46,6 +46,7 @@
     <color name="blueForGallery">#2844E1</color>
     <color name="blurred">#B4F4F4F4</color>
     <color name="grayForPostBg">#94BCBCBC</color>
+    <color name="post_bg">#F6F6F6</color>
 
     <!--userProfile-->
     <color name="blueForUserProfile">#216AE6</color>

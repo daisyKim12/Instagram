@@ -30,7 +30,7 @@ class PostViewHolder(private val context: Context, private val binding: RvHomePo
 
     private val KEY_USERID = "userIdx"
     private val KEY_SEND = "not_my_userIdx"
-    private val KEY_FEED = "feed"
+//    private val KEY_FEED = "feed"
     private val KEY_PRE_COMMENT = "data_for_comment"
 
     private var userIdx = 0
@@ -48,7 +48,7 @@ class PostViewHolder(private val context: Context, private val binding: RvHomePo
             //유저 프로필 화면으로 전환
             val intent = Intent(context, UserPageActivity::class.java)
             intent.putExtra(KEY_SEND, targetIdx)
-            intent.putExtra(KEY_FEED, feed as java.io.Serializable)
+//            intent.putExtra(KEY_FEED, feed as java.io.Serializable)
             startActivity(context, intent, null)
         }
 

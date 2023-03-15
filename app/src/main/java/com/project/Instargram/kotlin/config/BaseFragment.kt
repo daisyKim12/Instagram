@@ -78,4 +78,10 @@ abstract class BaseFragment<B : ViewBinding>(
         editor.apply()
     }
 
+    fun saveInteger(key: String, save: Int) {
+        val editor = ApplicationClass.sSharedPreferences.edit()
+        editor.putInt(key, save)
+        editor.apply()
+    }
+
 }

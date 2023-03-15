@@ -28,6 +28,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
     private val KEY_FLAG = "is_it_follower"
     private val KEY_FOLLOWER_NM="follower"
     private val KEY_FOLLOWING_NM="following"
+    private val KEY_TARGET_IDX = "targetIdx_for_prfile"
 
     private val KEY_NICK_NAME = "nickName"
 
@@ -37,6 +38,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
 
         val userIdx = getIntegerValue(KEY_USERID)!!
         Log.d(TAG, "onViewCreated: userIdx -> " + userIdx )
+
+        saveInteger(KEY_TARGET_IDX, userIdx)
         PageService(this).tryGetProfile(userIdx, userIdx)
 
 
@@ -88,7 +91,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         val followerNumber: Int = result.followerNumber
         val userDescription: String = result.userDescription
 
-        saveString(KEY_NICK_NAME, nickName)
+        //TODO nickname 문제 생기면 이거 확인
+        //saveString(KEY_NICK_NAME, nickName)
 
         binding.tbProfile.text = nickName
         binding.txtName.text = name
@@ -97,6 +101,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         binding.txtFollowingNm.text = followingNumber.toString()
         binding.txtFollowerNm.text = followerNumber.toString()
         if(userDescription.toString() != "NULL") {
+            binding.txtHashtag.text = "??"
             binding.txtDetail.text = userDescription.toString()
         }
     }
