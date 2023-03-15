@@ -112,12 +112,12 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
             //팔로우
             val newFollowRequest = NewFollowRequest(userIdx, targetIdx)
             if(startFollow == true) {
-                binding.btnFollow.text = "팔로우"
+                binding.btnFollow.text = "팔로잉"
                 startFollow = false
                 //call follow api
                 SinglePostService(this).tryNewFollow(newFollowRequest)
             } else {
-                binding.btnFollow.text = "팔로잉"
+                binding.btnFollow.text = "팔로우"
                 startFollow = true
                 //call unfollow api
                 SinglePostService(this).tryUnFollow(newFollowRequest)

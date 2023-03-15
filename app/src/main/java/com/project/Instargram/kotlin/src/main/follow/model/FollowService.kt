@@ -7,12 +7,13 @@ import com.project.Instargram.kotlin.src.main.follow.model.following.GetFollowin
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Query
 
 class FollowService(val followInterface: FollowInterface) {
 
-    fun tryGetFollower(userIdx: Int){
+    fun tryGetFollower(requestUserIdx: Int,targetUserIdx: Int){
         val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
-        mainRetrofitInterface.getFollower(userIdx).enqueue(object : Callback<GetFollowerResponse?> {
+        mainRetrofitInterface.getFollower(requestUserIdx, targetUserIdx).enqueue(object : Callback<GetFollowerResponse?> {
             override fun onResponse(
                 call: Call<GetFollowerResponse?>,
                 response: Response<GetFollowerResponse?>
@@ -26,9 +27,9 @@ class FollowService(val followInterface: FollowInterface) {
         })
     }
 
-    fun tryGetFollowing(userIdx: Int){
+    fun tryGetFollowing(requestUserIdx: Int,targetUserIdx: Int){
         val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
-        mainRetrofitInterface.getFollowing(userIdx).enqueue(object : Callback<GetFollowingResponse?> {
+        mainRetrofitInterface.getFollowing(requestUserIdx, targetUserIdx).enqueue(object : Callback<GetFollowingResponse?> {
             override fun onResponse(
                 call: Call<GetFollowingResponse?>,
                 response: Response<GetFollowingResponse?>

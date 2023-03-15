@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/reelsVideoBg">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    android:background="@color/reelsVideoBg"-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -24,6 +24,7 @@
         android:id="@+id/video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,7 @@
         android:maxLines="1"
         android:text="헬창한테 걸리면 안되는 이유 #헬창 #운동 #헬스 그리고 쏘랄라쏘랄라쏘라라랄라라라라"
         android:textColor="@color/white"
-        android:textSize="11sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +63,7 @@
         android:layout_height="wrap_content"
         android:text="chaekso_"
         android:textColor="@color/white"
-        android:textSize="13sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/img_thumbnail"
         app:layout_constraintStart_toEndOf="@+id/img_thumbnail"

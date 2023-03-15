@@ -17,9 +17,11 @@ class ReelsAdapter(private val context: Context, private val reels: List<Reels>)
         fun bindItem(reels: Reels) {
             Glide.with(context).load(reels.videoUrl).into(binding.video)
             Glide.with(context).load(reels.tumbnailUrl).into(binding.imgThumbnail)
+            Glide.with(context).load(reels.tumbnailUrl).into(binding.btnAudio)
             binding.txtName.text = reels.name
             binding.txtComment.text = reels.commentNum.toString()
             binding.txtLike.text = reels.like.toString()
+            binding.txtDetail.text = reels.detailUrl
 
         }
     }

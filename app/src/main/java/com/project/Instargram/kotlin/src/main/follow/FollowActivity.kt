@@ -24,6 +24,8 @@ class FollowActivity: BaseActivity<ActivityFollowBinding>(ActivityFollowBinding:
     private val KEY_FOLLOWER_NM="follower"
     private val KEY_FOLLOWING_NM="following"
     private var userIdx = 0
+    private var targetIdx = 0
+    private val KEY_TARGETID = "targetIdx"
 
     private var isItFollower = true
 
@@ -31,6 +33,7 @@ class FollowActivity: BaseActivity<ActivityFollowBinding>(ActivityFollowBinding:
         super.onCreate(savedInstanceState)
 
         userIdx = getIntegerValue(KEY_USERID)!!
+        targetIdx = getIntegerValue(KEY_TARGETID)!!
         val nickname = intent.getStringExtra(KEY_GET).toString()
         val followerNm = intent.getStringExtra(KEY_FOLLOWER_NM).toString()
         val followingNm= intent.getStringExtra(KEY_FOLLOWING_NM).toString()
@@ -40,13 +43,12 @@ class FollowActivity: BaseActivity<ActivityFollowBinding>(ActivityFollowBinding:
         binding.tabLayout.getTabAt(0)?.text = "팔로워 " + followerNm +"명"
         binding.tabLayout.getTabAt(1)?.text = "팔로잉 " + followingNm +"명"
 
-
         if(isItFollower == true) {
             binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0))
-            FollowService(this).tryGetFollower(userIdx)
+            FollowService(this).tryGetFollower(userIdx, targetIdx)
         } else {
             binding.tabLayout.selectTab(binding.tabLayout.getTabAt(1))
-            FollowService(this).tryGetFollowing(userIdx)
+            FollowService(this).tryGetFollowing(userIdx, targetIdx)
         }
     }
 
@@ -60,10 +62,10 @@ class FollowActivity: BaseActivity<ActivityFollowBinding>(ActivityFollowBinding:
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if(tab!!.position == 0) {
                     //follower adapter
-                    FollowService(this@FollowActivity).tryGetFollower(userIdx)
+                    FollowService(this@FollowActivity).tryGetFollower(userIdx, targetIdx)
                 }else {
                     //following adapter
-                    FollowService(this@FollowActivity).tryGetFollowing(userIdx)
+                    FollowService(this@FollowActivity).tryGetFollowing(userIdx, targetIdx)
                 }
             }
 
@@ -80,9 +82,11 @@ class FollowActivity: BaseActivity<ActivityFollowBinding>(ActivityFollowBinding:
     override fun onGetFollowerSuccess(response: GetFollowerResponse) {
         Log.d(TAG, "onGetFollowerSuccess: " + response)
         if(response.result.size == 0) {
+            binding.rvFollow.visibility = View.INVISIBLE
             binding.imgBlank.visibility = View.VISIBLE
             binding.imgBlank.setBackgroundResource(com.project.Instargram.kotlin.R.drawable.follower_bg)
         } else {
+            binding.rvFollow.visibility = View.VISIBLE
             binding.imgBlank.visibility = View.INVISIBLE
             setFollowerRecyclerView(response)
         }
@@ -94,9 +98,11 @@ class FollowActivity: BaseActivity<ActivityFollowBinding>(ActivityFollowBinding:
     override fun onGetFollowingSuccess(response: GetFollowingResponse) {
         Log.d(TAG, "onGetFollowingSuccess: " + response)
         if(response.result.size == 0) {
+            binding.rvFollow.visibility = View.INVISIBLE
             binding.imgBlank.visibility = View.VISIBLE
             binding.imgBlank.setBackgroundResource(com.project.Instargram.kotlin.R.drawable.following_bg)
         } else {
+            binding.rvFollow.visibility = View.VISIBLE
             binding.imgBlank.visibility = View.INVISIBLE
             setFollowingRecyclerView(response)
         }

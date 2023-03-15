@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.project.Instargram.kotlin.config.ApplicationClass
 import com.project.Instargram.kotlin.databinding.RvHomePostItemBinding
 import com.project.Instargram.kotlin.databinding.RvHomeStoryLayoutBinding
 import com.project.Instargram.kotlin.src.main.home.models.Story

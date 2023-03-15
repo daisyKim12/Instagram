@@ -37,7 +37,7 @@ class ImagesGallery {
             var cnt = 0
             while (cursor.moveToNext()) {
 
-                if(cnt++ == 40) {
+                if(cnt++ == 80) {
                     break
                 }
                 absolutePathOfImage = cursor.getString(column_index_data)

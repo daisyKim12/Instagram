@@ -14,7 +14,7 @@ class MyReelsFragment: BaseFragment<FragmentMyReelsBinding>(FragmentMyReelsBindi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpMyPostRecyclerView()
+        //setUpMyPostRecyclerView()
     }
 
     private fun setUpMyPostRecyclerView() {

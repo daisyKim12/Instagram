@@ -19,6 +19,7 @@ import com.project.Instargram.kotlin.src.main.page.adapter.TabFragmentAdapter
 import com.project.Instargram.kotlin.src.main.page.model.profile.PageService
 import com.project.Instargram.kotlin.src.main.page.model.profile.GetProfileResponse
 import com.project.Instargram.kotlin.src.main.page.model.profile.ProfileInterface
+import com.project.Instargram.kotlin.util.SettingActivity
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding::bind, R.layout.fragment_my_page),
     ProfileInterface {
@@ -28,7 +29,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
     private val KEY_FLAG = "is_it_follower"
     private val KEY_FOLLOWER_NM="follower"
     private val KEY_FOLLOWING_NM="following"
-    private val KEY_TARGET_IDX = "targetIdx_for_prfile"
+    private val KEY_TARGETID = "targetIdx"
 
     private val KEY_NICK_NAME = "nickName"
 
@@ -38,8 +39,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
 
         val userIdx = getIntegerValue(KEY_USERID)!!
         Log.d(TAG, "onViewCreated: userIdx -> " + userIdx )
-
-        saveInteger(KEY_TARGET_IDX, userIdx)
+        saveInteger(KEY_TARGETID, userIdx)
         PageService(this).tryGetProfile(userIdx, userIdx)
 
 
@@ -52,6 +52,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
 
     override fun onResume() {
         super.onResume()
+
         val intent = Intent(activity, FollowActivity::class.java)
         val nickName = binding.tbProfile.text.toString()
         val followerNm = binding.txtFollowerNm.text.toString()
@@ -77,6 +78,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         }
         binding.txtPostNm.setOnClickListener {
             binding.appbarLayout.setExpanded(false)
+        }
+        binding.tbNav.setOnClickListener {
+            val intent = Intent(activity, SettingActivity::class.java)
+            startActivity(intent)
         }
     }
 

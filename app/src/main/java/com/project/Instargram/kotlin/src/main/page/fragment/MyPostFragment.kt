@@ -21,9 +21,10 @@ class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding
     , UserPostInterface, MyPostAdapter.PhotoListener {
 
     private val KEY_USERID = "userIdx"
+    private val KEY_TARGETID = "targetIdx"
+
     private val IS_IT_MINE = "isItMyPost"
     private var KEY_SEND = "single_post"
-    private val KEY_TARGET_IDX = "targetIdx_for_prfile"
 
     private var userIdx: Int = 0
     private var targetIdx = 0
@@ -32,15 +33,13 @@ class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding
         super.onViewCreated(view, savedInstanceState)
 
         userIdx = getIntegerValue(KEY_USERID)!!
-        targetIdx = getIntegerValue(KEY_TARGET_IDX)!!
+        targetIdx = getIntegerValue(KEY_TARGETID)!!
 
         // TODO
         //UserPostService(this).tryGetUserPost(targetIdx)
         UserPostService(this).tryGetUserPost(userIdx)
 
         //setUpMyPostRecyclerView()
-
-
     }
 
     override fun onPhotoClick(postIdx: Int) {
@@ -50,9 +49,11 @@ class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding
     override fun onGetUserPostSuccess(response: GetUserPostResponse) {
         Log.d(TAG, "onGetUserPostSuccess: " + response)
         val result = response.result
-
-        setUpMyPostRecyclerView(response)
-
+        if(result.size == 0) {
+            binding.imgEmpty.visibility = View.VISIBLE
+        } else {
+            setUpMyPostRecyclerView(response)
+        }
 
     }
 

@@ -47,13 +47,13 @@ interface MainRetrofitInterface {
     ): Call<GetWithoutSearchResponse>
 
     //my page
-    @GET("users/profile/{requestUserIdx}?")
+    @GET("users/profiles/{requestUserIdx}?")
     fun getProfile(
         @Path("requestUserIdx") requestUserIdx: Int,
         @Query("targetUserIdx") targetUserIdx: Int
     ): Call<GetProfileResponse>
 
-    @GET("users/profile/{userIdx}/written-posts")
+    @GET("users/profiles/{userIdx}/written-posts")
     fun getUserPost(
         @Path("userIdx") userIdx: Int
     ): Call<GetUserPostResponse>
@@ -99,36 +99,38 @@ interface MainRetrofitInterface {
     ): Call<NewBookmarkResponse>
 
     //팔로우 팔로잉 목록 가져오기
-    @GET("users/profile/follower-list?")
+    @GET("users/profiles/follower-list?")
     fun getFollower(
-        @Query("userIdx") userIdx: Int
-    ): Call<GetFollowerResponse>
+        @Query("requestUserIdx") requestUserIdx: Int,
+        @Query("targetUserIdx") targetUserIdx: Int
+        ): Call<GetFollowerResponse>
 
-    @GET("users/profile/following-list?")
+    @GET("users/profiles/following-list?")
     fun getFollowing(
-        @Query("userIdx") userIdx: Int
+        @Query("requestUserIdx") requestUserIdx: Int,
+        @Query("targetUserIdx") targetUserIdx: Int
     ): Call<GetFollowingResponse>
 
     //댓글 작성
-    @POST("posts/comment")
+    @POST("posts/comments")
     fun postComment(
         @Body request: NewCommentRequest
     ): Call<NewCommentResponse>
     //댓글 조회
-    @GET("posts/comment?")
+    @GET("posts/comments?")
     fun getComment(
         @Query("postIdx") postIdx: Int,
         @Query("userIdx") userIdx: Int
     ):Call<GetCommentResponse>
 
     //대댓글 작성
-    @POST("posts/comment-reply")
+    @POST("posts/comments-replies")
     fun postReply(
         @Body request: NewReplyRequest
     ): Call<NewReplyResponse>
 
     //대댓글 조회
-    @GET("posts/comment-reply?")
+    @GET("posts/comments-replies?")
     fun getReply(
         @Query("postIdx") postIdx: Int,
         @Query("commentIdx") commentIdx: Int,

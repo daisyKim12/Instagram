@@ -27,11 +27,11 @@ class UserPageActivity: BaseActivity<ActivityUserPageBinding>(ActivityUserPageBi
     private val KEY_GET = "not_my_userIdx"
 
     private val KEY_USERID = "userIdx"
+    private val KEY_TARGETID = "targetIdx"
     private val KEY_SEND = "nickName"
     private val KEY_FLAG = "is_it_follower"
     private val KEY_FOLLOWER_NM="follower"
     private val KEY_FOLLOWING_NM="following"
-    private val KEY_TARGET_IDX = "targetIdx_for_prfile"
 
     private var userIdx = 0
     private var targetIdx = 0
@@ -50,7 +50,8 @@ class UserPageActivity: BaseActivity<ActivityUserPageBinding>(ActivityUserPageBi
 //        if(intent.extras?.getSerializable(KEY_FEED) != null) {
 //            feed = intent.extras?.getSerializable(KEY_FEED) as Feed
 //        }
-        saveInteger(KEY_TARGET_IDX, targetIdx)
+
+        saveInteger(KEY_TARGETID, targetIdx)
         PageService(this).tryGetProfile(userIdx, targetIdx)
 
     }
@@ -151,7 +152,7 @@ class UserPageActivity: BaseActivity<ActivityUserPageBinding>(ActivityUserPageBi
         val linearLayoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvStoryHightlight.layoutManager = linearLayoutManager
-        val adapter = StoryHighlightAdapter(this, TempPageLists.storyHighlightAdpSlides)
+        val adapter = StoryHighlightAdapter(this, TempPageLists.userStoryHighlightAdpSlides)
         adapter.notifyDataSetChanged()
         binding.rvStoryHightlight.adapter = adapter
     }

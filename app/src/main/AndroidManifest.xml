@@ -169,7 +169,13 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Login"/>
-        
+        <activity
+            android:name="com.project.Instargram.kotlin.util.SettingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Login"/>
+
+
     </application>
 
 </manifest>

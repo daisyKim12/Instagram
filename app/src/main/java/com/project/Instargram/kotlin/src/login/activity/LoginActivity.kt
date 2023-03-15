@@ -25,6 +25,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     private val KEY_USERID = "userIdx"
     private val KEY_TOKEN = "jwtToken"
+    private val KEY_NICKNAME = "nickName"
+    private val KEY_IMAGE = "image_path"
+    private val KEY_AUTO = "auto_login"
+
 
     private var id: String = ""
     private var pw: String = ""

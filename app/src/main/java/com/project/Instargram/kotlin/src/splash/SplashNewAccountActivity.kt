@@ -149,7 +149,6 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
         clearSharedPrefByKey("birthday")
         clearSharedPrefByKey("password")
         clearSharedPrefByKey("phone")
-        //clearSharedPrefByKey("nickName")
         clearSharedPrefByKey("name")
         clearSharedPrefByKey("email")
         clearSharedPrefByKey("isItEmail")
