@@ -24,13 +24,14 @@ import com.project.Instargram.kotlin.src.main.search.SearchFragment
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
     private val KEY_GET = "image_path"
+    private var imageUri = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         supportFragmentManager.beginTransaction().replace(R.id.main_frm, HomeFragment())
             .commitAllowingStateLoss()
 
-        val imageUri = getStringValue(KEY_GET)
+        imageUri = getStringValue(KEY_GET)!!
         loadImageInBottomNav(imageUri!!)
     }
 
@@ -41,18 +42,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             when (item.itemId) {
                 R.id.menu_main_home -> {
                     binding.mainBtmNav.setBackgroundColor(Color.WHITE)
+                    loadHomeBottomNav(imageUri!!)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, HomeFragment())
                         .commitAllowingStateLoss()
                 }
                 R.id.menu_main_search -> {
                     binding.mainBtmNav.setBackgroundColor(Color.WHITE)
+                    loadSearchBottomNav(imageUri!!)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, SearchFragment())
                         .commitAllowingStateLoss()
                 }
                 R.id.menu_main_post -> {
-
+                    binding.mainBtmNav.setBackgroundColor(Color.WHITE)
+                    loadOtherBottomNav(imageUri!!)
                     startActivity(Intent(this, PostImageActivity::class.java))
 
 //                    binding.mainBtmNav.setBackgroundColor(Color.WHITE)
@@ -61,8 +65,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 //                        .commitAllowingStateLoss()
                 }
                 R.id.menu_main_reels -> {
-                    binding.mainBtmNav.setBackgroundColor(Color.WHITE)
-//                    binding.mainBtmNav.setBackgroundColor(Color.BLACK)
+                    binding.mainBtmNav.setBackgroundColor(Color.BLACK)
+                    loadReelsBottomNav(imageUri!!)
+
 //                    val menu: Menu = binding.mainBtmNav.getMenu()
 //                    menu.findItem(R.id.menu_main_home).setIcon(R.drawable.ic_nav_home_white)
 
@@ -73,6 +78,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 }
                 R.id.menu_main_mypage -> {
                     binding.mainBtmNav.setBackgroundColor(Color.WHITE)
+                    loadOtherBottomNav(imageUri!!)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, MyPageFragment())
                         .commitAllowingStateLoss()
@@ -97,8 +103,38 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     binding.mainBtmNav.menu.findItem(R.id.menu_main_mypage)
                         .setIcon(drawable)                }
             })
+    }
 
+    fun loadReelsBottomNav(uri: String) {
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_home).setIcon(R.drawable.ic_nav_home_white)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_search).setIcon(R.drawable.ic_nav_search_white)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_post).setIcon(R.drawable.ic_nav_post_white)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_reels).setIcon(R.drawable.ic_nav_reels_white)
+        loadImageInBottomNav(uri)
+    }
 
+    fun loadHomeBottomNav(uri: String) {
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_home).setIcon(R.drawable.ic_nav_home_fill)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_search).setIcon(R.drawable.ic_nav_search)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_post).setIcon(R.drawable.ic_nav_post)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_reels).setIcon(R.drawable.ic_nav_reels)
+        loadImageInBottomNav(uri)
+    }
+
+    fun loadSearchBottomNav(uri: String) {
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_home).setIcon(R.drawable.ic_nav_home)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_search).setIcon(R.drawable.ic_nav_search_fill)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_post).setIcon(R.drawable.ic_nav_post)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_reels).setIcon(R.drawable.ic_nav_reels)
+        loadImageInBottomNav(uri)
+    }
+
+    fun loadOtherBottomNav(uri: String) {
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_home).setIcon(R.drawable.ic_nav_home)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_search).setIcon(R.drawable.ic_nav_search)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_post).setIcon(R.drawable.ic_nav_post)
+        binding.mainBtmNav.menu.findItem(R.id.menu_main_reels).setIcon(R.drawable.ic_nav_reels)
+        loadImageInBottomNav(uri)
     }
 
 }
