@@ -13,5 +13,6 @@ data class Result(
     val since: Int,
     val taggedUserList: List<String>,
     val isSavedPost: Boolean,
-    val isLikedPost: Boolean
+    val isLikedPost: Boolean,
+    val commentNumber: Int
 ): java.io.Serializable

@@ -37,7 +37,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
 
         val userIdx = getIntegerValue(KEY_USERID)!!
         Log.d(TAG, "onViewCreated: userIdx -> " + userIdx )
-        PageService(this).tryGetProfile(userIdx)
+        PageService(this).tryGetProfile(userIdx, userIdx)
 
 
         setAdapterForFragment()

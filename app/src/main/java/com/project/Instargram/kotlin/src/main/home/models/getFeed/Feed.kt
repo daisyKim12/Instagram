@@ -11,5 +11,8 @@ data class Feed(
     val postIdx: Int,
     val postText: String,
     val since: Int,
-    val taggedUserList: List<String>
-)
+    val taggedUserList: List<String>,
+    val isSavedPost: Boolean,
+    val isLikedPost: Boolean,
+    val commentNumber: Int
+): java.io.Serializable

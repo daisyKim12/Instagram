@@ -11,10 +11,18 @@ import com.project.Instargram.kotlin.databinding.RvHomeStoryLayoutBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
 import com.project.Instargram.kotlin.src.main.home.models.Post
 import com.project.Instargram.kotlin.src.main.home.models.Story
+import com.project.Instargram.kotlin.src.main.home.models.getFeed.Feed
+import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostResponse
+import com.project.Instargram.kotlin.src.main.post.adapter.PostViewHolder
 
-class StoryPostAdapter(private val context: Context, private val post: List<Post>,
+class StoryPostAdapter(private val context: Context, private val getPostResponse: GetPostResponse,
+                       //private val post: List<Post>,
                        private val story: List<Story>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    val result = getPostResponse.result
+    val feedList = result.feedList
+    val followInfoList = result.followInfoList
 
     inner class StoryViewHolder(private val binding : RvHomeStoryLayoutBinding)
         : RecyclerView.ViewHolder(binding.root){
@@ -30,33 +38,31 @@ class StoryPostAdapter(private val context: Context, private val post: List<Post
 
     }
 
-    inner class PostViewHolder(private val binding: RvHomePostItemBinding)
-        : RecyclerView.ViewHolder(binding.root) {
-
-        fun bindItem(post: Post) {
-
-            setUpViewPager(context, post.postUrlList)
-
-            Glide.with(context).load(post.tumbnailUrl).into(binding.imgThumbnail)
-            binding.txtName.text = post.name
-            //Glide.with(context).load(post.postUrl).into(binding.rvPost)
-            binding.txtLike.text = "좋아요 " + post.like.toString() + "개"
-            binding.txtDetail.text = post.name + " " + post.detailUrl
-            binding.txtComment.text = "댓글" + post.commentNum.toString() + "개 보기"
-            //binding.txtTime.text = ??
-
-            //TODO("add click listener")
-        }
-
-        fun setUpViewPager(context: Context, postUrlList: List<String>){
-            val adapter = PostImageAdapter(context, postUrlList)
-            val viewPager2 = binding.vpPost
-            viewPager2?.adapter = adapter
-            //viewPager2?.registerOnPageChangeCallback(pager2Callback)
-            binding.dotsIndicator.setViewPager2(viewPager2!!)
-        }
-
-    }
+//    inner class PostViewHolder(private val binding: RvHomePostItemBinding)
+//        : RecyclerView.ViewHolder(binding.root) {
+//
+//        fun bindItem(feed: Feed) {
+//
+//            setUpViewPager(context, feed.postFileURLList)
+//
+//            Glide.with(context).load(feed.authorProfileImgURL).into(binding.imgThumbnail)
+//            binding.txtName.text = feed.authorNickName
+//            binding.txtLike.text = "좋아요 " + feed.likeNumber.toString() + "개"
+//            binding.txtDetail.text = feed.authorNickName + " " + feed.postText
+//            //binding.txtComment.text = "댓글" + feed.commentNum.toString() + "개 보기"
+//            binding.txtTime.text = feed.since.toString()
+//
+//        }
+//
+//        fun setUpViewPager(context: Context, postUrlList: List<String>){
+//            val adapter = PostImageAdapter(context, postUrlList)
+//            val viewPager2 = binding.vpPost
+//            viewPager2?.adapter = adapter
+//            //viewPager2?.registerOnPageChangeCallback(pager2Callback)
+//            binding.dotsIndicator.setViewPager2(viewPager2!!)
+//        }
+//
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if(viewType == 0) {
@@ -68,11 +74,8 @@ class StoryPostAdapter(private val context: Context, private val post: List<Post
                 )
             )
         } else {
-            return PostViewHolder(
-                RvHomePostItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+            return PostViewHolder( context,
+                RvHomePostItemBinding.inflate(LayoutInflater.from(parent.context), parent, false
                 )
             )
         }
@@ -82,7 +85,7 @@ class StoryPostAdapter(private val context: Context, private val post: List<Post
         if(position == 0) {
             (holder as StoryViewHolder).bindItem(story)
         } else {
-            (holder as PostViewHolder).bindItem(post[position-1])
+            (holder as PostViewHolder).bindItem(feedList[position - 1])
         }
     }
 
@@ -95,7 +98,7 @@ class StoryPostAdapter(private val context: Context, private val post: List<Post
     }
 
     override fun getItemCount(): Int {
-        return post.size + 1
+        return feedList.size + 1
     }
 
 }

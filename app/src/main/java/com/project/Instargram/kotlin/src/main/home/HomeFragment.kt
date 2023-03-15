@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpStoryPostRecyclerView()
+        //setUpStoryPostRecyclerView()
         val userIdx = getIntegerValue(KEY_USERID)!!
         Log.d(TAG, "onViewCreated: " + userIdx)
 
@@ -37,11 +37,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
     }
 
-    private fun setUpStoryPostRecyclerView() {
+    private fun setUpStoryPostRecyclerView(getPostResponse: GetPostResponse) {
         binding.rvStorypost.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.rvStorypost.layoutManager = linearLayoutManager
-        val adapter = StoryPostAdapter(requireContext(), TempPageLists.postAdpSlides, TempPageLists.storyAdpSlides)
+        val adapter = StoryPostAdapter(requireContext(),  getPostResponse, TempPageLists.storyAdpSlides)
+        //TempPageLists.postAdpSlides,
         adapter.notifyDataSetChanged()
         binding.rvStorypost.adapter = adapter
     }
@@ -50,7 +51,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
     override fun onGetFeedSuccess(response: GetPostResponse) {
         Log.d(TAG, "onGetFeedSuccess: " + response)
-
+        setUpStoryPostRecyclerView(response)
     }
 
     override fun onGetFeedFailure(message: String) {

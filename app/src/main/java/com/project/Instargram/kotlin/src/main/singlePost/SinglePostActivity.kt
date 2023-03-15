@@ -30,6 +30,7 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
     private val IS_IT_MINE = "isItMyPost"
     private val KEY_USERID = "userIdx"
     private val KEY_PRE_COMMENT = "data_for_comment"
+
     private var startFollow = true
     private var startLike = true
     private var startSave = true
@@ -85,7 +86,9 @@ class SinglePostActivity:BaseActivity<ActivitySinglePostBinding>(ActivitySingleP
         binding.txtLike.text = "좋아요 " + result.likeNumber.toString() + "개"
         binding.txtDetail.text = result.postText
         binding.txtTime.text = result.since.toString() + "전"
-        //binding.txtComment.text
+        binding.txtComment.text = "댓글 " +
+                result.commentNumber.toString() +
+                "개 보기"
 
         setUpViewPager(this, result.postFileURLList)
     }

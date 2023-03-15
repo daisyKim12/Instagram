@@ -1,6 +1,7 @@
 package com.project.Instargram.kotlin.src.main.page
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,17 +11,22 @@ import com.google.android.material.tabs.TabLayout
 import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivityUserPageBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
+import com.project.Instargram.kotlin.src.main.home.models.getFeed.Feed
 import com.project.Instargram.kotlin.src.main.page.adapter.StoryHighlightAdapter
 import com.project.Instargram.kotlin.src.main.page.adapter.TabFragmentAdapter
 import com.project.Instargram.kotlin.src.main.page.model.profile.GetProfileResponse
 import com.project.Instargram.kotlin.src.main.page.model.profile.PageService
 import com.project.Instargram.kotlin.src.main.page.model.profile.ProfileInterface
+import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 
 class UserPageActivity: BaseActivity<ActivityUserPageBinding>(ActivityUserPageBinding::inflate),
     ProfileInterface {
 
     private val KEY_GET = "not_my_userIdx"
+    private val KEY_FEED = "feed"
+
     private var targetIdx = 0
+    private lateinit var feed: Feed
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +35,11 @@ class UserPageActivity: BaseActivity<ActivityUserPageBinding>(ActivityUserPageBi
         setStoryHightlightRecyclerView()
 
         targetIdx = intent.getIntExtra(KEY_GET, 0)
-        Log.d(ContentValues.TAG, "onViewCreated: userIdx -> " + targetIdx )
+        Log.d(TAG, "onViewCreated: userIdx -> " + targetIdx )
+
+        feed = intent.extras?.getSerializable(KEY_FEED) as Feed
+        Log.d(TAG, "onCreate: feed-> " + feed)
+
 //        PageService(this).tryGetProfile(targetIdx)
 
     }

@@ -47,9 +47,10 @@ interface MainRetrofitInterface {
     ): Call<GetWithoutSearchResponse>
 
     //my page
-    @GET("users/profile/{userIdx}")
+    @GET("users/profile/{requestUserIdx}?")
     fun getProfile(
-        @Path("userIdx") userIdx: Int
+        @Path("requestUserIdx") requestUserIdx: Int,
+        @Query("targetUserIdx") targetUserIdx: Int
     ): Call<GetProfileResponse>
 
     @GET("users/profile/{userIdx}/written-posts")

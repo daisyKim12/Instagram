@@ -8,9 +8,9 @@ import retrofit2.Response
 
 class PageService(val profileInterface: ProfileInterface) {
 
-    fun tryGetProfile(userIdx: Int){
+    fun tryGetProfile(requestUserIdx: Int, targetUserIdx: Int){
         val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
-        mainRetrofitInterface.getProfile(userIdx).enqueue(object : Callback<GetProfileResponse?> {
+        mainRetrofitInterface.getProfile(requestUserIdx, targetUserIdx).enqueue(object : Callback<GetProfileResponse?> {
             override fun onResponse(call: Call<GetProfileResponse?>, response: Response<GetProfileResponse?>) {
                 profileInterface.onGetProfileSuccess(response.body() as GetProfileResponse)
             }
