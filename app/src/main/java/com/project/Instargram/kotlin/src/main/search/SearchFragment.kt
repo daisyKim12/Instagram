@@ -12,6 +12,7 @@ import com.project.Instargram.kotlin.R
 import com.project.Instargram.kotlin.config.BaseFragment
 import com.project.Instargram.kotlin.databinding.FragmentSearchBinding
 import com.project.Instargram.kotlin.src.main.TempPageLists
+import com.project.Instargram.kotlin.src.main.home.HomeService
 import com.project.Instargram.kotlin.src.main.singlePost.SinglePostActivity
 import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 import com.project.Instargram.kotlin.src.main.page.model.post.GetUserPostResponse
@@ -28,6 +29,7 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
     private var KEY_SEND = "single_post"
     private val IS_IT_MINE = "isItMyPost"
     private var userIdx = 0
+    private var pagging = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,6 +44,13 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
         userIdx = getIntegerValue(KEY_USERID)!!
         Log.d(ContentValues.TAG, "onViewCreated: userIdx -> " + userIdx )
         SearchService(this).tryGetWitoutSearch(userIdx, 1)
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        binding.refresh.setOnRefreshListener {
+//            SearchService(this).tryGetWitoutSearch(userIdx, pagging++)
+//        }
     }
 
     private fun changeEditText(b: Boolean) {
@@ -62,6 +71,8 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
     override fun onGetWithoutSearchSuccess(response: GetWithoutSearchResponse) {
         Log.d(TAG, "onGetWithoutSearchSuccess: " + response.result)
         setUpStaggeredRecyclerView(response)
+        //binding.refresh.setRefreshing(false)
+
     }
 
     override fun onGetWithoutSearchFailure(message: String) {

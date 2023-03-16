@@ -97,7 +97,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         val userDescription: String = result.userDescription
 
         //TODO nickname 문제 생기면 이거 확인
-        //saveString(KEY_NICK_NAME, nickName)
+        saveString(KEY_NICK_NAME, nickName)
 
         binding.tbProfile.text = nickName
         binding.txtName.text = name

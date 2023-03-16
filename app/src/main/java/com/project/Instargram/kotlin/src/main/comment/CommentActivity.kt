@@ -15,6 +15,7 @@ import com.project.Instargram.kotlin.src.main.comment.model.newComment.NewCommen
 import com.project.Instargram.kotlin.src.main.comment.model.newComment.NewCommentResponse
 import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyRequest
 import com.project.Instargram.kotlin.src.main.comment.model.newReply.NewReplyResponse
+import com.project.Instargram.kotlin.src.main.home.HomeService
 import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.GetSinglePostResponse
 
 class CommentActivity:BaseActivity<ActivityCommentBinding>(ActivityCommentBinding::inflate),
@@ -51,6 +52,9 @@ class CommentActivity:BaseActivity<ActivityCommentBinding>(ActivityCommentBindin
 
     override fun onResume() {
         super.onResume()
+        binding.refresh.setOnRefreshListener {
+            CommentService(this).tryGetComment(postIdx, userIdx)
+        }
         binding.tbBack.setOnClickListener {
             finish()
         }
@@ -96,6 +100,7 @@ class CommentActivity:BaseActivity<ActivityCommentBinding>(ActivityCommentBindin
         Log.d(TAG, "onGetCommentSuccess: " + response)
         val newReplyRequest = NewReplyRequest(userIdx, postIdx, 0, userNickName, "")
         setCommentRecyclerView(getSinglePostResponse, response)
+        binding.refresh.setRefreshing(false)
     }
 
     override fun onNewReplySuccess(response: NewReplyResponse) {

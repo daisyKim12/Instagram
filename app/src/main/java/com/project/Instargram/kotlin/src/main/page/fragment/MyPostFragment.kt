@@ -37,7 +37,7 @@ class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding
 
         // TODO
         //UserPostService(this).tryGetUserPost(targetIdx)
-        UserPostService(this).tryGetUserPost(userIdx)
+        UserPostService(this).tryGetUserPost(userIdx, targetIdx)
 
         //setUpMyPostRecyclerView()
     }

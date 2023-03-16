@@ -53,9 +53,10 @@ interface MainRetrofitInterface {
         @Query("targetUserIdx") targetUserIdx: Int
     ): Call<GetProfileResponse>
 
-    @GET("users/profiles/{userIdx}/written-posts")
+    @GET("users/profiles/{requestUserIdx}/written-posts")
     fun getUserPost(
-        @Path("userIdx") userIdx: Int
+        @Path("requestUserIdx") requestUserIdx: Int,
+        @Query("targetUserIdx") targetUserIdx: Int
     ): Call<GetUserPostResponse>
 
     //특정 게시물 가져오기

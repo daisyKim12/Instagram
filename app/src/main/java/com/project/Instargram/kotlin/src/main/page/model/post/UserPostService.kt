@@ -6,12 +6,13 @@ import com.project.Instargram.kotlin.src.main.singlePost.model.getSinglePost.Get
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Query
 
 class UserPostService(val userPostInterface: UserPostInterface) {
 
-    fun tryGetUserPost(userIdx: Int){
+    fun tryGetUserPost(requestUserIdx: Int,targetUserIdx: Int){
         val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)
-        mainRetrofitInterface.getUserPost(userIdx).enqueue(object : Callback<GetUserPostResponse?> {
+        mainRetrofitInterface.getUserPost(requestUserIdx,targetUserIdx).enqueue(object : Callback<GetUserPostResponse?> {
             override fun onResponse(call: Call<GetUserPostResponse?>, response: Response<GetUserPostResponse?>) {
                 userPostInterface.onGetUserPostSuccess(response.body() as GetUserPostResponse)
             }
@@ -21,6 +22,7 @@ class UserPostService(val userPostInterface: UserPostInterface) {
             }
         })
     }
+
 
     fun tryGetSinglePost(userIdx: Int, postIdx: Int){
         val mainRetrofitInterface = ApplicationClass.sRetrofit.create(MainRetrofitInterface::class.java)

@@ -20,19 +20,24 @@ import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostRespons
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home), HomeInterface{
 
     private val KEY_USERID = "userIdx"
+    private var userIdx = 0
+    private var pagging = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //setUpStoryPostRecyclerView()
-        val userIdx = getIntegerValue(KEY_USERID)!!
+        userIdx = getIntegerValue(KEY_USERID)!!
         Log.d(TAG, "onViewCreated: " + userIdx)
 
-        HomeService(this).tryGetFeed(userIdx,1)
+        HomeService(this).tryGetFeed(userIdx,pagging++)
     }
 
     override fun onResume() {
         super.onResume()
+        binding.refresh.setOnRefreshListener {
+            HomeService(this).tryGetFeed(userIdx,pagging++)
+        }
 
 
     }
@@ -52,6 +57,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun onGetFeedSuccess(response: GetPostResponse) {
         Log.d(TAG, "onGetFeedSuccess: " + response)
         setUpStoryPostRecyclerView(response)
+        binding.refresh.setRefreshing(false)
+
     }
 
     override fun onGetFeedFailure(message: String) {

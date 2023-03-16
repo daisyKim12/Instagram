@@ -45,8 +45,9 @@ class MyPostAdapter(private val context: Context, private val response: GetUserP
     }
 
     override fun onBindViewHolder(holder: SquareViewHolder, position: Int) {
-        var thumnailUrl = result[position].fileURLList[0]
-        var postIdx = result[position].postIdx
+        val reverse = result.size - position - 1
+        var thumnailUrl = result[reverse].fileURLList[0]
+        var postIdx = result[reverse].postIdx
         holder.bindItem(thumnailUrl)
         holder.bindClickable(postIdx)
     }

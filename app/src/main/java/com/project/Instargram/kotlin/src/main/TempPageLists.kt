@@ -99,6 +99,25 @@ object TempPageLists {
         "https://r2.jjalbot.com/2023/03/2bBF4IBQv0.mp4",
         "https://r2.jjalbot.com/2023/03/yxy6VHsXh.mp4",
         "https://r2.jjalbot.com/2023/03/FaGM6hOJ6r.mp4",
-        "https://r2.jjalbot.com/2023/03/Tley7NK9iV.mp4"
+        "https://r2.jjalbot.com/2023/03/Tley7NK9iV.mp4",
+        "https://r2.jjalbot.com/2023/03/hbD2u9NKJE.mp4",
+        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2020/01/19/Dor9THzQTyTM637150470686905863.gif",
+        "http://img.newspim.com/news/2017/05/26/1705261335525830.gif",
+        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2020/01/19/82PJLFUPvF67637150471087374630.gif",
+        "http://img.newspim.com/news/2017/05/26/1705261335557030.gif",
+        "https://r2.jjalbot.com/2023/03/2bBF4IBQv0.mp4",
+        "https://r2.jjalbot.com/2023/03/yxy6VHsXh.mp4",
+        "https://r2.jjalbot.com/2023/03/FaGM6hOJ6r.mp4",
+        "https://r2.jjalbot.com/2023/03/Tley7NK9iV.mp4",
+        "https://r2.jjalbot.com/2023/03/hbD2u9NKJE.mp4",
+        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2020/01/19/Dor9THzQTyTM637150470686905863.gif",
+        "http://img.newspim.com/news/2017/05/26/1705261335525830.gif",
+        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2020/01/19/82PJLFUPvF67637150471087374630.gif",
+        "http://img.newspim.com/news/2017/05/26/1705261335557030.gif",
+        "https://r2.jjalbot.com/2023/03/2bBF4IBQv0.mp4",
+        "https://r2.jjalbot.com/2023/03/yxy6VHsXh.mp4",
+        "https://r2.jjalbot.com/2023/03/FaGM6hOJ6r.mp4",
+        "https://r2.jjalbot.com/2023/03/Tley7NK9iV.mp4",
+        "https://r2.jjalbot.com/2023/03/hbD2u9NKJE.mp4"
         )
 }
