@@ -105,10 +105,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         binding.txtPostNm.text = postNumber.toString()
         binding.txtFollowingNm.text = followingNumber.toString()
         binding.txtFollowerNm.text = followerNumber.toString()
-        if(userDescription.toString() != "NULL") {
-            binding.txtHashtag.text = "??"
-            binding.txtDetail.text = userDescription.toString()
-        }
+//        if(userDescription != "NULL") {
+//            binding.txtHashtag.text = ""
+//            binding.txtDetail.text = userDescription
+//        }
     }
 
     override fun onGetProfileFailure(message: String) {

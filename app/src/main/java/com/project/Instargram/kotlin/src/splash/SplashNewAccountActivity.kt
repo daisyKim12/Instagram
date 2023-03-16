@@ -11,6 +11,7 @@ import com.project.Instargram.kotlin.config.BaseActivity
 import com.project.Instargram.kotlin.databinding.ActivitySplashNewAccountBinding
 import com.project.Instargram.kotlin.databinding.DialogDatePickerBinding
 import com.project.Instargram.kotlin.src.login.activity.EnterCertificationActivity
+import com.project.Instargram.kotlin.src.login.activity.LoginActivity
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountInterface
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountResponse
 import com.project.Instargram.kotlin.src.login.model.newaccount.NewAccountService
@@ -26,6 +27,8 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
     private val KEY_IMAGE_URI = "image_path"
     private val KEY_NICKNAME = "nickName"
     private val KEY_ISIT_EMAIL = "isItEmail"
+    private val X_ACCESS_TOKEN = "jwtToken"
+
     private lateinit var handler: Handler
     private var isItEmail = true
 
@@ -52,10 +55,8 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
             Thread.sleep(5000)
             //Log.d(ContentValues.TAG, "waitAndMoveToNext: "+ )
 
-            //show welcome screen
-            Thread.sleep(3000)
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
@@ -72,11 +73,14 @@ class SplashNewAccountActivity: BaseActivity<ActivitySplashNewAccountBinding>(Ac
 //        binding.circleImageView.setImageURI(path2uri(absolutePath))
         binding.txtDetail1.text = nickName + "님, Instagram에 오신 것을 환영합니다"
         clearExtraSharedPref()
+        Thread.sleep(3000)
+
+        waitAndMoveToNextActivity()
+
     }
 
     override fun onPostNewAccountFailure(message: String) {
         Log.d(ContentValues.TAG, "onPostNewAccountSuccess: " + message)
-
     }
 
     fun regesterAccount() {

@@ -9,6 +9,7 @@ import com.project.Instargram.kotlin.config.ApplicationClass
 import com.project.Instargram.kotlin.databinding.RvHomePostItemBinding
 import com.project.Instargram.kotlin.databinding.RvHomeStoryLayoutBinding
 import com.project.Instargram.kotlin.src.main.home.models.Story
+import com.project.Instargram.kotlin.src.main.home.models.getFeed.Feed
 import com.project.Instargram.kotlin.src.main.home.models.getFeed.GetPostResponse
 
 class StoryPostAdapter(private val context: Context, private val getPostResponse: GetPostResponse,
@@ -94,6 +95,7 @@ class StoryPostAdapter(private val context: Context, private val getPostResponse
     }
 
     override fun getItemCount(): Int {
+
         return feedList.size + 1
     }
 

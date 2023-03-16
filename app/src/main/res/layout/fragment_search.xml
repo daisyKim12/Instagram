@@ -61,7 +61,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
-
+<!--    <com.dinuscxj.refresh.RecyclerRefreshLayout-->
+<!--        android:id="@+id/refresh"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/toolbar">-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search"
@@ -72,17 +77,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-
-
-    <!--    <com.dinuscxj.refresh.RecyclerRefreshLayout-->
-    <!--        android:id="@+id/refresh"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/toolbar"> -->
-<!--        </com.dinuscxj.refresh.RecyclerRefreshLayout>-->
-
-
+<!--    </com.dinuscxj.refresh.RecyclerRefreshLayout>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>

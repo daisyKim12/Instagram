@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.Instargram.kotlin.databinding.RvRectangleItemBinding
 import com.project.Instargram.kotlin.databinding.RvSquareItemBinding
+import com.project.Instargram.kotlin.src.main.home.models.getFeed.Feed
 import com.project.Instargram.kotlin.src.main.search.model.GetWithoutSearchResponse
 
 class SearchStaggeredAdapter(private val context: Context, private val response: GetWithoutSearchResponse,

@@ -43,13 +43,13 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(FragmentSearchBinding:
 
         userIdx = getIntegerValue(KEY_USERID)!!
         Log.d(ContentValues.TAG, "onViewCreated: userIdx -> " + userIdx )
-        SearchService(this).tryGetWitoutSearch(userIdx, 1)
+        SearchService(this).tryGetWitoutSearch(userIdx, pagging)
     }
 
     override fun onResume() {
         super.onResume()
 //        binding.refresh.setOnRefreshListener {
-//            SearchService(this).tryGetWitoutSearch(userIdx, pagging++)
+//            SearchService(this).tryGetWitoutSearch(userIdx, pagging)
 //        }
     }
 

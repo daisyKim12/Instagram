@@ -37,9 +37,12 @@ class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding
 
         // TODO
         //UserPostService(this).tryGetUserPost(targetIdx)
-        UserPostService(this).tryGetUserPost(userIdx, targetIdx)
+        //setUpMyPostRecyclerView(GetUserPostResponse(1000, true, "", ))
+    }
 
-        //setUpMyPostRecyclerView()
+    override fun onResume() {
+        super.onResume()
+        UserPostService(this).tryGetUserPost(userIdx, targetIdx)
     }
 
     override fun onPhotoClick(postIdx: Int) {
@@ -49,7 +52,7 @@ class MyPostFragment : BaseFragment<FragmentMyPostBinding>(FragmentMyPostBinding
     override fun onGetUserPostSuccess(response: GetUserPostResponse) {
         Log.d(TAG, "onGetUserPostSuccess: " + response)
         val result = response.result
-        if(result.size == 0) {
+        if(result == null) {
             binding.imgEmpty.visibility = View.VISIBLE
         } else {
             setUpMyPostRecyclerView(response)
