@@ -7,7 +7,7 @@ This Project is to clone all the functionality of instagram. Login, Register, up
 - Schedule.md: my record of developing
 - rest: source file for android application
 
-**preview**
+**preview**   
 ![](x/Screenshot%202023-11-07%20at%2012.19.50%20AM.png) ![](x/Screenshot%202023-11-07%20at%2012.20.34%20AM.png)
 
 - Api Sheet 링크
